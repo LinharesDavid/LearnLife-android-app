@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="small_padding_horizontal">8dp</dimen>
+    <dimen name="small_padding_vertical">8dp</dimen>
+    <dimen name="small_margin_horizontal">8dp</dimen>
+    <dimen name="small_margin_vertical">8dp</dimen>
+
+    <dimen name="medium_padding_horizontal">16dp</dimen>
+    <dimen name="medium_padding_vertical">16dp</dimen>
+    <dimen name="medium_margin_horizontal">16dp</dimen>
+    <dimen name="medium_margin_vertical">16dp</dimen>
+
+    <dimen name="large_padding_horizontal">24dp</dimen>
+    <dimen name="large_padding_vertical">24dp</dimen>
+    <dimen name="large_margin_horizontal">24dp</dimen>
+    <dimen name="large_margin_vertical">24dp</dimen>
+
+    <!-- font sizes -->
+    <dimen name="font12">12sp</dimen>
+    <dimen name="font14">14sp</dimen>
+    <dimen name="font16">16sp</dimen>
+    <dimen name="font18">18sp</dimen>
+    <dimen name="font20">20sp</dimen>
+    <dimen name="font24">24sp</dimen>
+</resources>
