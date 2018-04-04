@@ -11,4 +11,6 @@
 
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="moreColor">#2373A9</color>
+    <color name="borderCartouche">#95989A</color>
 </resources>

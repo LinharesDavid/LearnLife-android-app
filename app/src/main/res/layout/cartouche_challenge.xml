@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/shape_cartouche"
+    android:elevation="10dp"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/imvChallenge"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        tools:src="@drawable/test_image"
+        android:scaleType="centerCrop"
+        android:background="@android:color/holo_red_dark"/>
+
+    
+    <TextView
+        android:id="@+id/txvTitleChallenge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Challenge of the day : RUN 5KM"
+        android:textColor="@color/primaryText"
+        android:fontFamily="@font/bebas_neue_regular"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:textSize="@dimen/font20"
+        android:layout_marginStart="10dp"
+        android:layout_below="@id/imvChallenge"/>
+
+    <TextView
+        android:id="@+id/txvDetailsChallenge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="Your life today is, basically, the sum of your  habits. We—mostly unconsciously—repeat 95 percent of our physical and mental"
+        android:lines="3"
+        android:ellipsize="end"
+        android:textColor="@color/primaryText"
+        android:textSize="@dimen/font14"
+        android:layout_below="@id/txvTitleChallenge"
+        android:layout_alignStart="@id/txvTitleChallenge"
+        android:fontFamily="@font/comfortaa_regular"/>
+
+    <TextView
+        android:id="@+id/txvMoreDetails"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/moreColor"
+        android:text="@string/more_details"
+        android:layout_below="@id/txvDetailsChallenge"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/comfortaa_regular" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Sport"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:background="@drawable/shape_category"/>
+    
+</RelativeLayout>
