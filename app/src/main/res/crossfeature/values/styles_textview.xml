@@ -4,6 +4,7 @@
 
     <style name="LearnLife.TextAppearance">
         <item name="android:textSize">@dimen/font16</item>
+        <item name="android:fontFamily">@font/comfortaa_regular</item>
     </style>
 
     <style name="LearnLife.TextAppearance.Numbers">
