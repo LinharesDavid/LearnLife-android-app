@@ -22,4 +22,7 @@
     <dimen name="font18">18sp</dimen>
     <dimen name="font20">20sp</dimen>
     <dimen name="font24">24sp</dimen>
+
+    <!-- Cartouche -->
+    <dimen name="radiusCartouche">120dp</dimen>
 </resources>
