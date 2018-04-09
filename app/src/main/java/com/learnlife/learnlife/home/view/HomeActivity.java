@@ -105,4 +105,8 @@ public class HomeActivity extends AppCompatActivity {
         flingContainer.getTopCardListener().selectRight();
         view.startAnimation(animationBounce);
     }
+
+    public void btnAcceptClicked(View view){
+        flingContainer.getTopCardListener().selectRight();
+    }
 }
