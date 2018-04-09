@@ -2,10 +2,18 @@ package com.learnlife.learnlife.home.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.learnlife.learnlife.R;
+import com.learnlife.learnlife.crosslayers.models.Challenge;
 import com.learnlife.learnlife.crosslayers.utils.MyDateUtils;
+import com.learnlife.learnlife.home.adapter.Adapter;
+import com.lorentzos.flingswipe.SwipeFlingAdapterView;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -15,9 +23,12 @@ public class HomeActivity extends AppCompatActivity {
     /***********************************************************
     *  Attributes
     **********************************************************/
-    @BindView(R.id.txvTodayDate)
-    public TextView txvTodayDate;
+    @BindView(R.id.txvTodayDate) public TextView txvTodayDate;
+    @BindView(R.id.idFling) public SwipeFlingAdapterView flingContainer;
+    @BindView(R.id.txvNoMoreChallenge) public TextView txvNoMoreChallenge;
 
+    private ArrayList<Challenge> challenges = new ArrayList<>();
+    private Adapter adapter;
 
     /***********************************************************
     *  Managing LifeCycle
@@ -30,5 +41,48 @@ public class HomeActivity extends AppCompatActivity {
 
         txvTodayDate.setText(MyDateUtils.fullDate(this));
 
+
+        //Juste pour les tests
+        for(int i = 0; i < 5; i++){
+            challenges.add(new Challenge().falseChallengeGenerator());
+        }
+
+        //Custom Adapter
+        adapter = new Adapter(this, R.layout.cartouche_challenge, challenges);
+
+        flingContainer.setAdapter(adapter);
+
+        //Swipe Listener
+        flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
+            @Override
+            public void removeFirstObjectInAdapter() {
+                challenges.remove(0);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onLeftCardExit(Object o) {
+                Toast.makeText(HomeActivity.this, "Left!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onRightCardExit(Object o) {
+                Toast.makeText(HomeActivity.this, "Right!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdapterAboutToEmpty(int i) {
+                txvNoMoreChallenge.setVisibility(i == 0 ? View.VISIBLE : View.INVISIBLE);
+            }
+
+            @Override
+            public void onScroll(float v) {
+
+            }
+        });
+    }
+
+    public void btnRefuserClicked(View view){
+        flingContainer.getTopCardListener().selectLeft();
     }
 }
