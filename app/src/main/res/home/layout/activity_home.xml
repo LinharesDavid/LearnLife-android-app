@@ -26,8 +26,6 @@
         android:layout_height="@dimen/menu_button_height"
         android:layout_marginTop="@dimen/medium_margin_vertical"
         android:background="@color/activityBackground"
-        android:scaleType="centerCrop"
-        android:layout_marginEnd="@dimen/large_padding_horizontal"
         android:src="@drawable/ic_profil_unselected"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
