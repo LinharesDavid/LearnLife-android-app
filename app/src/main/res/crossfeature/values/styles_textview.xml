@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="LearnLife" />
+
+    <style name="LearnLife.TextAppearance">
+        <item name="android:textSize">@dimen/font16</item>
+        <item name="android:fontFamily">@font/comfortaa_regular</item>
+    </style>
+
+    <style name="LearnLife.TextAppearance.Numbers">
+        <item name="android:textSize">@dimen/font24</item>
+        <item name="android:textColor">@color/primaryText</item>
+    </style>
+
+    <style name="LearnLife.TextAppearance.Numbers.Pink">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="LearnLife.TextAppearance.Body">
+        <item name="android:textColor">@color/secondaryText</item>
+    </style>
+
+    <style name="LearnLife.TextAppearance.Body.White">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="LearnLife.TextAppearance.Body.Pink">
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
+
+    <style name="LearnLife.TextAppearance.Body.Black">
+        <item name="android:textColor">@color/primaryText</item>
+    </style>
+
+    <style name="LearnLife.TextAppearance.Body.Black.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="LearnLife.TextAppearance.Header">
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:textSize">@dimen/font18</item>
+    </style>
+
+    <style name="LearnLife.TextAppearance.Status">
+        <item name="android:textSize">@dimen/font12</item>
+    </style>
+
+    <style name="LearnLife.TextAppearance.Title1">
+        <item name="android:textSize">@dimen/font24</item>
+    </style>
+
+    <style name="LearnLife.TextAppearance.Title1.Pink">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="LearnLife.TextAppearance.Title1.Black">
+        <item name="android:textColor">@color/primaryText</item>
+    </style>
+
+    <style name="LearnLife.TextAppearance.ToolbarTitle">
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:textSize">@dimen/font20</item>
+    </style>
+
+    <style name="LearnLife.TextAppearance.ToolbarTitle.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="LearnLife.TextAppearance.Body.Black.Small">
+        <item name="android:textSize">@dimen/font14</item>
+    </style>
+
+    <style name="LearnLife.TextAppearance.Body.White.Small">
+        <item name="android:textSize">@dimen/font14</item>
+    </style>
+
+</resources>
