@@ -3,6 +3,8 @@ package com.learnlife.learnlife.home.view;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +31,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private ArrayList<Challenge> challenges = new ArrayList<>();
     private Adapter adapter;
-
+    private Animation animationBounce;
 
     /***********************************************************
     *  Managing LifeCycle
@@ -41,7 +43,7 @@ public class HomeActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         txvTodayDate.setText(MyDateUtils.fullDate(this));
-
+        animationBounce = AnimationUtils.loadAnimation(this, R.anim.button_bounce);
 
         //Juste pour les tests
         for(int i = 0; i < 5; i++){
@@ -96,9 +98,11 @@ public class HomeActivity extends AppCompatActivity {
      **********************************************************/
     public void btnDeclineClicked(View view){
         flingContainer.getTopCardListener().selectLeft();
+        view.startAnimation(animationBounce);
     }
 
     public void btnAcceptClicked(View view){
         flingContainer.getTopCardListener().selectRight();
+        view.startAnimation(animationBounce);
     }
 }
