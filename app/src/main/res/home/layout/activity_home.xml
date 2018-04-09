@@ -51,16 +51,31 @@
         tools:text="14 fevrier 2018" />
 
     <ImageButton
-        android:id="@+id/btnRefuser"
+        android:id="@+id/imbDecline"
         android:layout_width="@dimen/button_size"
         android:layout_height="@dimen/button_size"
         android:layout_marginBottom="@dimen/medium_margin_vertical"
-        android:background="@drawable/ic_decline_challenge"
+        android:src="@drawable/ic_decline_challenge"
+        android:scaleType="centerCrop"
+        android:background="@android:color/transparent"
         android:clipToPadding="false"
         android:elevation="40dp"
-        android:onClick="btnRefuserClicked"
+        android:onClick="btnDeclineClicked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imbAccept"
+        android:layout_width="@dimen/button_size"
+        android:layout_height="@dimen/button_size"
+        android:src="@drawable/ic_accept_challenge"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:elevation="40dp"
+        android:layout_marginBottom="@dimen/medium_margin_vertical"
+        android:onClick="btnAcceptClicked"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <com.lorentzos.flingswipe.SwipeFlingAdapterView
         android:id="@+id/idFling"
@@ -68,7 +83,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnRefuser"
+        app:layout_constraintBottom_toTopOf="@+id/imbDecline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txvTodayDate"

@@ -94,7 +94,11 @@ public class HomeActivity extends AppCompatActivity {
     /***********************************************************
      *  Buttons Events
      **********************************************************/
-    public void btnRefuserClicked(View view){
+    public void btnDeclineClicked(View view){
         flingContainer.getTopCardListener().selectLeft();
+    }
+
+    public void btnAcceptClicked(View view){
+        flingContainer.getTopCardListener().selectRight();
     }
 }
