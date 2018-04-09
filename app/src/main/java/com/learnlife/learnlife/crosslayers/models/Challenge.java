@@ -51,6 +51,11 @@ public class Challenge {
         this.category = category;
     }
 
+
+    /**
+     * Juste pour les tests.
+     * @return Challenge
+     */
     public Challenge falseChallengeGenerator(){
         this.description = "Your life today is, basically, the sum of your  habits. We—mostly unconsciously—repeat 95 percent of our physical and mental";
         this.title = "Challenge of the day : RUN 5KM";

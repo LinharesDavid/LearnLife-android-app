@@ -30,6 +30,7 @@ public class HomeActivity extends AppCompatActivity {
     private ArrayList<Challenge> challenges = new ArrayList<>();
     private Adapter adapter;
 
+
     /***********************************************************
     *  Managing LifeCycle
     **********************************************************/
@@ -80,8 +81,19 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+
+        flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClicked(int i, Object o) {
+                Toast.makeText(HomeActivity.this, challenges.get(i).getIdChallenge()+"", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
+
+    /***********************************************************
+     *  Buttons Events
+     **********************************************************/
     public void btnRefuserClicked(View view){
         flingContainer.getTopCardListener().selectLeft();
     }
