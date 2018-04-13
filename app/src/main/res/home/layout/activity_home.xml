@@ -13,6 +13,7 @@
         android:layout_width="@dimen/menu_button_width"
         android:layout_height="@dimen/menu_button_height"
         android:layout_marginTop="@dimen/medium_margin_vertical"
+        android:layout_marginStart="@dimen/large_padding_horizontal"
         android:background="@color/activityBackground"
         android:src="@drawable/ic_feed_time_unselected"
         android:scaleType="centerCrop"
@@ -26,6 +27,7 @@
         android:layout_marginTop="@dimen/medium_margin_vertical"
         android:background="@color/activityBackground"
         android:scaleType="centerCrop"
+        android:layout_marginEnd="@dimen/large_padding_horizontal"
         android:src="@drawable/ic_profil_unselected"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -57,6 +59,7 @@
         android:layout_marginBottom="@dimen/medium_margin_vertical"
         android:src="@drawable/ic_decline_challenge"
         android:scaleType="centerCrop"
+        android:layout_marginStart="@dimen/large_padding_horizontal"
         android:background="@android:color/transparent"
         android:clipToPadding="false"
         android:elevation="40dp"
@@ -72,6 +75,7 @@
         android:background="@android:color/transparent"
         android:scaleType="centerCrop"
         android:elevation="40dp"
+        android:layout_marginEnd="@dimen/large_padding_horizontal"
         android:layout_marginBottom="@dimen/medium_margin_vertical"
         android:onClick="btnAcceptClicked"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -81,12 +85,13 @@
         android:id="@+id/idFling"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/imbDecline"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txvTodayDate"
+        app:layout_constraintVertical_bias="0.0"
         app:rotation_degrees="16" />
 
     <TextView

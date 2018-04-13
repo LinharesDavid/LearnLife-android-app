@@ -9,8 +9,6 @@
     </style>
 
     <style name="ActivityMainStyle" parent="AppTheme">
-        <item name="android:paddingLeft">@dimen/medium_padding_horizontal</item>
-        <item name="android:paddingRight">@dimen/medium_padding_horizontal</item>
         <item name="android:background">@color/activityBackground</item>
     </style>
 
