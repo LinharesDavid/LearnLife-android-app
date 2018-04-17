@@ -4,7 +4,7 @@
     <!-- Animation simple qui change la taille du bouton de 80% à 100% en 1 seconde -->
 
     <scale
-        android:duration="1000"
+        android:duration="500"
         android:fromXScale="0.8"
         android:toXScale="1.0"
         android:fromYScale="0.8"

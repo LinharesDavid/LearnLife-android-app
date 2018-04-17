@@ -19,6 +19,8 @@ android {
     sourceSets {
         main.res.srcDirs += 'src/main/res/crossfeature'
         main.res.srcDirs += 'src/main/res/home'
+        main.res.srcDirs += 'src/main/res/login'
+
     }
 }
 
@@ -47,4 +49,10 @@ dependencies {
 
     //SwipeCards
     implementation 'com.lorentzos.swipecards:library:1.0.9@aar'
+
+    //Firebase
+    implementation 'com.google.firebase:firebase-core:15.0.0'
+    implementation 'com.google.firebase:firebase-auth:15.0.0'
 }
+
+apply plugin: 'com.google.gms.google-services'

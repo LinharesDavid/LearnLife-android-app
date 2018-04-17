@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
 import com.learnlife.learnlife.crosslayers.utils.MyDateUtils;
@@ -44,10 +46,17 @@ public class HomeActivity extends AppCompatActivity {
 
         txvTodayDate.setText(MyDateUtils.fullDate(this));
         animationBounce = AnimationUtils.loadAnimation(this, R.anim.button_bounce);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         //Juste pour les tests
         for(int i = 0; i < 5; i++){
             challenges.add(new Challenge().falseChallengeGenerator());
+        }
+
+        if(user != null){
+            Toast.makeText(this, "USER NOT NULL", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "USER NULL", Toast.LENGTH_SHORT).show();
         }
 
         //Custom Adapter
