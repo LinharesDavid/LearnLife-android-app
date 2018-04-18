@@ -53,12 +53,6 @@ public class HomeActivity extends AppCompatActivity {
             challenges.add(new Challenge().falseChallengeGenerator());
         }
 
-        if(user != null){
-            Toast.makeText(this, "USER NOT NULL", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(this, "USER NULL", Toast.LENGTH_SHORT).show();
-        }
-
         //Custom Adapter
         adapter = new Adapter(this, R.layout.cartouche_challenge, challenges);
 
