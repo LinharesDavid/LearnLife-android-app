@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
 import com.learnlife.learnlife.crosslayers.utils.MyDateUtils;
@@ -44,6 +46,7 @@ public class HomeActivity extends AppCompatActivity {
 
         txvTodayDate.setText(MyDateUtils.fullDate(this));
         animationBounce = AnimationUtils.loadAnimation(this, R.anim.button_bounce);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         //Juste pour les tests
         for(int i = 0; i < 5; i++){
@@ -105,4 +108,5 @@ public class HomeActivity extends AppCompatActivity {
         flingContainer.getTopCardListener().selectRight();
         view.startAnimation(animationBounce);
     }
+
 }
