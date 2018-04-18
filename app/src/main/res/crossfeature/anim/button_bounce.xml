@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android">
 
-<!-- Animation simple qui change la taille du bouton de 80% à 100% en 1 seconde -->
+    <!-- Animation simple qui change la taille du bouton de 80% à 100% en 1 seconde -->
 
-<scale
-    android:duration="125"
-    android:fromXScale="1.0"
-    android:toXScale="0.9"
-    android:fromYScale="1.0"
-    android:toYScale="0.9"
-    android:pivotX="50%"
-    android:pivotY="50%" />
+    <scale
+        android:duration="125"
+        android:fromXScale="1.0"
+        android:fromYScale="1.0"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:toXScale="0.9"
+        android:toYScale="0.9" />
 
-<scale
-    android:startOffset="125"
-    android:duration="125"
-    android:fromXScale="1.0"
-    android:toXScale="1.1111"
-    android:fromYScale="1.0"
-    android:toYScale="1.1111"
-    android:pivotX="50%"
-    android:pivotY="50%" />
+    <scale
+        android:duration="125"
+        android:fromXScale="1.0"
+        android:fromYScale="1.0"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:startOffset="125"
+        android:toXScale="1.1111"
+        android:toYScale="1.1111" />
 </set>
