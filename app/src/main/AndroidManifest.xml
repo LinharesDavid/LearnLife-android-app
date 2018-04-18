@@ -11,14 +11,16 @@
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".home.view.HomeActivity"/>
-        <activity android:name=".login.view.LoginActivity">
+        <activity
+            android:name=".splash.view.SplashActivity"
+            android:theme="@style/splash_theme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".home.view.HomeActivity"/>
+        <activity android:name=".login.view.LoginActivity"/>
     </application>
 
 </manifest>
