@@ -1,4 +1,4 @@
-package com.learnlife.learnlife.login;
+package com.learnlife.learnlife.login.view;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
