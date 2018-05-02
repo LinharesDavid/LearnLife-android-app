@@ -5,91 +5,54 @@
     style="@style/ActivityMainStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:clipToPadding="false"
     tools:context="com.learnlife.learnlife.home.view.HomeActivity">
-
-    <ImageButton
-        android:id="@+id/imbHistoric"
-        android:layout_width="@dimen/menu_button_width"
-        android:layout_height="@dimen/menu_button_height"
-        android:layout_marginTop="@dimen/medium_margin_vertical"
-        android:layout_marginStart="@dimen/large_padding_horizontal"
-        android:background="@color/activityBackground"
-        android:src="@drawable/ic_feed_time_unselected"
-        android:scaleType="centerCrop"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/imbProfile"
-        android:layout_width="@dimen/menu_button_width"
-        android:layout_height="@dimen/menu_button_height"
-        android:layout_marginTop="@dimen/medium_margin_vertical"
-        android:background="@color/activityBackground"
-        android:src="@drawable/ic_profil_unselected"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imvLogo"
-        android:layout_width="@dimen/logo_size"
-        android:layout_height="@dimen/logo_size"
-        android:src="@drawable/ic_launcher"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
-
-    <TextView
-        android:id="@+id/txvTodayDate"
-        style="@style/LearnLife.TextAppearance.Title1.Black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/medium_margin_vertical"
-        android:fontFamily="@font/comfortaa_regular"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imvLogo"
-        tools:text="14 fevrier 2018" />
 
     <ImageButton
         android:id="@+id/imbDecline"
         android:layout_width="@dimen/button_size"
         android:layout_height="@dimen/button_size"
-        android:layout_marginBottom="@dimen/medium_margin_vertical"
-        android:src="@drawable/ic_decline_challenge"
-        android:scaleType="centerCrop"
-        android:layout_marginStart="@dimen/large_padding_horizontal"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
         android:clipToPadding="false"
         android:elevation="40dp"
         android:onClick="btnDeclineClicked"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_decline_challenge"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idFling" />
 
     <ImageButton
         android:id="@+id/imbAccept"
         android:layout_width="@dimen/button_size"
         android:layout_height="@dimen/button_size"
-        android:src="@drawable/ic_accept_challenge"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="8dp"
         android:background="@android:color/transparent"
-        android:scaleType="centerCrop"
         android:elevation="40dp"
-        android:layout_marginEnd="@dimen/large_padding_horizontal"
-        android:layout_marginBottom="@dimen/medium_margin_vertical"
         android:onClick="btnAcceptClicked"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_accept_challenge"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/idFling" />
 
     <com.lorentzos.flingswipe.SwipeFlingAdapterView
         android:id="@+id/idFling"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/imbDecline"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txvTodayDate"
-        app:layout_constraintVertical_bias="0.0"
         app:rotation_degrees="16" />
 
     <TextView
@@ -100,15 +63,52 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        tools:visibility="visible"
-        android:visibility="gone"
-        android:text="@string/no_challenge"
         android:fontFamily="@font/comfortaa_regular"
+        android:text="@string/no_challenge"
         android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+
+    <TextView
+        android:id="@+id/txvTodayDate"
+        style="@style/LearnLife.TextAppearance.Title1.Black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/comfortaa_regular"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="14 fevrier 2018" />
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7" />
+
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:itemBackground="@color/white"
+        app:menu="@menu/menu_bottom_nav"
+        app:itemIconTint="@drawable/selector_bottom_nav"
+        app:itemTextColor="@drawable/selector_bottom_nav"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+    </android.support.design.widget.BottomNavigationView>
 
 
 </android.support.constraint.ConstraintLayout>

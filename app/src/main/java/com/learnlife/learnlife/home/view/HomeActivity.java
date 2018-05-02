@@ -1,5 +1,6 @@
 package com.learnlife.learnlife.home.view;
 
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -30,6 +31,7 @@ public class HomeActivity extends AppCompatActivity {
     @BindView(R.id.txvTodayDate) public TextView txvTodayDate;
     @BindView(R.id.idFling) public SwipeFlingAdapterView flingContainer;
     @BindView(R.id.txvNoMoreChallenge) public TextView txvNoMoreChallenge;
+    @BindView(R.id.bottomNavigationView) public BottomNavigationView bottomNavigationView;
 
     private ArrayList<Challenge> challenges = new ArrayList<>();
     private Adapter adapter;
@@ -44,9 +46,11 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
         ButterKnife.bind(this);
 
+        bottomNavigationView.setSelectedItemId(R.id.action_home); //force la selection du bottomNav sur le Home
         txvTodayDate.setText(MyDateUtils.fullDate(this));
         animationBounce = AnimationUtils.loadAnimation(this, R.anim.button_bounce);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
 
         //Juste pour les tests
         for(int i = 0; i < 5; i++){
