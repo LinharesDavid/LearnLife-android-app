@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".profile.view.ProfileActivity" />
-        <activity android:name=".crosslayers.view.BaseActivity"></activity>
+        <activity android:name=".crosslayers.view.BaseActivity" />
+        <activity android:name=".login.view.RegisterActivity"></activity>
     </application>
 
 </manifest>

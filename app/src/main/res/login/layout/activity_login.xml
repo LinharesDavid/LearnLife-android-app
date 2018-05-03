@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".login.LoginActivity">
+    tools:context=".login.view.LoginActivity">
 
     <View
         android:id="@+id/viewWelcome"
@@ -32,11 +32,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="68dp"
-        android:background="@drawable/shape_edittext"
         android:hint="@string/email"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
-        android:ems="10"
+        style="@style/CustomEditText"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,11 +46,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:background="@drawable/shape_edittext"
-        android:ems="10"
+        style="@style/CustomEditText"
         android:hint="@string/password"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -82,6 +76,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:onClick="registerEvent"
         android:textColor="@color/black"
         android:text="@string/NewUser"
         app:layout_constraintBottom_toBottomOf="parent"
