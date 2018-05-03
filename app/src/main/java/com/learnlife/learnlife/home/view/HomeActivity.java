@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
 import com.learnlife.learnlife.crosslayers.utils.MyDateUtils;
+import com.learnlife.learnlife.crosslayers.view.BaseActivity;
 import com.learnlife.learnlife.home.adapter.Adapter;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
 
     /***********************************************************
     *  Attributes
@@ -37,16 +38,25 @@ public class HomeActivity extends AppCompatActivity {
     private Adapter adapter;
     private Animation animationBounce;
 
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_home;
+    }
+
+    @Override
+    public int getNavigationMenuItemId() {
+        return R.id.action_home;
+    }
+
     /***********************************************************
     *  Managing LifeCycle
     **********************************************************/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+
         ButterKnife.bind(this);
 
-        bottomNavigationView.setSelectedItemId(R.id.action_home); //force la selection du bottomNav sur le Home
         txvTodayDate.setText(MyDateUtils.fullDate(this));
         animationBounce = AnimationUtils.loadAnimation(this, R.anim.button_bounce);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
