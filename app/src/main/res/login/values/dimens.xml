@@ -2,4 +2,9 @@
 <resources>
     <dimen name="textWelcomeSize">42sp</dimen>
     <dimen name="EditTextHeight">40dp</dimen>
+    <dimen name="viewWelcomeHeight">150dp</dimen>
+
+    <!-- margin -->
+    <dimen name="margin_32">32dp</dimen>
+    <dimen name="margin_68">68dp</dimen>
 </resources>
