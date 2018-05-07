@@ -6,5 +6,5 @@
         <item name="android:paddingEnd">15dp</item>
         <item name="android:paddingStart">15dp</item>
     </style>
-    
+
 </resources>
