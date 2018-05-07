@@ -76,7 +76,6 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-
     }
 
     public void registerEvent(View view){
