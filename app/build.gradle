@@ -20,6 +20,7 @@ android {
         main.res.srcDirs += 'src/main/res/crossfeature'
         main.res.srcDirs += 'src/main/res/home'
         main.res.srcDirs += 'src/main/res/login'
+        main.res.srcDirs += 'src/main/res/profile'
 
     }
 }
