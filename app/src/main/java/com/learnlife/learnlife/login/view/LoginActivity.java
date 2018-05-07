@@ -14,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -34,7 +35,6 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.lblNewUser) TextView lblNewUser;
     @BindView(R.id.prbLogin) ProgressBar prbLogin;
 
-    private FirebaseAuth auth;
     private Animation anim; //Le faire dans une classe mère pour pas le répéter à chaque button
     private boolean isIncomplete; //boolean pour savoir si les champs sont tous remplis ou pas
 
@@ -45,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        auth = FirebaseAuth.getInstance();
         anim = AnimationUtils.loadAnimation(this, R.anim.button_bounce);
     }
 
@@ -78,18 +77,5 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-        //Methode SignIN de Firebase
-        auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        prbLogin.setVisibility(View.GONE);
-                        if(task.isSuccessful()){
-                            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                        }else{
-                            Toast.makeText(LoginActivity.this, "Incorrect password or email", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
     }
 }
