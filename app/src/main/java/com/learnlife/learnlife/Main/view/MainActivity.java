@@ -33,11 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.add(R.id.ctnFragment, new HomeFragment(), "Home")
-                .commit();
-
+        bottomNavigationView.setSelectedItemId(R.id.action_home);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -60,10 +56,5 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-    }
-
-
-    public void setSelectedNavigationItem(int id){
-        bottomNavigationView.setSelectedItemId(id);
     }
 }
