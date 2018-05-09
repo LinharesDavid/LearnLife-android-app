@@ -8,7 +8,11 @@
     tools:context=".login.view.LoginActivity">
 
     <View
+<<<<<<< HEAD
         android:id="@+id/viewSignIn"
+=======
+        android:id="@+id/viewSignup"
+>>>>>>> 97574578994ec6c0fd39cce98a6528af95a6b634
         android:layout_width="match_parent"
         android:layout_height="@dimen/viewWelcomeHeight" android:background="@color/colorPrimaryDark"/>
 
@@ -40,7 +44,11 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+<<<<<<< HEAD
         app:layout_constraintTop_toBottomOf="@+id/viewSignIn" />
+=======
+        app:layout_constraintTop_toBottomOf="@+id/viewSignup" />
+>>>>>>> 97574578994ec6c0fd39cce98a6528af95a6b634
 
     <EditText
         android:id="@+id/edtPassword"
