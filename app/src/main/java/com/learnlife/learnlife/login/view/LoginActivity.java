@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.learnlife.learnlife.MainActivity;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.home.view.HomeActivity;
 
@@ -102,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         prbLogin.setVisibility(View.GONE);
-                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         Log.d(Tag, "Login succeeded");
                     }
 

@@ -1,27 +1,20 @@
 package com.learnlife.learnlife.profile.view;
 
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.learnlife.learnlife.R;
-import com.learnlife.learnlife.crosslayers.view.BaseActivity;
 
-public class ProfileActivity extends BaseActivity {
+public class ProfileActivity extends Fragment {
 
+    @Nullable
     @Override
-    public int getLayoutId() {
-        return R.layout.activity_profile;
-    }
-
-    @Override
-    public int getNavigationMenuItemId() {
-        return R.id.action_profile;
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.activity_profile, container, false);
     }
 
 }

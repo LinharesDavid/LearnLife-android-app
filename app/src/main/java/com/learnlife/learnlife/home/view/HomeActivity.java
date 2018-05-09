@@ -1,21 +1,20 @@
 package com.learnlife.learnlife.home.view;
 
-import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.learnlife.learnlife.MainActivity;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
 import com.learnlife.learnlife.crosslayers.utils.MyDateUtils;
-import com.learnlife.learnlife.crosslayers.view.BaseActivity;
 import com.learnlife.learnlife.home.adapter.Adapter;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
@@ -24,7 +23,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HomeActivity extends BaseActivity {
+public class HomeActivity extends Fragment {
 
     /***********************************************************
     *  Attributes
@@ -32,43 +31,44 @@ public class HomeActivity extends BaseActivity {
     @BindView(R.id.txvTodayDate) public TextView txvTodayDate;
     @BindView(R.id.idFling) public SwipeFlingAdapterView flingContainer;
     @BindView(R.id.txvNoMoreChallenge) public TextView txvNoMoreChallenge;
-    @BindView(R.id.bottomNavigationView) public BottomNavigationView bottomNavigationView;
 
     private ArrayList<Challenge> challenges = new ArrayList<>();
     private Adapter adapter;
     private Animation animationBounce;
 
-    @Override
-    public int getLayoutId() {
-        return R.layout.activity_home;
-    }
-
-    @Override
-    public int getNavigationMenuItemId() {
-        return R.id.action_home;
-    }
 
     /***********************************************************
     *  Managing LifeCycle
     **********************************************************/
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
+        super.onCreateView(inflater, container, savedInstanceState);
 
-        ButterKnife.bind(this);
+        View view = inflater.inflate(R.layout.activity_home, container, false);
 
-        txvTodayDate.setText(MyDateUtils.fullDate(this));
-        animationBounce = AnimationUtils.loadAnimation(this, R.anim.button_bounce);
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
+        ButterKnife.bind(this, view);
 
         //Juste pour les tests
         for(int i = 0; i < 5; i++){
             challenges.add(new Challenge().falseChallengeGenerator());
         }
 
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        txvTodayDate.setText(MyDateUtils.fullDate(getContext()));
+        animationBounce = AnimationUtils.loadAnimation(getContext(), R.anim.button_bounce);
+
+        ((MainActivity)getActivity()).setSelectedNavigationItem(R.id.action_home);
+
         //Custom Adapter
-        adapter = new Adapter(this, R.layout.cartouche_challenge, challenges);
+        adapter = new Adapter(getContext(), R.layout.cartouche_challenge, challenges);
 
         flingContainer.setAdapter(adapter);
 
@@ -82,12 +82,12 @@ public class HomeActivity extends BaseActivity {
 
             @Override
             public void onLeftCardExit(Object o) {
-                Toast.makeText(HomeActivity.this, "Left!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Left!", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onRightCardExit(Object o) {
-                Toast.makeText(HomeActivity.this, "Right!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Right!", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -104,11 +104,10 @@ public class HomeActivity extends BaseActivity {
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int i, Object o) {
-                Toast.makeText(HomeActivity.this, challenges.get(i).getIdChallenge()+"", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), challenges.get(i).getIdChallenge()+"", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
 
     /***********************************************************
      *  Buttons Events

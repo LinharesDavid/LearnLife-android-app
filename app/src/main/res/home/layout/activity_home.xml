@@ -13,7 +13,7 @@
         android:id="@+id/imbDecline"
         android:layout_width="@dimen/button_size"
         android:layout_height="@dimen/button_size"
-        android:layout_marginBottom="@dimen/margin_08"
+        android:layout_marginBottom="8dp"
         android:layout_marginLeft="@dimen/margin_24"
         android:layout_marginTop="@dimen/margin_08"
         android:background="@android:color/transparent"
@@ -22,7 +22,7 @@
         android:onClick="btnDeclineClicked"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_decline_challenge"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idFling" />
 
@@ -30,7 +30,7 @@
         android:id="@+id/imbAccept"
         android:layout_width="@dimen/button_size"
         android:layout_height="@dimen/button_size"
-        android:layout_marginBottom="@dimen/margin_08"
+        android:layout_marginBottom="8dp"
         android:layout_marginRight="@dimen/margin_24"
         android:layout_marginTop="@dimen/margin_08"
         android:background="@android:color/transparent"
@@ -38,7 +38,7 @@
         android:onClick="btnAcceptClicked"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_accept_challenge"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/idFling" />
 
@@ -92,22 +92,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.7" />
+        app:layout_constraintGuide_percent="0.75" />
 
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:itemBackground="@color/white"
-        android:background="@color/white"
-        android:elevation="@dimen/elevation_16"
-        app:menu="@menu/menu_bottom_nav"
-        app:itemIconTint="@drawable/selector_bottom_nav"
-        app:itemTextColor="@drawable/selector_bottom_nav"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
 
 
 </android.support.constraint.ConstraintLayout>
