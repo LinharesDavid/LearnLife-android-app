@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:elevation="10dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/margin_08"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_gravity="center_horizontal"
+    android:layout_width="@dimen/cartouche_width">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/imvChallenge"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/image_cartouche_height"
+            android:background="@android:color/holo_red_dark"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/test_image" />
+
+
+        <TextView
+            android:id="@+id/txvTitleChallenge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imvChallenge"
+            android:layout_marginStart="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_10"
+            android:fontFamily="@font/bebas_neue_regular"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/font20"
+            android:textStyle="bold"
+            tools:text="Challenge of the day : RUN 5KM" />
+
+        <TextView
+            android:id="@+id/txvDetailsChallenge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/txvTitleChallenge"
+            android:layout_below="@id/txvTitleChallenge"
+            android:ellipsize="end"
+            android:fontFamily="@font/comfortaa_regular"
+            android:lines="3"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/font14"
+            tools:text="Your life today is, basically, the sum of your  habits. We—mostly unconsciously—repeat 95 percent of our physical and mental" />
+
+        <TextView
+            android:id="@+id/txvMoreDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txvDetailsChallenge"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_10"
+            android:fontFamily="@font/comfortaa_regular"
+            android:text="@string/more_details"
+            android:textColor="@color/moreColor" />
+
+        <TextView
+            android:id="@+id/txvCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_05"
+            android:layout_marginTop="@dimen/margin_05"
+            android:background="@drawable/shape_category"
+            android:paddingBottom="@dimen/margin_05"
+            android:paddingTop="@dimen/margin_05"
+            android:textColor="@color/white"
+            tools:text="Sport" />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

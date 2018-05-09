@@ -1,4 +1,33 @@
 <resources>
     <string name="app_name">Learn Life</string>
     <string name="more_details"><u>More details</u></string>
+
+    <!-- Days of week -->
+    <string name="mon">Monday</string>
+    <string name="tue">Tuesday</string>
+    <string name="wed">Wednesday</string>
+    <string name="thu">Thursday</string>
+    <string name="fri">Friday</string>
+    <string name="sat">Saturday</string>
+    <string name="sun">Sunday</string>
+
+    <!-- Months -->
+    <string name="jan">January</string>
+    <string name="feb">February</string>
+    <string name="mar">March</string>
+    <string name="apr">April</string>
+    <string name="may">May</string>
+    <string name="jun">June</string>
+    <string name="jul">July</string>
+    <string name="aug">August</string>
+    <string name="sep">September</string>
+    <string name="oct">October</string>
+    <string name="nov">November</string>
+    <string name="dec">December</string>
+
+
+    <!-- Menu item -->
+    <string name="action_challenges">Challenges</string>
+    <string name="action_home">Home</string>
+    <string name="action_profil">Profile</string>
 </resources>

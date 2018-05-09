@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    
+    <dimen name="profil_picture_size">75dp</dimen>
 </resources>
