@@ -8,7 +8,7 @@
     tools:context=".login.view.RegisterActivity">
 
     <View
-        android:id="@+id/viewSignIn"
+        android:id="@+id/viewSignUp"
         android:layout_width="match_parent"
         android:layout_height="50dp" android:background="@color/colorPrimaryDark"/>
 
@@ -20,10 +20,10 @@
         android:text="@string/sign_up"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/viewSignIn"
+        app:layout_constraintBottom_toBottomOf="@+id/viewSignUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/viewSignIn" />
+        app:layout_constraintTop_toTopOf="@+id/viewSignUp" />
 
     <EditText
         android:id="@+id/edtFirstname"
@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewSignIn" />
+        app:layout_constraintTop_toBottomOf="@+id/viewSignUp" />
 
     <EditText
         android:id="@+id/edtLastname"

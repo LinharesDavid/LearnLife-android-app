@@ -109,7 +109,4 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(this, RegisterActivity.class));
     }
 
-    public void registerEvent(View view){
-        startActivity(new Intent(this, RegisterActivity.class));
-    }
 }
