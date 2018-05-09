@@ -8,22 +8,6 @@
     android:layout_height="match_parent"
     tools:context=".profile.view.ProfileActivity">
 
-
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:itemBackground="@color/white"
-        app:menu="@menu/menu_bottom_nav"
-        app:itemIconTint="@drawable/selector_bottom_nav"
-        app:itemTextColor="@drawable/selector_bottom_nav"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-
-    </android.support.design.widget.BottomNavigationView>
-
     <ImageView
         android:id="@+id/imvProfile"
         android:layout_width="@dimen/profil_picture_size"

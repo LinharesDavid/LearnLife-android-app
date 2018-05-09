@@ -8,19 +8,14 @@
     tools:context=".challenges.ChallengesActivity">
 
 
-
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:itemBackground="@color/white"
-        android:background="@color/white"
-        android:elevation="@dimen/elevation_16"
-        app:menu="@menu/menu_bottom_nav"
-        app:itemIconTint="@drawable/selector_bottom_nav"
-        app:itemTextColor="@drawable/selector_bottom_nav"
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/cartouche_challenge"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>

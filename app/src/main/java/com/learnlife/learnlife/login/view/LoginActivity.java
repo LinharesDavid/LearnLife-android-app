@@ -94,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        AndroidNetworking.post("http://192.168.100.83:8080/auth/login")
+        AndroidNetworking.post("http://192.168.1.69:8080/auth/login")
                 .addJSONObjectBody(user)
                 .setTag("login")
                 .setPriority(Priority.MEDIUM)

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class HomeActivity extends Fragment {
 
@@ -31,6 +33,9 @@ public class HomeActivity extends Fragment {
     @BindView(R.id.txvTodayDate) public TextView txvTodayDate;
     @BindView(R.id.idFling) public SwipeFlingAdapterView flingContainer;
     @BindView(R.id.txvNoMoreChallenge) public TextView txvNoMoreChallenge;
+    @BindView(R.id.imbDecline) public ImageButton imbDecline;
+    @BindView(R.id.imbAccept) public ImageButton imbAccept;
+
 
     private ArrayList<Challenge> challenges = new ArrayList<>();
     private Adapter adapter;
@@ -59,13 +64,11 @@ public class HomeActivity extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         txvTodayDate.setText(MyDateUtils.fullDate(getContext()));
         animationBounce = AnimationUtils.loadAnimation(getContext(), R.anim.button_bounce);
-
-        ((MainActivity)getActivity()).setSelectedNavigationItem(R.id.action_home);
 
         //Custom Adapter
         adapter = new Adapter(getContext(), R.layout.cartouche_challenge, challenges);
@@ -109,17 +112,21 @@ public class HomeActivity extends Fragment {
         });
     }
 
+
     /***********************************************************
      *  Buttons Events
      **********************************************************/
-    public void btnDeclineClicked(View view){
+
+    @OnClick(R.id.imbDecline)
+    public void btnDeclineClicked(){
         flingContainer.getTopCardListener().selectLeft();
-        view.startAnimation(animationBounce);
+        imbDecline.startAnimation(animationBounce);
     }
 
-    public void btnAcceptClicked(View view){
+    @OnClick(R.id.imbAccept)
+    public void btnAcceptClicked(){
         flingContainer.getTopCardListener().selectRight();
-        view.startAnimation(animationBounce);
+        imbAccept.startAnimation(animationBounce);
     }
 
 }
