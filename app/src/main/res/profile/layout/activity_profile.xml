@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:background="@color/white"
     android:layout_height="match_parent"
-    tools:context=".profile.view.ProfileActivity">
+    tools:context=".profile.view.ProfileFragment">
 
     <ImageView
         android:id="@+id/imvProfile"
@@ -56,11 +56,24 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_32"
         android:layout_marginStart="@dimen/margin_32"
-        android:layout_marginTop="@dimen/margin_32"
+        android:layout_marginTop="@dimen/margin_48"
         android:text="@string/badges"
         style="@style/ButtonProfileStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imvProfile" />
 
+
+    <Button
+        android:id="@+id/btnTags"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_32"
+        android:layout_marginStart="@dimen/margin_32"
+        android:layout_marginTop="@dimen/margin_32"
+        android:text="@string/tags"
+        style="@style/ButtonProfileStyle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnBadges" />
 </android.support.constraint.ConstraintLayout>

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.learnlife.learnlife.R;
 
-public class ProfileActivity extends Fragment {
+public class ProfileFragment extends Fragment {
 
     @Nullable
     @Override

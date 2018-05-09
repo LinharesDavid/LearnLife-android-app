@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 
 import com.learnlife.learnlife.R;
 
-public class ChallengesActivity extends Fragment {
+public class ChallengesFragment extends Fragment {
 
-    public ChallengesActivity(){
+    public ChallengesFragment(){
         //
     }
 
