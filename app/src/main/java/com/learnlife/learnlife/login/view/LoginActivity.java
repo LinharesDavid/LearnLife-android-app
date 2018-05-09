@@ -102,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         prbLogin.setVisibility(View.GONE);
-                        Toast.makeText(LoginActivity.this, "OK", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                         Log.d(Tag, "Login succeeded");
                     }
 

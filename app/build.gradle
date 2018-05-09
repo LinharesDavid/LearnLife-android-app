@@ -41,7 +41,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     //FastAndroidNetworking
-    implementation ('com.amitshekhar.android:android-networking:1.0.1'){
+    implementation('com.amitshekhar.android:android-networking:1.0.1') {
         exclude group: "com.android.support"
     }
 
