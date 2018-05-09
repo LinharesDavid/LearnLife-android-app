@@ -26,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.home.view.HomeActivity;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import butterknife.BindView;
@@ -64,8 +65,8 @@ public class LoginActivity extends AppCompatActivity {
         view.startAnimation(anim);
         prbLogin.setVisibility(View.VISIBLE);
 
-        final String email = edtEmail.getText().toString();
-        final String password = edtPassword.getText().toString();
+        String email = edtEmail.getText().toString().trim();
+        String password = edtPassword.getText().toString().trim();
 
         //Check si les edittexts sont vides ou 0-length
         if(TextUtils.isEmpty(email)) {
@@ -83,23 +84,35 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        AndroidNetworking.post("http://localhost:8080/login")
-                .addBodyParameter("email", email)
-                .addBodyParameter("password", password)
+        JSONObject user = new JSONObject();
+        try{
+            user.put("email", email);
+            user.put("password", password);
+        }catch (JSONException e){
+            e.printStackTrace();
+            return;
+        }
+
+        AndroidNetworking.post("http://192.168.100.83:8080/auth/login")
+                .addJSONObjectBody(user)
                 .setTag("login")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        prbLogin.setVisibility(View.GONE);
                         Toast.makeText(LoginActivity.this, "OK", Toast.LENGTH_SHORT).show();
-                        Log.d(Tag, "Login OK with user email: "+email+" & password: "+password);
+                        Log.d(Tag, "Login succeeded");
                     }
 
                     @Override
                     public void onError(ANError anError) {
-                        Toast.makeText(LoginActivity.this, "NOT OK", Toast.LENGTH_SHORT).show();
-                        Log.d(Tag, "Login NOT OK with user email: "+email+" & password: "+password);
+                        prbLogin.setVisibility(View.GONE);
+                        //Popup error à faire
+
+                        String errorBody = anError.getErrorBody() != null ? anError.getErrorBody() : "error without content";
+                        Log.d(Tag, "Login failed : "+errorBody);
                     }
                 });
 
