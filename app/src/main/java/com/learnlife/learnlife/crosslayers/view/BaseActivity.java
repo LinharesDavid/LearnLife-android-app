@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.learnlife.learnlife.R;
+import com.learnlife.learnlife.challenges.ChallengesActivity;
 import com.learnlife.learnlife.home.view.HomeActivity;
 import com.learnlife.learnlife.profile.view.ProfileActivity;
 
@@ -41,6 +42,9 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 break;
             case R.id.action_profile:
                 startActivity(new Intent(this, ProfileActivity.class));
+                break;
+            case R.id.action_challenges:
+                startActivity(new Intent(this, ChallengesActivity.class));
                 break;
             default:
                 break;

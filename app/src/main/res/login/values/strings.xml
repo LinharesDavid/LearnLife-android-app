@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="welcome">Welcome</string>
+    <string name="sign_up">Sign up</string>
     <string name="password">Password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="password_unmatched">Password and confirm password are not matching</string>
     <string name="email">E-mail</string>
+    <string name="firstname">Firstname</string>
+    <string name="lastname">Lastname</string>
     <string name="NewUser">New user ? <u>Sign up</u></string>
     <string name="passwordForgotten">Forgot password ?</string>
     <string name="noEmail">You need to enter an email</string>
     <string name="noPassword">You need to enter a password</string>
+    <string name="noLastName">You need to enter a lastname</string>
+    <string name="noFirstName">You need to enter a firstname</string>
 </resources>

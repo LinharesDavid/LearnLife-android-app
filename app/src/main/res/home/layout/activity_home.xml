@@ -107,10 +107,7 @@
         app:itemTextColor="@drawable/selector_bottom_nav"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-
-    </android.support.design.widget.BottomNavigationView>
+        app:layout_constraintStart_toStartOf="parent"/>
 
 
 </android.support.constraint.ConstraintLayout>
