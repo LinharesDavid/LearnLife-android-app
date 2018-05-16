@@ -22,6 +22,7 @@ android {
         main.res.srcDirs += 'src/main/res/login'
         main.res.srcDirs += 'src/main/res/profile'
         main.res.srcDirs += 'src/main/res/challenges'
+        main.res.srcDirs += 'src/main/res/tags'
     }
 }
 

@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".login.view.RegisterActivity" />
-        <activity android:name=".Main.view.MainActivity"/>
+        <activity android:name=".Main.view.MainActivity" />
+        <activity android:name=".tags.view.TagActivity" android:theme="@style/ActivityDialog" ></activity>
     </application>
 
 </manifest>

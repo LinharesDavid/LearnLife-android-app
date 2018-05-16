@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new ProfileFragment();
                         break;
                 }
+                
                 final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.ctnFragment, fragment).commit();
                 return true;

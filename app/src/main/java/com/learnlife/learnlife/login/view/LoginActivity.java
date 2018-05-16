@@ -19,6 +19,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.learnlife.learnlife.Main.view.MainActivity;
 import com.learnlife.learnlife.R;
+import com.learnlife.learnlife.tags.view.TagActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,6 +40,9 @@ public class LoginActivity extends AppCompatActivity {
     private Animation anim; //Le faire dans une classe mère pour pas le répéter à chaque button
     private boolean isIncomplete; //boolean pour savoir si les champs sont tous remplis ou pas
     private final String Tag = getClass().getSimpleName();
+    public final static String EXTRA_IDUSER = "IDUSER";
+    private final String jsonUserName = "user_id";
+    private final String jsonToken = "token";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,8 +100,20 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         prbLogin.setVisibility(View.GONE);
-                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         Log.d(Tag, "Login succeeded");
+
+                        //Instancie une ResponseLogin qui récupère le token et l'id
+                        ResponseLogin responseLogin = null;
+                        try{
+                            responseLogin = new ResponseLogin(response.getString(jsonToken), response.getString(jsonUserName));
+                        }catch (JSONException e){e.printStackTrace();}
+
+                        if(responseLogin == null)
+                            return;
+
+                        Intent intent = new Intent(LoginActivity.this, TagActivity.class);
+                        intent.putExtra(EXTRA_IDUSER, responseLogin.getIdUser());
+                        startActivity(intent);
                     }
 
                     @Override
@@ -116,4 +132,30 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(this, RegisterActivity.class));
     }
 
+
+    public class ResponseLogin{
+        private String token;
+        private String idUser;
+
+        public ResponseLogin(String token, String idUser) {
+            this.token = token;
+            this.idUser = idUser;
+        }
+
+        public String getToken() {
+            return token;
+        }
+
+        public void setToken(String token) {
+            this.token = token;
+        }
+
+        public String getIdUser() {
+            return idUser;
+        }
+
+        public void setIdUser(String idUser) {
+            this.idUser = idUser;
+        }
+    }
 }
