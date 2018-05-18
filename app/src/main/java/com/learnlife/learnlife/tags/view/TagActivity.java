@@ -45,7 +45,7 @@ public class TagActivity extends AppCompatActivity {
         rcvMain.setLayoutManager(new LinearLayoutManager(this));
         rcvMain.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
-        AndroidNetworking.get("http://192.168.1.69:8080/tags")
+        AndroidNetworking.get("http://192.168.43.83:8080/tags")
                 .setTag("tags")
                 .setPriority(Priority.MEDIUM)
                 .build()
