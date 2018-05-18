@@ -1,7 +1,6 @@
 package com.learnlife.learnlife.login.view;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,18 +12,14 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
+import com.learnlife.learnlife.Main.view.MainActivity;
 import com.learnlife.learnlife.R;
-import com.learnlife.learnlife.home.view.HomeActivity;
+import com.learnlife.learnlife.tags.view.TagActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,6 +40,9 @@ public class LoginActivity extends AppCompatActivity {
     private Animation anim; //Le faire dans une classe mère pour pas le répéter à chaque button
     private boolean isIncomplete; //boolean pour savoir si les champs sont tous remplis ou pas
     private final String Tag = getClass().getSimpleName();
+    public final static String EXTRA_IDUSER = "IDUSER";
+    private final String jsonUserName = "user_id";
+    private final String jsonToken = "token";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        AndroidNetworking.post("http://192.168.100.83:8080/auth/login")
+        AndroidNetworking.post("http://192.168.43.83:8080/auth/login")
                 .addJSONObjectBody(user)
                 .setTag("login")
                 .setPriority(Priority.MEDIUM)
@@ -102,8 +100,20 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         prbLogin.setVisibility(View.GONE);
-                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                         Log.d(Tag, "Login succeeded");
+
+                        //Instancie une ResponseLogin qui récupère le token et l'id
+                        ResponseLogin responseLogin = null;
+                        try{
+                            responseLogin = new ResponseLogin(response.getString(jsonToken), response.getString(jsonUserName));
+                        }catch (JSONException e){e.printStackTrace();}
+
+                        if(responseLogin == null)
+                            return;
+
+                        Intent intent = new Intent(LoginActivity.this, TagActivity.class);
+                        intent.putExtra(EXTRA_IDUSER, responseLogin.getIdUser());
+                        startActivity(intent);
                     }
 
                     @Override
@@ -122,4 +132,30 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(this, RegisterActivity.class));
     }
 
+
+    public class ResponseLogin{
+        private String token;
+        private String idUser;
+
+        public ResponseLogin(String token, String idUser) {
+            this.token = token;
+            this.idUser = idUser;
+        }
+
+        public String getToken() {
+            return token;
+        }
+
+        public void setToken(String token) {
+            this.token = token;
+        }
+
+        public String getIdUser() {
+            return idUser;
+        }
+
+        public void setIdUser(String idUser) {
+            this.idUser = idUser;
+        }
+    }
 }
