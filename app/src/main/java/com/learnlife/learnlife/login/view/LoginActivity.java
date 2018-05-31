@@ -17,6 +17,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.learnlife.learnlife.LearnLifeApplication;
 import com.learnlife.learnlife.Main.view.MainActivity;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.tags.view.TagActivity;
@@ -91,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        AndroidNetworking.post("http://192.168.43.83:8080/auth/login")
+        AndroidNetworking.post(LearnLifeApplication.BASE_URL + "/auth/login")
                 .addJSONObjectBody(user)
                 .setTag("login")
                 .setPriority(Priority.MEDIUM)

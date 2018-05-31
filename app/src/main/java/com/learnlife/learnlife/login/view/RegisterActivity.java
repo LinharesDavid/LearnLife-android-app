@@ -18,6 +18,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.google.gson.JsonObject;
+import com.learnlife.learnlife.LearnLifeApplication;
 import com.learnlife.learnlife.R;
 
 import org.json.JSONArray;
@@ -112,7 +113,7 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        AndroidNetworking.post("http://192.168.43.83:8080/users")
+        AndroidNetworking.post(LearnLifeApplication.BASE_URL + "/users")
                 .addJSONObjectBody(user)
                 .setTag("register")
                 .setPriority(Priority.MEDIUM)
