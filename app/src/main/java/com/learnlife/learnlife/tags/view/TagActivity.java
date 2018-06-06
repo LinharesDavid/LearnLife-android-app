@@ -21,6 +21,7 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager;
 import com.beloo.widget.chipslayoutmanager.SpacingItemDecoration;
+import com.google.gson.JsonObject;
 import com.learnlife.learnlife.LearnLifeApplication;
 import com.learnlife.learnlife.Main.view.MainActivity;
 import com.learnlife.learnlife.R;
@@ -113,9 +114,12 @@ public class TagActivity extends AppCompatActivity {
 
     //region UI Events
     @OnClick(R.id.btnValider) public void btnValiderClicked(){
-        JSONArray jsonTagArray = new JSONArray(Arrays.asList(tagsChosen));
-        AndroidNetworking.post(LearnLifeApplication.BASE_URL + "/users/"+userId)
-                .addJSONArrayBody(jsonTagArray)
+        JSONObject jsonTagArray = new JSONObject();
+        try {
+            jsonTagArray.put("tags", Arrays.asList(tagsChosen));
+        }catch (Exception e){}
+        AndroidNetworking.put(LearnLifeApplication.BASE_URL + "/users/"+userId)
+                .addJSONObjectBody(jsonTagArray)
                 .setTag("tag")
                 .setPriority(Priority.MEDIUM)
                 .build()
