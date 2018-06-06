@@ -1,13 +1,16 @@
 package com.learnlife.learnlife.tags.modele;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Adama on 16/05/2018.
  */
 
 public class Tag {
-    private String name;
-    private Tag[] tags;
-    private String category;
+    @SerializedName("_id") private String id;
+    @SerializedName("name") private String name;
+    @SerializedName("tagAssociated") private Tag[] tags;
+    @SerializedName("category") private String category;
 
     public String getName() {
         return name;
@@ -17,7 +20,39 @@ public class Tag {
         this.name = name;
     }
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
 
+    public Tag[] getTags() {
+        return tags;
+    }
 
+    public void setTags(Tag[] tags) {
+        this.tags = tags;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        boolean res = false;
+
+        if(obj != null && obj instanceof Tag){
+            if(this.id == ((Tag) obj).id)
+                res = true;
+        }
+
+        return res;
+    }
 }

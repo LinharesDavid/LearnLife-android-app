@@ -20,7 +20,7 @@
         </activity>
         <activity android:name=".login.view.RegisterActivity" android:screenOrientation="sensorPortrait"/>
         <activity android:name=".Main.view.MainActivity" android:screenOrientation="sensorPortrait"/>
-        <activity android:name=".tags.view.TagActivity" android:theme="@style/ActivityDialog" android:noHistory="true" android:screenOrientation="sensorPortrait"/>
+        <activity android:name=".tags.view.TagActivity" android:noHistory="true" android:screenOrientation="sensorPortrait"/>
     </application>
 
 </manifest>

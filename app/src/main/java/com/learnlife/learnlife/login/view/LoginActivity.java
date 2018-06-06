@@ -42,8 +42,10 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isIncomplete; //boolean pour savoir si les champs sont tous remplis ou pas
     private final String Tag = getClass().getSimpleName();
     public final static String EXTRA_IDUSER = "IDUSER";
-    private final String jsonUserName = "user_id";
+    public final static String EXTRA_NAMEUSER = "IDUSER";
+    private final String jsonId = "user_id";
     private final String jsonToken = "token";
+    private final String jsonFirstName = "firstname";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,14 +108,15 @@ public class LoginActivity extends AppCompatActivity {
                         //Instancie une ResponseLogin qui récupère le token et l'id
                         ResponseLogin responseLogin = null;
                         try{
-                            responseLogin = new ResponseLogin(response.getString(jsonToken), response.getString(jsonUserName));
+                            responseLogin = new ResponseLogin(response.getString(jsonToken), response.getString(jsonId), response.getString(jsonFirstName));
                         }catch (JSONException e){e.printStackTrace();}
 
                         if(responseLogin == null)
                             return;
 
                         Intent intent = new Intent(LoginActivity.this, TagActivity.class);
-                        intent.putExtra(EXTRA_IDUSER, responseLogin.getIdUser());
+                        intent.putExtra(EXTRA_NAMEUSER, responseLogin.firstName);
+                        intent.putExtra(EXTRA_IDUSER, responseLogin.idUser);
                         startActivity(intent);
                     }
 
@@ -137,10 +140,12 @@ public class LoginActivity extends AppCompatActivity {
     public class ResponseLogin{
         private String token;
         private String idUser;
+        private String firstName;
 
-        public ResponseLogin(String token, String idUser) {
+        public ResponseLogin(String token, String idUser, String username) {
             this.token = token;
             this.idUser = idUser;
+            this.firstName = username;
         }
 
         public String getToken() {
@@ -157,6 +162,14 @@ public class LoginActivity extends AppCompatActivity {
 
         public void setIdUser(String idUser) {
             this.idUser = idUser;
+        }
+
+        public String getFirstName() {
+            return firstName;
+        }
+
+        public void setFirstName(String username) {
+            this.firstName = username;
         }
     }
 }

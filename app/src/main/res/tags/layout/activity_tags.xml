@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="500dp">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/txvFirstConnexion"
@@ -13,7 +13,6 @@
         android:layout_marginEnd="@dimen/margin_08"
         android:layout_marginStart="@dimen/margin_08"
         android:layout_marginTop="@dimen/margin_48"
-        android:text="@string/first_connexion"
         android:fontFamily="@font/comfortaa_regular"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -27,6 +26,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/margin_32"
+        tools:listitem="@layout/tag_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btnValider"
@@ -36,12 +36,9 @@
         android:id="@+id/btnValider"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Valider"
-        android:layout_marginStart="@dimen/margin_08"
-        android:layout_marginEnd="@dimen/margin_08"
-        android:layout_marginBottom="@dimen/margin_08"
-        android:textColor="@color/white"
         android:background="@drawable/shape_button"
+        android:text="Valider"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
