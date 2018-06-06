@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     private boolean isIncomplete; //boolean pour savoir si les champs sont tous remplis ou pas
     private final String Tag = getClass().getSimpleName();
     public final static String EXTRA_IDUSER = "IDUSER";
-    public final static String EXTRA_NAMEUSER = "IDUSER";
+    public final static String EXTRA_NAMEUSER = "NAMEUSER";
     private final String jsonId = "user_id";
     private final String jsonToken = "token";
     private final String jsonFirstName = "firstname";
