@@ -55,4 +55,16 @@ public class Tag {
 
         return res;
     }
+
+    /**
+     * Objet mappé en JSON et utilisé pour update les Tag d'un user via la WebApi
+     */
+    public static class JsonTag {
+        public String[] tags;
+
+        public JsonTag(String[] tags) {
+            this.tags = tags;
+        }
+
+    }
 }
