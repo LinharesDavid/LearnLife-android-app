@@ -114,18 +114,15 @@ public class TagActivity extends AppCompatActivity {
 
     //region UI Events
     @OnClick(R.id.btnValider) public void btnValiderClicked(){
-        JSONObject jsonTagArray = new JSONObject();
-        try {
-            jsonTagArray.put("tags", Arrays.asList(tagsChosen));
-        }catch (Exception e){}
+        Tag.JsonTag jsonTag = new Tag.JsonTag(tagsChosen.toArray(new String[tagsChosen.size()]));
         AndroidNetworking.put(LearnLifeApplication.BASE_URL + "/users/"+userId)
-                .addJSONObjectBody(jsonTagArray)
+                .addBodyParameter(jsonTag)
                 .setTag("tag")
                 .setPriority(Priority.MEDIUM)
                 .build()
-                .getAsJSONArray(new JSONArrayRequestListener() {
+                .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
-                    public void onResponse(JSONArray response) {
+                    public void onResponse(JSONObject response) {
                         //prbTag.setVisibility(View.GONE); ProgressBar à ajouter
                         Log.d(Tag, "Tag update succeeded");
 
