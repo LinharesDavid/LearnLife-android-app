@@ -25,6 +25,7 @@ import com.google.gson.JsonObject;
 import com.learnlife.learnlife.LearnLifeApplication;
 import com.learnlife.learnlife.Main.view.MainActivity;
 import com.learnlife.learnlife.R;
+import com.learnlife.learnlife.crosslayers.utils.Dialog;
 import com.learnlife.learnlife.login.view.LoginActivity;
 import com.learnlife.learnlife.tags.modele.Tag;
 
@@ -115,7 +116,9 @@ public class TagActivity extends AppCompatActivity {
     //region UI Events
     @OnClick(R.id.btnValider) public void btnValiderClicked(){
         Tag.JsonTag jsonTag = new Tag.JsonTag(tagsChosen.toArray(new String[tagsChosen.size()]));
-        AndroidNetworking.put(LearnLifeApplication.BASE_URL + "/users/"+userId)
+        String urlRouteUpdateTag = LearnLifeApplication.BASE_URL + "/users/"+userId;
+
+        AndroidNetworking.put(urlRouteUpdateTag)
                 .addBodyParameter(jsonTag)
                 .setTag("tag")
                 .setPriority(Priority.MEDIUM)
@@ -133,7 +136,8 @@ public class TagActivity extends AppCompatActivity {
                     @Override
                     public void onError(ANError anError) {
                         //prbTag.setVisibility(View.GONE); ProgressBar à ajouter
-                        //Popup error à faire
+
+                        Dialog.showErrorMessageDialog(TagActivity.this, getString(R.string.tag_update_msg));
 
                         String errorBody = anError.getErrorBody() != null ? anError.getErrorBody() : "error without content";
                         Log.d(Tag, "Update Tag user failed : "+errorBody);

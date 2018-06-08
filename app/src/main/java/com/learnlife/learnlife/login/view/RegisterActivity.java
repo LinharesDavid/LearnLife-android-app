@@ -20,6 +20,8 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.google.gson.JsonObject;
 import com.learnlife.learnlife.LearnLifeApplication;
 import com.learnlife.learnlife.R;
+import com.learnlife.learnlife.crosslayers.utils.Dialog;
+import com.learnlife.learnlife.tags.view.TagActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -113,7 +115,8 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        AndroidNetworking.post(LearnLifeApplication.BASE_URL + "/users")
+        String urlRouteRegister = LearnLifeApplication.BASE_URL + "/users";
+        AndroidNetworking.post(urlRouteRegister)
                 .addJSONObjectBody(user)
                 .setTag("register")
                 .setPriority(Priority.MEDIUM)
@@ -130,7 +133,8 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onError(ANError anError) {
                         prbRegister.setVisibility(View.GONE);
 
-                        //Popup error à faire
+                        Dialog.showErrorMessageDialog(RegisterActivity.this, getString(R.string.register_error_msg));
+
 
                         String errorBody = anError.getErrorBody() != null ? anError.getErrorBody() : "error without content";
                         Log.d(Tag, "Register failed : "+errorBody);

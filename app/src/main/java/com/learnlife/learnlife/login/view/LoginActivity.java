@@ -20,6 +20,7 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.learnlife.learnlife.LearnLifeApplication;
 import com.learnlife.learnlife.Main.view.MainActivity;
 import com.learnlife.learnlife.R;
+import com.learnlife.learnlife.crosslayers.utils.Dialog;
 import com.learnlife.learnlife.tags.view.TagActivity;
 
 import org.json.JSONException;
@@ -46,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     private final String jsonId = "user_id";
     private final String jsonToken = "token";
     private final String jsonFirstName = "firstname";
+    private final String jsonTagCount = "tagCount";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +96,9 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        AndroidNetworking.post(LearnLifeApplication.BASE_URL + "/auth/login")
+
+        String urlRouteLogin = LearnLifeApplication.BASE_URL + "/auth/login";
+        AndroidNetworking.post(urlRouteLogin)
                 .addJSONObjectBody(user)
                 .setTag("login")
                 .setPriority(Priority.MEDIUM)
@@ -108,22 +112,31 @@ public class LoginActivity extends AppCompatActivity {
                         //Instancie une ResponseLogin qui récupère le token et l'id
                         ResponseLogin responseLogin = null;
                         try{
-                            responseLogin = new ResponseLogin(response.getString(jsonToken), response.getString(jsonId), response.getString(jsonFirstName));
+                            responseLogin = new ResponseLogin(response.getString(jsonToken), response.getString(jsonId), response.getString(jsonFirstName), response.getInt(jsonTagCount));
                         }catch (JSONException e){e.printStackTrace();}
 
                         if(responseLogin == null)
                             return;
 
-                        Intent intent = new Intent(LoginActivity.this, TagActivity.class);
-                        intent.putExtra(EXTRA_NAMEUSER, responseLogin.firstName);
-                        intent.putExtra(EXTRA_IDUSER, responseLogin.idUser);
+                        Intent intent;
+                        //Si premiere connexion alors TagCount == 0
+                        if(responseLogin.tagCount == 0) {
+                            intent = new Intent(LoginActivity.this, TagActivity.class);
+                            intent.putExtra(EXTRA_NAMEUSER, responseLogin.firstName);
+                            intent.putExtra(EXTRA_IDUSER, responseLogin.idUser);
+                        }else{
+                            intent = new Intent(LoginActivity.this, MainActivity.class);
+                            intent.putExtra(EXTRA_IDUSER, responseLogin.idUser);
+                        }
                         startActivity(intent);
+
                     }
 
                     @Override
                     public void onError(ANError anError) {
                         prbLogin.setVisibility(View.GONE);
-                        //Popup error à faire
+
+                        Dialog.showErrorMessageDialog(LoginActivity.this, getString(R.string.login_error_msg));
 
                         String errorBody = anError.getErrorBody() != null ? anError.getErrorBody() : "error without content";
                         Log.d(Tag, "Login failed : "+errorBody);
@@ -141,11 +154,13 @@ public class LoginActivity extends AppCompatActivity {
         private String token;
         private String idUser;
         private String firstName;
+        private int tagCount;
 
-        public ResponseLogin(String token, String idUser, String username) {
+        public ResponseLogin(String token, String idUser, String username, int tagCount) {
             this.token = token;
             this.idUser = idUser;
             this.firstName = username;
+            this.tagCount = tagCount;
         }
 
         public String getToken() {
@@ -170,6 +185,14 @@ public class LoginActivity extends AppCompatActivity {
 
         public void setFirstName(String username) {
             this.firstName = username;
+        }
+
+        public int getTagCount() {
+            return tagCount;
+        }
+
+        public void setTagCount(int tagCount) {
+            this.tagCount = tagCount;
         }
     }
 }
