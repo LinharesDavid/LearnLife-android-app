@@ -1,6 +1,8 @@
 package com.learnlife.learnlife;
 
+import android.app.AlertDialog;
 import android.app.Application;
+import android.content.Context;
 
 import com.androidnetworking.AndroidNetworking;
 
