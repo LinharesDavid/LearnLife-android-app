@@ -1,8 +1,8 @@
 package com.learnlife.learnlife.challenges;
 
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -27,7 +27,7 @@ public class ChallengesFragment extends Fragment implements IChallengeView {
 
     private IChallengePresenter presenter;
 
-    public ChallengesFragment(){
+    public ChallengesFragment() {
         //
     }
 
@@ -54,7 +54,6 @@ public class ChallengesFragment extends Fragment implements IChallengeView {
         super.onViewCreated(view, savedInstanceState);
 
         presenter.getChallenges();
-
 
 
     }

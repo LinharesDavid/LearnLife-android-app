@@ -1,7 +1,5 @@
 package com.learnlife.learnlife.crosslayers.models;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Challenge {
@@ -15,7 +13,8 @@ public class Challenge {
     private String category;
     private int state = -1;
 
-    public Challenge() {}
+    public Challenge() {
+    }
 
     public Challenge(boolean isSection, String sectionTitle) {
         this.isSection = isSection;
@@ -110,9 +109,10 @@ public class Challenge {
 
     /**
      * Juste pour les tests.
+     *
      * @return Challenge
      */
-    public Challenge falseChallengeGenerator(){
+    public Challenge falseChallengeGenerator() {
         this.description = "Your life today is, basically, the sum of your  habits. We—mostly unconsciously—repeat 95 percent of our physical and mental";
         this.title = "Challenge of the day : RUN 5KM";
         this.idChallenge = new Random().nextInt();

@@ -6,8 +6,6 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
-import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.androidnetworking.internal.ANRequestQueue;
 import com.learnlife.learnlife.LearnLifeApplication;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
 
@@ -18,7 +16,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
 
 public class ChallengePresenter implements IChallengePresenter {
 
@@ -35,7 +32,7 @@ public class ChallengePresenter implements IChallengePresenter {
 
         final ArrayList<Challenge> challenges = new ArrayList<>();
 
-        AndroidNetworking.get(LearnLifeApplication.BASE_URL + "/userChallenges/" + LearnLifeApplication.idUser + "/list" )
+        AndroidNetworking.get(LearnLifeApplication.BASE_URL + "/userChallenges/" + LearnLifeApplication.idUser + "/list")
                 .addHeaders("Authorization", LearnLifeApplication.token)
                 .setTag("getAllUserChallenges")
                 .setPriority(Priority.MEDIUM)
@@ -73,14 +70,11 @@ public class ChallengePresenter implements IChallengePresenter {
     }
 
 
-
-
-
     private void orderChallengeList(ArrayList<Challenge> challengeList) {
 
         Log.d(TAG, "orderChallengeList() called with: challengeList = [" + challengeList + "]");
 
-        if(challengeList == null) {
+        if (challengeList == null) {
             return;
         }
 
@@ -104,14 +98,14 @@ public class ChallengePresenter implements IChallengePresenter {
             challengeList.add(challenge);
         }
 
-        challengeList.add(0, new Challenge(true, "Section " + (challengeList.get(0).getState()+1)));
+        challengeList.add(0, new Challenge(true, "Section " + (challengeList.get(0).getState() + 1)));
 
-        for (int i = 1; i < challengeList.size()-1; i++) {
+        for (int i = 1; i < challengeList.size() - 1; i++) {
             int state = challengeList.get(i).getState();
-            int state1 = challengeList.get(i+1).getState();
-            if(state == -1) continue;
-            if(state1 != state) {
-                challengeList.add(i+1, new Challenge(true, "Section " + (challengeList.get(i+1).getState()+1)));
+            int state1 = challengeList.get(i + 1).getState();
+            if (state == -1) continue;
+            if (state1 != state) {
+                challengeList.add(i + 1, new Challenge(true, "Section " + (challengeList.get(i + 1).getState() + 1)));
             }
         }
 
