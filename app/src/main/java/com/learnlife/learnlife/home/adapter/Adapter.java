@@ -51,11 +51,11 @@ public class Adapter extends ArrayAdapter<Challenge> {
 
         Challenge challenge = _items.get(position);
 
-        vHolder.txvTitleChallenge.setText(challenge.getTitle());
-        vHolder.txvDetailsChallenge.setText(challenge.getDescription());
+        vHolder.txvTitleChallenge.setText(challenge.getName());
+        vHolder.txvDetailsChallenge.setText(challenge.getDetails());
         vHolder.txvCategory.setText(challenge.getCategory());
 
-        Glide.with(_context).load(challenge.getUrl_image()).into(vHolder.imvChallenge);
+        Glide.with(_context).load(challenge.getImageUrl()).into(vHolder.imvChallenge);
 
         return view;
     }

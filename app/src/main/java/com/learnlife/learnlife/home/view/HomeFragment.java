@@ -106,7 +106,7 @@ public class HomeFragment extends Fragment {
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int i, Object o) {
-                Toast.makeText(getContext(), challenges.get(i).getIdChallenge()+"", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), challenges.get(i).get_id()+"", Toast.LENGTH_SHORT).show();
             }
         });
     }
