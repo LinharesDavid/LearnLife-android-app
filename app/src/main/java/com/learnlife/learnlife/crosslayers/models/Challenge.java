@@ -5,11 +5,32 @@ import java.util.List;
 import java.util.Random;
 
 public class Challenge {
+    private boolean isSection = false;
+    private String sectionTitle;
     private int idChallenge;
+    private String _id;
     private String title;
     private String description;
     private String url_image;
     private String category;
+    private int state = -1;
+
+    public Challenge() {}
+
+    public Challenge(boolean isSection, String sectionTitle) {
+        this.isSection = isSection;
+        this.sectionTitle = sectionTitle;
+        state = -1;
+    }
+
+    public Challenge(String idChallenge, String title, String description, String url_image, int state) {
+        this._id = idChallenge;
+        this.title = title;
+        this.description = description;
+        this.url_image = url_image;
+        this.category = category;
+        this.state = state;
+    }
 
     public int getIdChallenge() {
         return idChallenge;
@@ -51,6 +72,41 @@ public class Challenge {
         this.category = category;
     }
 
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public boolean isSection() {
+        return isSection;
+    }
+
+    public void setSection(boolean section) {
+        isSection = section;
+    }
+
+    public String getSectionTitle() {
+        return sectionTitle;
+    }
+
+    public void setSectionTitle(String sectionTitle) {
+        this.sectionTitle = sectionTitle;
+    }
+
+    @Override
+    public String toString() {
+        return "Challenge{" +
+                "idChallenge=" + idChallenge +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", url_image='" + url_image + '\'' +
+                ", category='" + category + '\'' +
+                ", state=" + state +
+                '}';
+    }
 
     /**
      * Juste pour les tests.

@@ -15,7 +15,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.learnlife.learnlife.LearnLifeApplication;
-import com.learnlife.learnlife.Main.view.MainActivity;
+import com.learnlife.learnlife.main.view.MainActivity;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.tags.modele.Tag;
 
