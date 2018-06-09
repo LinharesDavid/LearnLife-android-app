@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import com.learnlife.learnlife.crosslayers.models.User;
 import com.learnlife.learnlife.login.view.LoginActivity;
 
 public class SessionManager {
@@ -27,10 +28,7 @@ public class SessionManager {
     private static final String KEY_FIRSTNAME = "firstname";
     private static final String KEY_LASTNAME = "lastname";
 
-    public static String USER_ID;
-    public static String USER_EMAIL;
-    public static String USER_FIRSTNAME;
-    public static String USER_LASTNAME;
+    private User user = null;
 
     private SessionManager() {
         this.context = LearnLifeApplication.getInstance();
@@ -51,13 +49,10 @@ public class SessionManager {
     public void createLoginSession(String id, String email, String firstname, String lastname) {
         editor.putBoolean(IS_LOGIN, true);
         editor.putString(KEY_ID, id);
-        USER_ID = id;
         editor.putString(KEY_EMAIL, email);
-        USER_EMAIL = email;
         editor.putString(KEY_FIRSTNAME, firstname);
-        USER_FIRSTNAME = firstname;
         editor.putString(KEY_LASTNAME, lastname);
-        USER_LASTNAME = lastname;
+        this.user = new User(id, email, firstname, lastname);
         editor.commit();
     }
 
@@ -71,6 +66,14 @@ public class SessionManager {
             context.startActivity(i);
         }
 
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void updateUser(User user) {
+        this.user = user;
     }
 
     public void logoutUser() {
