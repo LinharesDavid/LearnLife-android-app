@@ -49,7 +49,7 @@ public class ChallengePresenter implements IChallengePresenter {
                 .getAsJSONArray(new JSONArrayRequestListener() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Log.d(TAG, "onResponse: response arrived");
+                        Log.d(TAG, "onResponse: response arrived:"+response.toString());
                         try {
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject jsonResponse = response.getJSONObject(i);
@@ -62,8 +62,6 @@ public class ChallengePresenter implements IChallengePresenter {
                                         jsonResponse.getInt("state"));
                                 challenges.add(challenge);
                             }
-                            JSONObject j = response.getJSONObject(0);
-                            Log.d(TAG, "onResponse: " + j.getString("challenge"));
                             orderChallengeList(challenges);
 
                         } catch (JSONException e) {
@@ -81,7 +79,6 @@ public class ChallengePresenter implements IChallengePresenter {
 
     private void orderChallengeList(ArrayList<Challenge> challengeList) {
 
-        Log.d(TAG, "orderChallengeList() called with: challengeList = [" + challengeList + "]");
 
         if (challengeList == null) {
             return;
@@ -103,7 +100,6 @@ public class ChallengePresenter implements IChallengePresenter {
         });
         challengeList.clear();
         for (Challenge challenge : challengesArray) {
-            Log.d(TAG, "orderChallengeList: " + challenge.toString());
             challengeList.add(challenge);
         }
 
@@ -116,10 +112,6 @@ public class ChallengePresenter implements IChallengePresenter {
             if (state1 != state) {
                 challengeList.add(i + 1, new Challenge(true, sectionTitles[challengeList.get(i + 1).getState()]));
             }
-        }
-
-        for (Challenge challenge : challengeList) {
-            Log.d(TAG, "orderChallengeList: " + challenge.isSection());
         }
         mainView.printChallenges(challengeList);
     }
