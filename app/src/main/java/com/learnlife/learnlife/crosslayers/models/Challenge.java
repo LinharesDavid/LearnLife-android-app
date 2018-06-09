@@ -1,46 +1,44 @@
 package com.learnlife.learnlife.crosslayers.models;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Challenge {
-    private int idChallenge;
-    private String title;
-    private String description;
-    private String url_image;
+    private String _id;
+    private String name;
+    private String details;
+    private String imageUrl;
     private String category;
 
-    public int getIdChallenge() {
-        return idChallenge;
+    public String get_id() {
+        return _id;
     }
 
-    public void setIdChallenge(int idChallenge) {
-        this.idChallenge = idChallenge;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDetails() {
+        return details;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDetails(String details) {
+        this.details = details;
     }
 
-    public String getUrl_image() {
-        return url_image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setUrl_image(String url_image) {
-        this.url_image = url_image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public String getCategory() {
@@ -57,10 +55,10 @@ public class Challenge {
      * @return Challenge
      */
     public Challenge falseChallengeGenerator(){
-        this.description = "Your life today is, basically, the sum of your  habits. We—mostly unconsciously—repeat 95 percent of our physical and mental";
-        this.title = "Challenge of the day : RUN 5KM";
-        this.idChallenge = new Random().nextInt();
-        this.url_image = "http://netdoctor.cdnds.net/17/20/980x490/landscape-1495031594-two-women-running-along-road.jpg";
+        this.details = "Your life today is, basically, the sum of your  habits. We—mostly unconsciously—repeat 95 percent of our physical and mental";
+        this.name = "Challenge of the day : RUN 5KM";
+        this._id = String.valueOf(new Random().nextInt());
+        this.imageUrl = "http://netdoctor.cdnds.net/17/20/980x490/landscape-1495031594-two-women-running-along-road.jpg";
         this.category = "Sport";
         return this;
     }

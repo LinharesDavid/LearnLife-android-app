@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="text_challenges" />
+    <string name="profile_challenges_succeed">%d\nSucceed</string>
+    <string name="profile_challenges_failed">%d\nFailed</string>
 </resources>

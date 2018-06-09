@@ -106,8 +106,8 @@ public class RegisterActivity extends AppCompatActivity {
         try{
             user.put("email", email);
             user.put("password", password);
-            user.put("firstName", firstName);
-            user.put("lastName", lastName);
+            user.put("firstname", firstName);
+            user.put("lastname", lastName);
         }catch (JSONException e){
             e.printStackTrace();
             return;
