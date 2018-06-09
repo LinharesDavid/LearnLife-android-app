@@ -1,4 +1,4 @@
-package com.learnlife.learnlife.Main.view;
+package com.learnlife.learnlife.main.view;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
