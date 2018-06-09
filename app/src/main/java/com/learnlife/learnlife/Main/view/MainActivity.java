@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.learnlife.learnlife.R;
+import com.learnlife.learnlife.SessionManager;
 import com.learnlife.learnlife.challenges.ChallengesFragment;
 import com.learnlife.learnlife.home.view.HomeFragment;
 import com.learnlife.learnlife.profile.view.ProfileFragment;
@@ -30,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SessionManager.getInstance().checkLogin();
 
         ButterKnife.bind(this);
 
