@@ -1,7 +1,6 @@
 package com.learnlife.learnlife.challenges;
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
 import android.util.Log;
 
 import com.androidnetworking.AndroidNetworking;
@@ -25,12 +24,10 @@ public class ChallengePresenter implements IChallengePresenter {
     private static final String TAG = "ChallengePresenter";
 
     private IChallengeView mainView;
-    private Context context;
     private String[] sectionTitles = new String[5];
 
     public ChallengePresenter(IChallengeView mainView, Context context) {
         this.mainView = mainView;
-        this.context = context;
 
         sectionTitles[0] = context.getString(R.string.sectionTitleProposed);
         sectionTitles[1] = context.getString(R.string.sectionTitleDeclined);
@@ -117,7 +114,7 @@ public class ChallengePresenter implements IChallengePresenter {
             int state1 = challengeList.get(i + 1).getState();
             if (state == -1) continue;
             if (state1 != state) {
-                challengeList.add(i + 1, new Challenge(true, sectionTitles[challengeList.get(i+1).getState()]));
+                challengeList.add(i + 1, new Challenge(true, sectionTitles[challengeList.get(i + 1).getState()]));
             }
         }
 
