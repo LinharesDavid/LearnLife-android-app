@@ -1,5 +1,7 @@
 package com.learnlife.learnlife.challenges;
 
+import android.content.Context;
+import android.support.constraint.ConstraintLayout;
 import android.util.Log;
 
 import com.androidnetworking.AndroidNetworking;
@@ -7,6 +9,7 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.learnlife.learnlife.LearnLifeApplication;
+import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
 
 import org.json.JSONArray;
@@ -22,9 +25,18 @@ public class ChallengePresenter implements IChallengePresenter {
     private static final String TAG = "ChallengePresenter";
 
     private IChallengeView mainView;
+    private Context context;
+    private String[] sectionTitles = new String[5];
 
-    public ChallengePresenter(IChallengeView mainView) {
+    public ChallengePresenter(IChallengeView mainView, Context context) {
         this.mainView = mainView;
+        this.context = context;
+
+        sectionTitles[0] = context.getString(R.string.sectionTitleProposed);
+        sectionTitles[1] = context.getString(R.string.sectionTitleDeclined);
+        sectionTitles[2] = context.getString(R.string.sectionTitleAccepted);
+        sectionTitles[3] = context.getString(R.string.sectionTitleFailed);
+        sectionTitles[4] = context.getString(R.string.sectionTitleSucceed);
     }
 
     @Override
@@ -98,14 +110,14 @@ public class ChallengePresenter implements IChallengePresenter {
             challengeList.add(challenge);
         }
 
-        challengeList.add(0, new Challenge(true, "Section " + (challengeList.get(0).getState() + 1)));
+        challengeList.add(0, new Challenge(true, sectionTitles[challengeList.get(0).getState()]));
 
         for (int i = 1; i < challengeList.size() - 1; i++) {
             int state = challengeList.get(i).getState();
             int state1 = challengeList.get(i + 1).getState();
             if (state == -1) continue;
             if (state1 != state) {
-                challengeList.add(i + 1, new Challenge(true, "Section " + (challengeList.get(i + 1).getState() + 1)));
+                challengeList.add(i + 1, new Challenge(true, sectionTitles[challengeList.get(i+1).getState()]));
             }
         }
 

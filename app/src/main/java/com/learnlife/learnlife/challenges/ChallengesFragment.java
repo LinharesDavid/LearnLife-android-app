@@ -39,7 +39,7 @@ public class ChallengesFragment extends Fragment implements IChallengeView {
 
         ButterKnife.bind(this, view);
 
-        presenter = new ChallengePresenter(this);
+        presenter = new ChallengePresenter(this, getContext());
 
         rcvChallenges.setLayoutManager(new LinearLayoutManager(getContext()));
         challengesAdapter = new ChallengesAdapter(null);
