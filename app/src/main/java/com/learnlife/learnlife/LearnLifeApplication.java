@@ -10,10 +10,16 @@ public class LearnLifeApplication extends Application {
     public static String idUser;
     public static String token;
 
+    private static LearnLifeApplication instance;
+
     @Override
     public void onCreate() {
         super.onCreate();
-
+        instance = this;
         AndroidNetworking.initialize(getApplicationContext());
+    }
+
+    public static LearnLifeApplication getInstance() {
+        return instance;
     }
 }
