@@ -44,9 +44,14 @@ public class ChallengePresenter implements IChallengePresenter {
 
         final ArrayList<Challenge> challenges = new ArrayList<>();
 
+        Log.d(TAG, "getChallenges: " + Constants.BASE_URL
+                + Constants.EXTENDED_URL_USERCHALLENGES
+                + SessionManager.getInstance().getUser().getId()
+                + Constants.EXTENDED_URL_USERCHALLENGES_LIST);
+
         AndroidNetworking.get(Constants.BASE_URL
                             + Constants.EXTENDED_URL_USERCHALLENGES
-                            + SessionManager.getInstance().getUser().getId()
+                            + SessionManager.getInstance().getUser().getId() + "/"
                             + Constants.EXTENDED_URL_USERCHALLENGES_LIST)
                 .addHeaders(Constants.HEADER_AUTHORIZATION, SessionManager.getInstance().getUser().getToken())
                 .setTag("getAllUserChallenges")

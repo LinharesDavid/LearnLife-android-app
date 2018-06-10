@@ -24,7 +24,7 @@ public class SessionManager {
     private static final String IS_LOGIN = "IsLoggedIn";
 
     private static final String KEY_TOKEN = "token";
-    private static final String KEY_ID = "lastname";
+    private static final String KEY_ID = "_id";
     private static final String KEY_EMAIL = "lastname";
     private static final String KEY_FIRSTNAME = "firstname";
     private static final String KEY_LASTNAME = "lastname";
