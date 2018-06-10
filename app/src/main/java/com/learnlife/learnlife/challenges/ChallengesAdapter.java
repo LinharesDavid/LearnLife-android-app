@@ -46,8 +46,8 @@ public class ChallengesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof ChallengeViewHolder) {
             Challenge challenge = challenges.get(position);
-            ((ChallengeViewHolder) holder).txvTitle.setText(challenge.getTitle());
-            ((ChallengeViewHolder) holder).txvContent.setText(challenge.getDescription());
+            ((ChallengeViewHolder) holder).txvTitle.setText(challenge.getName());
+            ((ChallengeViewHolder) holder).txvContent.setText(challenge.getDetails());
         } else if (holder instanceof SectionViewHolder) {
             ((SectionViewHolder) holder).txvSectionTitle.setText(challenges.get(position).getSectionTitle());
         }

@@ -3,15 +3,15 @@ package com.learnlife.learnlife.crosslayers.models;
 import java.util.Random;
 
 public class Challenge {
+    private String _id;
+    private String name;
+    private String details;
+    private String imageUrl;
+
     private boolean isSection = false;
     private String sectionTitle;
-    private int idChallenge;
-    private String _id;
-    private String title;
-    private String description;
-    private String url_image;
-    private String category;
     private int state = -1;
+    private String category;
 
     public Challenge() {
     }
@@ -22,61 +22,44 @@ public class Challenge {
         state = -1;
     }
 
-    public Challenge(String idChallenge, String title, String description, String url_image, int state) {
-        this._id = idChallenge;
-        this.title = title;
-        this.description = description;
-        this.url_image = url_image;
-        this.category = category;
+    public Challenge(String _id, String name, String details, String imageUrl, int state) {
+        this._id = _id;
+        this.name = name;
+        this.details = details;
+        this.imageUrl = imageUrl;
         this.state = state;
     }
 
-    public int getIdChallenge() {
-        return idChallenge;
+    public String get_id() {
+        return _id;
     }
 
-    public void setIdChallenge(int idChallenge) {
-        this.idChallenge = idChallenge;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDetails() {
+        return details;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDetails(String details) {
+        this.details = details;
     }
 
-    public String getUrl_image() {
-        return url_image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setUrl_image(String url_image) {
-        this.url_image = url_image;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public boolean isSection() {
@@ -95,16 +78,20 @@ public class Challenge {
         this.sectionTitle = sectionTitle;
     }
 
-    @Override
-    public String toString() {
-        return "Challenge{" +
-                "idChallenge=" + idChallenge +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", url_image='" + url_image + '\'' +
-                ", category='" + category + '\'' +
-                ", state=" + state +
-                '}';
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     /**
@@ -112,11 +99,11 @@ public class Challenge {
      *
      * @return Challenge
      */
-    public Challenge falseChallengeGenerator() {
-        this.description = "Your life today is, basically, the sum of your  habits. We—mostly unconsciously—repeat 95 percent of our physical and mental";
-        this.title = "Challenge of the day : RUN 5KM";
-        this.idChallenge = new Random().nextInt();
-        this.url_image = "http://netdoctor.cdnds.net/17/20/980x490/landscape-1495031594-two-women-running-along-road.jpg";
+    public Challenge falseChallengeGenerator(){
+        this.details = "Your life today is, basically, the sum of your  habits. We—mostly unconsciously—repeat 95 percent of our physical and mental";
+        this.name = "Challenge of the day : RUN 5KM";
+        this._id = String.valueOf(new Random().nextInt());
+        this.imageUrl = "http://netdoctor.cdnds.net/17/20/980x490/landscape-1495031594-two-women-running-along-road.jpg";
         this.category = "Sport";
         return this;
     }
