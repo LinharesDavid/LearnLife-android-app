@@ -17,7 +17,7 @@
         android:layout_marginStart="@dimen/margin_08"
         tools:text="ChipText"
         style="@style/LearnLife.TextAppearance.Body.Black"
-        android:textSize="@dimen/font18"
+        android:textSize="@dimen/font16"
         android:layout_centerVertical="true"/>
 
     <ImageButton
