@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity implements ILoginView {
         String lastName = edtLastname.getText().toString().trim();
 
         if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            edtEmail.setError("Not a valid email");
+            edtEmail.setError(getString(R.string.noValidEmail));
             isInvalid = true;
         }
         if (TextUtils.isEmpty(email)) {
