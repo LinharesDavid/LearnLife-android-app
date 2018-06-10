@@ -6,6 +6,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.LearnLifeApplication;
 import com.learnlife.learnlife.SessionManager;
 
@@ -18,11 +19,7 @@ public class LoginPresenter implements ILoginPresenter {
 
     private final String TAG = getClass().getSimpleName();
 
-    private static final String RESPONSE_KEY_TOKEN = "token";
-    private static final String RESPONSE_KEY_USER_ID = "_id";
-    private static final String RESPONSE_KEY_USER_EMAIL = "email";
-    private static final String RESPONSE_KEY_USER_FIRSTNAME = "firstname";
-    private static final String RESPONSE_KEY_USER_LASTNAME = "lastname";
+
 
     public LoginPresenter(ILoginView mainView) {
         this.mainView = mainView;
@@ -32,14 +29,14 @@ public class LoginPresenter implements ILoginPresenter {
     public void loginUser(String email, String password) {
         JSONObject user = new JSONObject();
         try {
-            user.put("email", email);
-            user.put("password", password);
+            user.put(Constants.REQUEST_KEY_LOGIN_EMAIL, email);
+            user.put(Constants.REQUEST_KEY_LOGIN_PASSWORD, password);
         } catch (JSONException e) {
             e.printStackTrace();
             return;
         }
 
-        AndroidNetworking.post(LearnLifeApplication.BASE_URL + "/auth/login")
+        AndroidNetworking.post(Constants.BASE_URL + Constants.EXTENDED_URL_LOGIN)
                 .addJSONObjectBody(user)
                 .setTag("login")
                 .setPriority(Priority.MEDIUM)
@@ -50,13 +47,13 @@ public class LoginPresenter implements ILoginPresenter {
                         Log.d(TAG, "Login succeeded");
                         try {
 
-                            JSONObject user = response.getJSONObject("user");
+                            JSONObject user = response.getJSONObject(Constants.RESPONSE_KEY_LOGIN_USER);
                             SessionManager.getInstance().createLoginSession(
-                                    response.getString(RESPONSE_KEY_TOKEN),
-                                    user.getString(RESPONSE_KEY_USER_ID),
-                                    user.getString(RESPONSE_KEY_USER_EMAIL),
-                                    user.getString(RESPONSE_KEY_USER_FIRSTNAME),
-                                    user.getString(RESPONSE_KEY_USER_LASTNAME)
+                                    response.getString(Constants.RESPONSE_KEY_USER_TOKEN),
+                                    user.getString(Constants.RESPONSE_KEY_USER_ID),
+                                    user.getString(Constants.RESPONSE_KEY_USER_EMAIL),
+                                    user.getString(Constants.RESPONSE_KEY_USER_FIRSTNAME),
+                                    user.getString(Constants.RESPONSE_KEY_USER_LASTNAME)
                             );
 
                         } catch (JSONException e) {
@@ -81,16 +78,16 @@ public class LoginPresenter implements ILoginPresenter {
 
         JSONObject user = new JSONObject();
         try {
-            user.put("email", email);
-            user.put("password", password);
-            user.put("firstname", firstname);
-            user.put("lastname", lastname);
+            user.put(Constants.REQUEST_KEY_REGISTER_EMAIL, email);
+            user.put(Constants.REQUEST_KEY_REGISTER_PASSWORD, password);
+            user.put(Constants.REQUEST_KEY_REGISTER_FIRSTNAME, firstname);
+            user.put(Constants.REQUEST_KEY_REGISTER_LASTNAME, lastname);
         } catch (JSONException e) {
             e.printStackTrace();
             return;
         }
 
-        AndroidNetworking.post(LearnLifeApplication.BASE_URL + "/users")
+        AndroidNetworking.post(LearnLifeApplication.BASE_URL + Constants.EXTENDED_URL_REGISTER)
                 .addJSONObjectBody(user)
                 .setTag("register")
                 .setPriority(Priority.MEDIUM)

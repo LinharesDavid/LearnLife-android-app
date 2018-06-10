@@ -20,6 +20,7 @@ import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.google.gson.reflect.TypeToken;
+import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.LearnLifeApplication;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.SessionManager;
@@ -58,7 +59,10 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        AndroidNetworking.get(LearnLifeApplication.BASE_URL + "/userChallenges/" + SessionManager.getInstance().getUser().getId() + "/list")
+        AndroidNetworking.get(Constants.BASE_URL
+                    + Constants.EXTENDED_URL_USERCHALLENGES
+                    + SessionManager.getInstance().getUser().getId()
+                    + Constants.EXTENDED_URL_USERCHALLENGES_LIST)
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsObjectList(UserChallenge.class, new ParsedRequestListener<List<UserChallenge>>() {

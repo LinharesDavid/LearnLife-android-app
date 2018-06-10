@@ -19,7 +19,7 @@ public class SessionManager {
 
     int PRIVATE_MODE = 0;
 
-    private static final String PREF_NAME = "AndroidHivePref";
+    private static final String PREF_NAME = "LearnlifePref";
 
     private static final String IS_LOGIN = "IsLoggedIn";
 

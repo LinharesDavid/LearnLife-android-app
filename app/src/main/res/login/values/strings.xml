@@ -11,6 +11,7 @@
     <string name="NewUser">New user ? <u>Sign up</u></string>
     <string name="passwordForgotten">Forgot password ?</string>
     <string name="noEmail">You need to enter an email</string>
+    <string name="noValidEmail">You need to enter a valid email</string>
     <string name="noPassword">You need to enter a password</string>
     <string name="noLastName">You need to enter a lastname</string>
     <string name="noFirstName">You need to enter a firstname</string>

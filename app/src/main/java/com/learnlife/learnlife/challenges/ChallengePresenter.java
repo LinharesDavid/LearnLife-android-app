@@ -7,6 +7,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.LearnLifeApplication;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.SessionManager;
@@ -43,8 +44,11 @@ public class ChallengePresenter implements IChallengePresenter {
 
         final ArrayList<Challenge> challenges = new ArrayList<>();
 
-        AndroidNetworking.get(LearnLifeApplication.BASE_URL + "/userChallenges/" + LearnLifeApplication.idUser + "/list")
-                .addHeaders("Authorization", SessionManager.getInstance().getUser().getToken())
+        AndroidNetworking.get(Constants.BASE_URL
+                            + Constants.EXTENDED_URL_USERCHALLENGES
+                            + SessionManager.getInstance().getUser().getId()
+                            + Constants.EXTENDED_URL_USERCHALLENGES_LIST)
+                .addHeaders(Constants.HEADER_AUTHORIZATION, SessionManager.getInstance().getUser().getToken())
                 .setTag("getAllUserChallenges")
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -55,13 +59,13 @@ public class ChallengePresenter implements IChallengePresenter {
                         try {
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject jsonResponse = response.getJSONObject(i);
-                                JSONObject jsonChallenge = jsonResponse.getJSONObject("challenge");
+                                JSONObject jsonChallenge = jsonResponse.getJSONObject(Constants.RESPONSE_KEY_USERCHALLENGES_CHALLENGE);
                                 Challenge challenge = new Challenge(
-                                        jsonChallenge.getString("_id"),
-                                        jsonChallenge.getString("name"),
-                                        jsonChallenge.getString("details"),
-                                        jsonChallenge.getString("imageUrl"),
-                                        jsonResponse.getInt("state"));
+                                        jsonChallenge.getString(Constants.RESPONSE_KEY_USERCHALLENGES_ID),
+                                        jsonChallenge.getString(Constants.RESPONSE_KEY_USERCHALLENGES_NAME),
+                                        jsonChallenge.getString(Constants.RESPONSE_KEY_USERCHALLENGES_DETAILS),
+                                        jsonChallenge.getString(Constants.RESPONSE_KEY_USERCHALLENGES_IMAGE),
+                                        jsonResponse.getInt(Constants.RESPONSE_KEY_USERCHALLENGES_STATE));
                                 challenges.add(challenge);
                             }
                             orderChallengeList(challenges);
