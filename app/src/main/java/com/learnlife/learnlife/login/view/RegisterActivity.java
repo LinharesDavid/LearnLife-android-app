@@ -13,6 +13,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.learnlife.learnlife.R;
+import com.learnlife.learnlife.crosslayers.utils.Dialog;
+import com.learnlife.learnlife.tags.view.TagActivity;
 
 import org.json.JSONException;
 
@@ -70,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity implements ILoginView {
         String lastName = edtLastname.getText().toString().trim();
 
         if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            edtEmail.setError("Not a valid email");
+            edtEmail.setError(getString(R.string.noValidEmail));
             isInvalid = true;
         }
         if (TextUtils.isEmpty(email)) {
@@ -114,6 +116,7 @@ public class RegisterActivity extends AppCompatActivity implements ILoginView {
         Log.d(Tag, "Register succeeded");
         startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
     }
+
 
     @Override
     public void loginFailed(String error) {

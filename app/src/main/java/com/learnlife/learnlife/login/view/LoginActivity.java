@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.learnlife.learnlife.R;
+import com.learnlife.learnlife.crosslayers.utils.Dialog;
 import com.learnlife.learnlife.tags.view.TagActivity;
 
 import butterknife.BindView;
@@ -40,7 +41,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     private final String Tag = getClass().getSimpleName();
 
     private ILoginPresenter presenter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +96,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         Intent intent = new Intent(LoginActivity.this, TagActivity.class);
         startActivity(intent);
     }
+
 
     @Override
     public void loginFailed(String error) {

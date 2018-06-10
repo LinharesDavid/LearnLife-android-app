@@ -1,9 +1,11 @@
 package com.learnlife.learnlife.tags.view;
 
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.learnlife.learnlife.R;
@@ -22,7 +24,7 @@ import butterknife.ButterKnife;
 public class TagAdapter extends RecyclerView.Adapter {
     private List<Tag> tagsItems;
     private TagActivity activity;
-    private List<String> tagsChosen = new ArrayList<>();
+    private List<Tag> tagsChosen = new ArrayList<>();
 
     public TagAdapter(List<Tag> tagsItems, TagActivity activity) {
         this.tagsItems = tagsItems;
@@ -34,13 +36,25 @@ public class TagAdapter extends RecyclerView.Adapter {
         View view = LayoutInflater.from(activity).inflate(R.layout.tag_item, parent, false);
         final ViewHolder holder = new ViewHolder(view);
 
-        holder.ctnMain.setOnClickListener(new View.OnClickListener() {
+        holder.imbAddChips.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.ctnMain.setBackgroundColor(activity.getResources().getColor(R.color.colorPrimaryDark));
-                holder.txvTag.setTextColor(activity.getResources().getColor(R.color.white));
+                Tag tag = tagsItems.get(holder.getAdapterPosition());
+                if(tagsChosen.contains(tag)){
+                    //Si le tag avait déjà était ajouté alors retire
+                    holder.ctnMain.setBackground(activity.getResources().getDrawable(R.drawable.shape_chip_unselected_drawable));
+                    holder.txvChips.setTextColor(activity.getResources().getColor(R.color.black));
+                    holder.imbAddChips.setBackground(ContextCompat.getDrawable(activity, R.drawable.ic_add_chips));
 
-                tagsChosen.add(tagsItems.get(holder.getAdapterPosition()).getName());
+                    activity.tagsChosen.remove(tag.getId());
+                }else {
+                    //Sinon on ajoute
+                    holder.ctnMain.setBackground(activity.getResources().getDrawable(R.drawable.shape_chip_selected_drawable));
+                    holder.txvChips.setTextColor(activity.getResources().getColor(R.color.white));
+                    holder.imbAddChips.setBackground(ContextCompat.getDrawable(activity, R.drawable.ic_remove_chips));
+
+                    activity.tagsChosen.add(tag.getId());
+                }
             }
         });
 
@@ -52,7 +66,7 @@ public class TagAdapter extends RecyclerView.Adapter {
         Tag element = tagsItems.get(position);
         ViewHolder vHolder = (ViewHolder) holder;
 
-        vHolder.txvTag.setText(element.getName());
+        vHolder.txvChips.setText(element.getName());
     }
 
     @Override
@@ -61,8 +75,9 @@ public class TagAdapter extends RecyclerView.Adapter {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        @BindView(R.id.txv_tag) TextView txvTag;
-        @BindView(R.id.ctn_main) ViewGroup ctnMain;
+        @BindView(R.id.txvChips) TextView txvChips;
+        @BindView(R.id.ctnMain) ViewGroup ctnMain;
+        @BindView(R.id.imbAddChips) ImageView imbAddChips;
 
         public ViewHolder(View itemView) {
             super(itemView);
