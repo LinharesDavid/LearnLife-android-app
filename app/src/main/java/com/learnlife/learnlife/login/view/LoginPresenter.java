@@ -18,6 +18,7 @@ public class LoginPresenter implements ILoginPresenter {
 
     private final String TAG = getClass().getSimpleName();
 
+    private static final String RESPONSE_KEY_TOKEN = "token";
     private static final String RESPONSE_KEY_USER_ID = "_id";
     private static final String RESPONSE_KEY_USER_EMAIL = "email";
     private static final String RESPONSE_KEY_USER_FIRSTNAME = "firstname";
@@ -51,6 +52,7 @@ public class LoginPresenter implements ILoginPresenter {
 
                             JSONObject user = response.getJSONObject("user");
                             SessionManager.getInstance().createLoginSession(
+                                    response.getString(RESPONSE_KEY_TOKEN),
                                     user.getString(RESPONSE_KEY_USER_ID),
                                     user.getString(RESPONSE_KEY_USER_EMAIL),
                                     user.getString(RESPONSE_KEY_USER_FIRSTNAME),

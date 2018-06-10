@@ -7,14 +7,11 @@ public class Challenge {
     private String name;
     private String details;
     private String imageUrl;
+
     private boolean isSection = false;
     private String sectionTitle;
-    private int idChallenge;
-    private String title;
-    private String description;
-    private String url_image;
-    private String category;
     private int state = -1;
+    private String category;
 
     public Challenge() {
     }
@@ -25,12 +22,11 @@ public class Challenge {
         state = -1;
     }
 
-    public Challenge(String idChallenge, String title, String description, String url_image, int state) {
-        this._id = idChallenge;
-        this.title = title;
-        this.description = description;
-        this.url_image = url_image;
-        this.category = category;
+    public Challenge(String _id, String name, String details, String imageUrl, int state) {
+        this._id = _id;
+        this.name = name;
+        this.details = details;
+        this.imageUrl = imageUrl;
         this.state = state;
     }
 
@@ -66,22 +62,6 @@ public class Challenge {
         this.imageUrl = imageUrl;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
-
     public boolean isSection() {
         return isSection;
     }
@@ -98,16 +78,20 @@ public class Challenge {
         this.sectionTitle = sectionTitle;
     }
 
-    @Override
-    public String toString() {
-        return "Challenge{" +
-                "idChallenge=" + idChallenge +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", url_image='" + url_image + '\'' +
-                ", category='" + category + '\'' +
-                ", state=" + state +
-                '}';
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     /**

@@ -2,16 +2,26 @@ package com.learnlife.learnlife.crosslayers.models;
 
 public class User {
     private String id;
+    private String token;
     private String email;
     private String firstname;
     private String lastname;
     private String thumbnail;
 
-    public User(String id, String email, String firstname, String lastname) {
+    public User(String token, String id, String email, String firstname, String lastname) {
+        this.token = token;
         this.id = id;
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getId() {

@@ -9,6 +9,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.learnlife.learnlife.LearnLifeApplication;
 import com.learnlife.learnlife.R;
+import com.learnlife.learnlife.SessionManager;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
 
 import org.json.JSONArray;
@@ -17,6 +18,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 
 public class ChallengePresenter implements IChallengePresenter {
@@ -42,7 +44,7 @@ public class ChallengePresenter implements IChallengePresenter {
         final ArrayList<Challenge> challenges = new ArrayList<>();
 
         AndroidNetworking.get(LearnLifeApplication.BASE_URL + "/userChallenges/" + LearnLifeApplication.idUser + "/list")
-                .addHeaders("Authorization", LearnLifeApplication.token)
+                .addHeaders("Authorization", SessionManager.getInstance().getUser().getToken())
                 .setTag("getAllUserChallenges")
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -99,9 +101,8 @@ public class ChallengePresenter implements IChallengePresenter {
             }
         });
         challengeList.clear();
-        for (Challenge challenge : challengesArray) {
-            challengeList.add(challenge);
-        }
+
+        Collections.addAll(challengeList, challengesArray);
 
         challengeList.add(0, new Challenge(true, sectionTitles[challengeList.get(0).getState()]));
 
