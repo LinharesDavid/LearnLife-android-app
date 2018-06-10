@@ -120,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         Intent intent;
                         //Si premiere connexion alors TagCount == 0
-                        if(responseLogin.tagCount == 0) {
+                        if(responseLogin.tagCount > 0) {
                             intent = new Intent(LoginActivity.this, TagActivity.class);
                             intent.putExtra(EXTRA_NAMEUSER, responseLogin.firstName);
                             intent.putExtra(EXTRA_IDUSER, responseLogin.idUser);
