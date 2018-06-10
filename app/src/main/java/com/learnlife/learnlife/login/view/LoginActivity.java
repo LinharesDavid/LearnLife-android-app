@@ -18,7 +18,7 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.learnlife.learnlife.LearnLifeApplication;
-import com.learnlife.learnlife.Main.view.MainActivity;
+import com.learnlife.learnlife.main.view.MainActivity;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.tags.view.TagActivity;
 
@@ -107,6 +107,8 @@ public class LoginActivity extends AppCompatActivity {
                         ResponseLogin responseLogin = null;
                         try{
                             responseLogin = new ResponseLogin(response.getString(jsonToken), response.getString(jsonUserName));
+                            LearnLifeApplication.idUser = response.getString(jsonUserName);
+                            LearnLifeApplication.token = response.getString(jsonToken);
                         }catch (JSONException e){e.printStackTrace();}
 
                         if(responseLogin == null)
