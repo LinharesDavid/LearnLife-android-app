@@ -14,6 +14,7 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.ParsedRequestListener;
+import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.LearnLifeApplication;
 import com.learnlife.learnlife.main.view.MainActivity;
 import com.learnlife.learnlife.R;
@@ -46,7 +47,7 @@ public class TagActivity extends AppCompatActivity {
         rcvMain.setLayoutManager(new LinearLayoutManager(this));
         rcvMain.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
-        AndroidNetworking.get(LearnLifeApplication.BASE_URL + "/tags")
+        AndroidNetworking.get(Constants.BASE_URL + Constants.EXTENDED_URL_TAGS)
                 .setTag("tags")
                 .setPriority(Priority.MEDIUM)
                 .build()
