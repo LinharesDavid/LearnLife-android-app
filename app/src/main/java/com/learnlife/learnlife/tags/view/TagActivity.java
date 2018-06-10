@@ -20,6 +20,7 @@ import com.beloo.widget.chipslayoutmanager.SpacingItemDecoration;
 import com.learnlife.learnlife.LearnLifeApplication;
 import com.learnlife.learnlife.Main.view.MainActivity;
 import com.learnlife.learnlife.R;
+import com.learnlife.learnlife.SessionManager;
 import com.learnlife.learnlife.crosslayers.utils.Dialog;
 import com.learnlife.learnlife.login.view.LoginActivity;
 import com.learnlife.learnlife.tags.modele.Tag;
@@ -59,8 +60,8 @@ public class TagActivity extends AppCompatActivity implements ITagView {
         ButterKnife.bind(this);
 
         tagsChosen = new ArrayList<>();
-        userId = getIntent().getStringExtra(LoginActivity.EXTRA_IDUSER);
-        userFirstName = getIntent().getStringExtra(LoginActivity.EXTRA_NAMEUSER);
+        userId = SessionManager.getInstance().getUser().getId();
+        userFirstName = SessionManager.getInstance().getUser().getFirstname();
         if(userFirstName != null)
             txvFirstConnexion.setText(getResources().getString(R.string.first_connexionName, userFirstName));
         else

@@ -39,8 +39,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     private Animation anim; //Le faire dans une classe mère pour pas le répéter à chaque button
     private boolean isIncomplete; //boolean pour savoir si les champs sont tous remplis ou pas
     private final String Tag = getClass().getSimpleName();
-    public final static String EXTRA_IDUSER = "IDUSER";
-    public final static String EXTRA_NAMEUSER = "NAMEUSER";
+
     private ILoginPresenter presenter;
 
     @Override
