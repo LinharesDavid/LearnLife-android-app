@@ -73,4 +73,38 @@ public class LoginPresenter implements ILoginPresenter {
                 });
 
     }
+
+    @Override
+    public void registerUser(String firstname, String lastname, String email, String password) {
+
+        JSONObject user = new JSONObject();
+        try {
+            user.put("email", email);
+            user.put("password", password);
+            user.put("firstname", firstname);
+            user.put("lastname", lastname);
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        AndroidNetworking.post(LearnLifeApplication.BASE_URL + "/users")
+                .addJSONObjectBody(user)
+                .setTag("register")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        mainView.loginSucceed();
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        String errorBody = anError.getErrorBody() != null ? anError.getErrorBody() : "error without content";
+                        Log.d(TAG, "Register failed : " + errorBody);
+                        mainView.loginFailed(errorBody);
+                    }
+                });
+    }
 }
