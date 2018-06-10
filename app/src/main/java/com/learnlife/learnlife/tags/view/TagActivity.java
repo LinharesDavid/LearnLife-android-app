@@ -18,7 +18,7 @@ import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager;
 import com.beloo.widget.chipslayoutmanager.SpacingItemDecoration;
 import com.learnlife.learnlife.LearnLifeApplication;
-import com.learnlife.learnlife.main.view.MainActivity;
+import com.learnlife.learnlife.Main.view.MainActivity;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.crosslayers.utils.Dialog;
 import com.learnlife.learnlife.login.view.LoginActivity;
