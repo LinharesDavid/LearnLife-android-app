@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.learnlife.learnlife.R;
+import com.learnlife.learnlife.crosslayers.utils.Dialog;
 
 import org.json.JSONException;
 
