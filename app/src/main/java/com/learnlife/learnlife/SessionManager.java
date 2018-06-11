@@ -23,6 +23,7 @@ public class SessionManager {
 
     private static final String IS_LOGIN = "IsLoggedIn";
 
+    private static final String KEY_TOKEN = "token";
     private static final String KEY_ID = "lastname";
     private static final String KEY_EMAIL = "lastname";
     private static final String KEY_FIRSTNAME = "firstname";
@@ -46,25 +47,33 @@ public class SessionManager {
         return INSTANCE;
     }
 
-    public void createLoginSession(String id, String email, String firstname, String lastname) {
+    public void createLoginSession(String token, String id, String email, String firstname, String lastname) {
         editor.putBoolean(IS_LOGIN, true);
+        editor.putString(KEY_TOKEN, token);
         editor.putString(KEY_ID, id);
         editor.putString(KEY_EMAIL, email);
         editor.putString(KEY_FIRSTNAME, firstname);
         editor.putString(KEY_LASTNAME, lastname);
-        this.user = new User(id, email, firstname, lastname);
+        this.user = new User(token, id, email, firstname, lastname);
         editor.commit();
     }
 
     public void checkLogin() {
-        if (!this.isLoggedIn()) {
+        this.user = new User(
+            pref.getString(KEY_TOKEN, null),
+            pref.getString(KEY_ID, null),
+            pref.getString(KEY_EMAIL, null),
+            pref.getString(KEY_FIRSTNAME, null),
+            pref.getString(KEY_LASTNAME, null)
+        );
+
+        if (this.user.getToken() == null) {
             Intent i = new Intent(context, LoginActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
             context.startActivity(i);
         }
+
 
     }
 
@@ -73,7 +82,16 @@ public class SessionManager {
     }
 
     public void updateUser(User user) {
-        this.user = user;
+        this.createLoginSession(
+                user.getToken(),
+                user.getId(),
+                user.getEmail(),
+                user.getFirstname(),
+                user.getLastname());
+    }
+
+    public String getToken() {
+        return pref.getString(KEY_TOKEN, null);
     }
 
     public void logoutUser() {

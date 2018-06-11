@@ -9,13 +9,14 @@
 
 
     <android.support.v7.widget.RecyclerView
-        android:layout_width="wrap_content"
+        android:id="@+id/rcv_challenges"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/cartouche_challenge"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_challenge" />
 
 
 </android.support.constraint.ConstraintLayout>

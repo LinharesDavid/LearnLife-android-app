@@ -57,7 +57,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        AndroidNetworking.get(LearnLifeApplication.BASE_URL + "/userChallenges/" + SessionManager.USER_ID + "/list")
+        AndroidNetworking.get(LearnLifeApplication.BASE_URL + "/userChallenges/" + SessionManager.getInstance().getUser().getId() + "/list")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsObjectList(UserChallenge.class, new ParsedRequestListener<List<UserChallenge>>() {

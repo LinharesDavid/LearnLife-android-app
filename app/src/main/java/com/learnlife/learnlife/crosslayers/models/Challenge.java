@@ -7,7 +7,28 @@ public class Challenge {
     private String name;
     private String details;
     private String imageUrl;
+
+    private boolean isSection = false;
+    private String sectionTitle;
+    private int state = -1;
     private String category;
+
+    public Challenge() {
+    }
+
+    public Challenge(boolean isSection, String sectionTitle) {
+        this.isSection = isSection;
+        this.sectionTitle = sectionTitle;
+        state = -1;
+    }
+
+    public Challenge(String _id, String name, String details, String imageUrl, int state) {
+        this._id = _id;
+        this.name = name;
+        this.details = details;
+        this.imageUrl = imageUrl;
+        this.state = state;
+    }
 
     public String get_id() {
         return _id;
@@ -41,6 +62,30 @@ public class Challenge {
         this.imageUrl = imageUrl;
     }
 
+    public boolean isSection() {
+        return isSection;
+    }
+
+    public void setSection(boolean section) {
+        isSection = section;
+    }
+
+    public String getSectionTitle() {
+        return sectionTitle;
+    }
+
+    public void setSectionTitle(String sectionTitle) {
+        this.sectionTitle = sectionTitle;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
     public String getCategory() {
         return category;
     }
@@ -49,9 +94,9 @@ public class Challenge {
         this.category = category;
     }
 
-
     /**
      * Juste pour les tests.
+     *
      * @return Challenge
      */
     public Challenge falseChallengeGenerator(){

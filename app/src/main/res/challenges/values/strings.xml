@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sectionTitleProposed">Challenges proposed</string>
+    <string name="sectionTitleDeclined">Challenges declined</string>
+    <string name="sectionTitleAccepted">Challenges accepted</string>
+    <string name="sectionTitleFailed">Challenges failed</string>
+    <string name="sectionTitleSucceed">Challenges succeed</string>
+</resources>
