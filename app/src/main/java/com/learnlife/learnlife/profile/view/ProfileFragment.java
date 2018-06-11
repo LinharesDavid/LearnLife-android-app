@@ -1,5 +1,6 @@
 package com.learnlife.learnlife.profile.view;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
@@ -25,6 +26,7 @@ import com.learnlife.learnlife.SessionManager;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
 import com.learnlife.learnlife.crosslayers.models.ChallengeState;
 import com.learnlife.learnlife.crosslayers.models.UserChallenge;
+import com.learnlife.learnlife.tags.view.TagActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,12 +37,11 @@ import java.util.function.Predicate;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ProfileFragment extends Fragment {
 
     @BindView(R.id.imvProfile) ImageView profileImageView;
-    @BindView(R.id.btnBadges) Button badgeButton;
-    @BindView(R.id.btnTags) Button tagButton;
     @BindView(R.id.txvFailed) TextView failedTextView;
     @BindView(R.id.txvSucceeded) TextView succeedTextView;
 
@@ -71,6 +72,16 @@ public class ProfileFragment extends Fragment {
 
                     }
                 });
+    }
+
+    @OnClick(R.id.btnTags)
+    void onTagsButtonClicked() {
+        startActivity(new Intent(getActivity(), TagActivity.class));
+    }
+
+    @OnClick(R.id.btnBadges)
+    void onBadgesButtonClicked() {
+        
     }
 
     private void setChallenges(List<UserChallenge> challenges) {
