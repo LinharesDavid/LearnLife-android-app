@@ -121,6 +121,6 @@ public class RegisterActivity extends AppCompatActivity implements ILoginView {
     @Override
     public void loginFailed(String error) {
         prbRegister.setVisibility(View.GONE);
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
+        Dialog.showErrorMessageDialog(this, getString(R.string.register_error_msg));
     }
 }
