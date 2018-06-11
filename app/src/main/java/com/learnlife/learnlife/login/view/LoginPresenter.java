@@ -87,7 +87,7 @@ public class LoginPresenter implements ILoginPresenter {
             return;
         }
 
-        AndroidNetworking.post(LearnLifeApplication.BASE_URL + Constants.EXTENDED_URL_REGISTER)
+        AndroidNetworking.post(Constants.BASE_URL + Constants.EXTENDED_URL_REGISTER)
                 .addJSONObjectBody(user)
                 .setTag("register")
                 .setPriority(Priority.MEDIUM)

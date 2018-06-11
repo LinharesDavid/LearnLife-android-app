@@ -10,5 +10,5 @@ import com.learnlife.learnlife.tags.modele.Tag;
 
 public interface ITagPresenter {
     void displayAllTags(String urlAllTag);
-    void affectTagToUser(String urlUpdateUserTag, Tag.JsonTag jsonTag);
+    void affectTagToUser(Tag.JsonTag jsonTag);
 }
