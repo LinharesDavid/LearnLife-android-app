@@ -14,17 +14,19 @@ import android.widget.Toast;
 
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
+import com.learnlife.learnlife.crosslayers.utils.Dialog;
 import com.learnlife.learnlife.crosslayers.utils.MyDateUtils;
 import com.learnlife.learnlife.home.adapter.Adapter;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements IHomeView {
 
     /***********************************************************
     *  Attributes
@@ -39,7 +41,7 @@ public class HomeFragment extends Fragment {
     private ArrayList<Challenge> challenges = new ArrayList<>();
     private Adapter adapter;
     private Animation animationBounce;
-
+    private HomePresenter homePresenter;
 
     /***********************************************************
     *  Managing LifeCycle
@@ -54,10 +56,8 @@ public class HomeFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        //Juste pour les tests
-        for(int i = 0; i < 5; i++){
-            challenges.add(new Challenge().falseChallengeGenerator());
-        }
+        homePresenter = new HomePresenter(this);
+        homePresenter.displayUserChallenge();
 
         return view;
     }
@@ -69,6 +69,34 @@ public class HomeFragment extends Fragment {
         txvTodayDate.setText(MyDateUtils.fullDate(getContext()));
         animationBounce = AnimationUtils.loadAnimation(getContext(), R.anim.button_bounce);
 
+
+
+    }
+
+
+    /***********************************************************
+     *  Buttons Events
+     **********************************************************/
+
+    @OnClick(R.id.imbDecline)
+    public void btnDeclineClicked(){
+        flingContainer.getTopCardListener().selectLeft();
+        imbDecline.startAnimation(animationBounce);
+    }
+
+    @OnClick(R.id.imbAccept)
+    public void btnAcceptClicked(){
+        flingContainer.getTopCardListener().selectRight();
+        imbAccept.startAnimation(animationBounce);
+    }
+
+    @Override
+    public void getChallengeFailed() {
+        Dialog.showErrorMessageDialog(getContext(), getString(R.string.challenge_get_msg));
+    }
+
+    @Override
+    public void getChallengeSucceed(List<Challenge> responses) {
         //Custom Adapter
         adapter = new Adapter(getContext(), R.layout.cartouche_challenge, challenges);
 
@@ -111,21 +139,13 @@ public class HomeFragment extends Fragment {
         });
     }
 
-
-    /***********************************************************
-     *  Buttons Events
-     **********************************************************/
-
-    @OnClick(R.id.imbDecline)
-    public void btnDeclineClicked(){
-        flingContainer.getTopCardListener().selectLeft();
-        imbDecline.startAnimation(animationBounce);
+    @Override
+    public void updateUserChallengeFailed() {
+        Dialog.showErrorMessageDialog(getContext(), getString(R.string.challenge_update_msg));
     }
 
-    @OnClick(R.id.imbAccept)
-    public void btnAcceptClicked(){
-        flingContainer.getTopCardListener().selectRight();
-        imbAccept.startAnimation(animationBounce);
-    }
+    @Override
+    public void updateUserChallengeSucceed() {
 
+    }
 }
