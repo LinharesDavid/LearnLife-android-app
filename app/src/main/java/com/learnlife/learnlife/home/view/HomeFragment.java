@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
 import com.learnlife.learnlife.crosslayers.models.UserChallenge;
@@ -79,12 +80,21 @@ public class HomeFragment extends Fragment implements IHomeView {
 
             @Override
             public void onLeftCardExit(Object o) {
-                Toast.makeText(getContext(), "Left!", Toast.LENGTH_SHORT).show();
+                UserChallenge userChallenge = (UserChallenge) o;
+                if(userChallenge == null)
+                    return;
+
+                homePresenter.updateUserChallenge(Constants.CHALLENGE_DECLINED, userChallenge.get_id());
             }
 
             @Override
             public void onRightCardExit(Object o) {
-                Toast.makeText(getContext(), "Right!", Toast.LENGTH_SHORT).show();
+                UserChallenge userChallenge = (UserChallenge) o;
+                if(userChallenge == null)
+                    return;
+
+                homePresenter.updateUserChallenge(Constants.CHALLENGE_ACCEPTED, userChallenge.get_id());
+
             }
 
             @Override
@@ -131,7 +141,6 @@ public class HomeFragment extends Fragment implements IHomeView {
     @Override
     public void getChallengeSucceed(final List<UserChallenge> responses) {
         userChallenges = responses;
-        //Custom Adapter
         adapter = new Adapter(getContext(), R.layout.cartouche_challenge, userChallenges);
         flingContainer.setAdapter(adapter);
         adapter.notifyDataSetChanged();

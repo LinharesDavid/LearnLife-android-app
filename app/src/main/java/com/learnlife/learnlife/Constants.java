@@ -5,11 +5,20 @@ public final class Constants {
     public static final String BASE_URL = "http://192.168.100.83:8080/";
     public static final String EXTENDED_URL_TAGS = "tags/";
     public static final String EXTENDED_URL_USERCHALLENGES = "userChallenges/";
+    public static final String EXTENDED_URL_USERCHALLENGES_DECLINED = "/declined";
+    public static final String EXTENDED_URL_USERCHALLENGES_ACCEPTED = "/accept";
+    public static final String EXTENDED_URL_USERCHALLENGES_SUCCEED = "/succeed";
+    public static final String EXTENDED_URL_USERCHALLENGES_FAILED = "/failed";
     public static final String EXTENDED_URL_USERCHALLENGES_LIST = "list/";
     public static final String EXTENDED_URL_LOGIN = "auth/login/";
     public static final String EXTENDED_URL_REGISTER = "/users";
     public static final String EXTENDED_URL_ALL_TAGS = "tags/";
     public static final String EXTENDED_URL_UPDATE_USERTAGS = "users/";
+
+    public static final int CHALLENGE_DECLINED = 1;
+    public static final int CHALLENGE_ACCEPTED = 2;
+    public static final int CHALLENGE_FAILED = 3;
+    public static final int CHALLENGE_SUCCEED = 4;
 
     public static final String HEADER_AUTHORIZATION = "Authorization";
 

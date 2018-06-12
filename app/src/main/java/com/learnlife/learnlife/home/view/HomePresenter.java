@@ -6,6 +6,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.ParsedRequestListener;
+import com.androidnetworking.interfaces.StringRequestListener;
 import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.SessionManager;
 import com.learnlife.learnlife.crosslayers.models.User;
@@ -46,7 +47,42 @@ public class HomePresenter implements IHomePresenter{
     }
 
     @Override
-    public void updateUserChallenge() {
+    public void updateUserChallenge(int state, String idChallenge) {
+        String url = Constants.BASE_URL + Constants.EXTENDED_URL_USERCHALLENGES+idChallenge;
+        switch (state){
+            case Constants.CHALLENGE_DECLINED:
+                url+=Constants.EXTENDED_URL_USERCHALLENGES_DECLINED;
+                break;
+            case Constants.CHALLENGE_ACCEPTED:
+                url+=Constants.EXTENDED_URL_USERCHALLENGES_ACCEPTED;
+                break;
+            case Constants.CHALLENGE_FAILED:
+                url+=Constants.EXTENDED_URL_USERCHALLENGES_FAILED;
+                break;
+            case Constants.CHALLENGE_SUCCEED:
+                url+=Constants.EXTENDED_URL_USERCHALLENGES_DECLINED;
+                break;
+            default:
+                break;
+        }
+
+        AndroidNetworking.put(url)
+                .setTag(TAG)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsString(new StringRequestListener() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(TAG, "Update userchallenge succeeded");
+                        homeView.updateUserChallengeSucceed();
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Log.d(TAG, "Update userchallenge failed");
+                        homeView.updateUserChallengeFailed();
+                    }
+                });
 
     }
 }
