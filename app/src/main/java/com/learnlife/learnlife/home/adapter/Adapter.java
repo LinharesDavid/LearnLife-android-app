@@ -12,16 +12,17 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
+import com.learnlife.learnlife.crosslayers.models.UserChallenge;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Adapter extends ArrayAdapter<Challenge> {
+public class Adapter extends ArrayAdapter<UserChallenge> {
     private Context _context;
-    private List<Challenge> _items;
+    private List<UserChallenge> _items;
     private int _layoutId;
 
-    public Adapter(Context context, int layoutId, ArrayList<Challenge> items){
+    public Adapter(Context context, int layoutId, List<UserChallenge> items){
         super(context, layoutId, items);
         _context = context;
         _items = items;
@@ -49,13 +50,13 @@ public class Adapter extends ArrayAdapter<Challenge> {
             vHolder = (CartoucheViewHolder) view.getTag();
         }
 
-        Challenge challenge = _items.get(position);
+        UserChallenge userChallenge = _items.get(position);
 
-        vHolder.txvTitleChallenge.setText(challenge.getName());
-        vHolder.txvDetailsChallenge.setText(challenge.getDetails());
-        vHolder.txvCategory.setText(challenge.getCategory());
+        vHolder.txvTitleChallenge.setText(userChallenge.getChallenge().getName());
+        vHolder.txvDetailsChallenge.setText(userChallenge.getChallenge().getDetails());
+        vHolder.txvCategory.setText(userChallenge.getChallenge().getCategory());
 
-        Glide.with(_context).load(challenge.getImageUrl()).into(vHolder.imvChallenge);
+        Glide.with(_context).load(userChallenge.getChallenge().getImageUrl()).into(vHolder.imvChallenge);
 
         return view;
     }

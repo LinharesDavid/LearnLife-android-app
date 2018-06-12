@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
+import com.learnlife.learnlife.crosslayers.models.UserChallenge;
 import com.learnlife.learnlife.crosslayers.utils.Dialog;
 import com.learnlife.learnlife.crosslayers.utils.MyDateUtils;
 import com.learnlife.learnlife.home.adapter.Adapter;
@@ -37,11 +38,10 @@ public class HomeFragment extends Fragment implements IHomeView {
     @BindView(R.id.imbDecline) public ImageButton imbDecline;
     @BindView(R.id.imbAccept) public ImageButton imbAccept;
 
-
-    private ArrayList<Challenge> challenges = new ArrayList<>();
     private Adapter adapter;
     private Animation animationBounce;
     private HomePresenter homePresenter;
+    private List<UserChallenge> userChallenges = new ArrayList<>();
 
     /***********************************************************
     *  Managing LifeCycle
@@ -69,44 +69,11 @@ public class HomeFragment extends Fragment implements IHomeView {
         txvTodayDate.setText(MyDateUtils.fullDate(getContext()));
         animationBounce = AnimationUtils.loadAnimation(getContext(), R.anim.button_bounce);
 
-
-
-    }
-
-
-    /***********************************************************
-     *  Buttons Events
-     **********************************************************/
-
-    @OnClick(R.id.imbDecline)
-    public void btnDeclineClicked(){
-        flingContainer.getTopCardListener().selectLeft();
-        imbDecline.startAnimation(animationBounce);
-    }
-
-    @OnClick(R.id.imbAccept)
-    public void btnAcceptClicked(){
-        flingContainer.getTopCardListener().selectRight();
-        imbAccept.startAnimation(animationBounce);
-    }
-
-    @Override
-    public void getChallengeFailed() {
-        Dialog.showErrorMessageDialog(getContext(), getString(R.string.challenge_get_msg));
-    }
-
-    @Override
-    public void getChallengeSucceed(List<Challenge> responses) {
-        //Custom Adapter
-        adapter = new Adapter(getContext(), R.layout.cartouche_challenge, challenges);
-
-        flingContainer.setAdapter(adapter);
-
-        //Swipe Listener
+//Swipe Listener
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
             @Override
             public void removeFirstObjectInAdapter() {
-                challenges.remove(0);
+                userChallenges.remove(0);
                 adapter.notifyDataSetChanged();
             }
 
@@ -134,9 +101,40 @@ public class HomeFragment extends Fragment implements IHomeView {
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int i, Object o) {
-                Toast.makeText(getContext(), challenges.get(i).get_id()+"", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), userChallenges.get(i).get_id()+"", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+
+    /***********************************************************
+     *  Buttons Events
+     **********************************************************/
+
+    @OnClick(R.id.imbDecline)
+    public void btnDeclineClicked(){
+        flingContainer.getTopCardListener().selectLeft();
+        imbDecline.startAnimation(animationBounce);
+    }
+
+    @OnClick(R.id.imbAccept)
+    public void btnAcceptClicked(){
+        flingContainer.getTopCardListener().selectRight();
+        imbAccept.startAnimation(animationBounce);
+    }
+
+    @Override
+    public void getChallengeFailed() {
+        Dialog.showErrorMessageDialog(getContext(), getString(R.string.challenge_get_msg));
+    }
+
+    @Override
+    public void getChallengeSucceed(final List<UserChallenge> responses) {
+        userChallenges = responses;
+        //Custom Adapter
+        adapter = new Adapter(getContext(), R.layout.cartouche_challenge, userChallenges);
+        flingContainer.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
