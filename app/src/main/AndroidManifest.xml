@@ -13,15 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".login.view.LoginActivity" android:screenOrientation="sensorPortrait">
+        </activity>
+        <activity android:name=".login.view.RegisterActivity" android:screenOrientation="sensorPortrait"/>
+        <activity android:name=".Main.view.MainActivity" android:screenOrientation="sensorPortrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".login.view.RegisterActivity" android:screenOrientation="sensorPortrait"/>
-        <activity android:name=".Main.view.MainActivity" android:screenOrientation="sensorPortrait">
-
         </activity>
         <activity android:name=".tags.view.TagActivity" android:noHistory="true" android:screenOrientation="sensorPortrait"/>
     </application>
