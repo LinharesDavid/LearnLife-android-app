@@ -5,12 +5,18 @@ import android.util.Log;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.androidnetworking.interfaces.StringRequestListener;
+import com.google.gson.JsonObject;
 import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.SessionManager;
 import com.learnlife.learnlife.crosslayers.models.User;
 import com.learnlife.learnlife.crosslayers.models.UserChallenge;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -60,7 +66,7 @@ public class HomePresenter implements IHomePresenter{
                 url+=Constants.EXTENDED_URL_USERCHALLENGES_FAILED;
                 break;
             case Constants.CHALLENGE_SUCCEED:
-                url+=Constants.EXTENDED_URL_USERCHALLENGES_DECLINED;
+                url+=Constants.EXTENDED_URL_USERCHALLENGES_SUCCEED;
                 break;
             default:
                 break;
@@ -69,6 +75,7 @@ public class HomePresenter implements IHomePresenter{
         AndroidNetworking.put(url)
                 .setTag(TAG)
                 .setPriority(Priority.MEDIUM)
+                .addHeaders(Constants.HEADER_AUTHORIZATION, SessionManager.getInstance().getUser().getToken())
                 .build()
                 .getAsString(new StringRequestListener() {
                     @Override
@@ -79,7 +86,8 @@ public class HomePresenter implements IHomePresenter{
 
                     @Override
                     public void onError(ANError anError) {
-                        Log.d(TAG, "Update userchallenge failed");
+                        String errorBody = anError.getErrorBody() != null ? anError.getErrorBody() : "error without content";
+                        Log.d(TAG, "Update userchallenge failed : "+errorBody);
                         homeView.updateUserChallengeFailed();
                     }
                 });
