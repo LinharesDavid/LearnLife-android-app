@@ -11,22 +11,20 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.learnlife.learnlife.R;
-import com.learnlife.learnlife.crosslayers.models.Challenge;
 import com.learnlife.learnlife.crosslayers.models.UserChallenge;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Adapter extends ArrayAdapter<UserChallenge> {
+public class UserChallengeAdapter extends ArrayAdapter<UserChallenge> {
     private Context _context;
-    private List<UserChallenge> _items;
-    private int _layoutId;
+    private List<UserChallenge> items;
+    private int layoutId;
 
-    public Adapter(Context context, int layoutId, List<UserChallenge> items){
+    public UserChallengeAdapter(Context context, int layoutId, List<UserChallenge> items){
         super(context, layoutId, items);
         _context = context;
-        _items = items;
-        _layoutId = layoutId;
+        this.items = items;
+        this.layoutId = layoutId;
     }
 
 
@@ -38,7 +36,7 @@ public class Adapter extends ArrayAdapter<UserChallenge> {
         LayoutInflater inflater = (LayoutInflater) _context.getSystemService((Activity.LAYOUT_INFLATER_SERVICE));
 
         if(view == null){
-            view = inflater.inflate(_layoutId, parent, false);
+            view = inflater.inflate(layoutId, parent, false);
 
             vHolder = new CartoucheViewHolder();
 
@@ -50,7 +48,7 @@ public class Adapter extends ArrayAdapter<UserChallenge> {
             vHolder = (CartoucheViewHolder) view.getTag();
         }
 
-        UserChallenge userChallenge = _items.get(position);
+        UserChallenge userChallenge = items.get(position);
 
         vHolder.txvTitleChallenge.setText(userChallenge.getChallenge().getName());
         vHolder.txvDetailsChallenge.setText(userChallenge.getChallenge().getDetails());

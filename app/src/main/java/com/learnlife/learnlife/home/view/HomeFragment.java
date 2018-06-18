@@ -14,11 +14,10 @@ import android.widget.Toast;
 
 import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.R;
-import com.learnlife.learnlife.crosslayers.models.Challenge;
 import com.learnlife.learnlife.crosslayers.models.UserChallenge;
 import com.learnlife.learnlife.crosslayers.utils.Dialog;
 import com.learnlife.learnlife.crosslayers.utils.MyDateUtils;
-import com.learnlife.learnlife.home.adapter.Adapter;
+import com.learnlife.learnlife.home.adapter.UserChallengeAdapter;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
@@ -39,7 +38,7 @@ public class HomeFragment extends Fragment implements IHomeView {
     @BindView(R.id.imbDecline) public ImageButton imbDecline;
     @BindView(R.id.imbAccept) public ImageButton imbAccept;
 
-    private Adapter adapter;
+    private UserChallengeAdapter adapter;
     private Animation animationBounce;
     private HomePresenter homePresenter;
     private List<UserChallenge> userChallenges = new ArrayList<>();
@@ -141,7 +140,7 @@ public class HomeFragment extends Fragment implements IHomeView {
     @Override
     public void getChallengeSucceed(final List<UserChallenge> responses) {
         userChallenges = responses;
-        adapter = new Adapter(getContext(), R.layout.cartouche_challenge, userChallenges);
+        adapter = new UserChallengeAdapter(getContext(), R.layout.cartouche_challenge, userChallenges);
         flingContainer.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
