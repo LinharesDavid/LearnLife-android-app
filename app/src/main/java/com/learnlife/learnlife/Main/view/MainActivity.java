@@ -1,18 +1,16 @@
-package com.learnlife.learnlife.Main.view;
+package com.learnlife.learnlife.main.view;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.SessionManager;
 import com.learnlife.learnlife.challenges.ChallengesFragment;
-import com.learnlife.learnlife.crosslayers.models.User;
 import com.learnlife.learnlife.home.view.HomeFragment;
 import com.learnlife.learnlife.profile.view.ProfileFragment;
 
@@ -31,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SessionManager.getInstance().checkLogin();
         setContentView(R.layout.activity_main);
 
-        SessionManager.getInstance().checkLogin();
 
         ButterKnife.bind(this);
 
