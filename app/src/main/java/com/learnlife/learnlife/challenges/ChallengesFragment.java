@@ -35,7 +35,7 @@ public class ChallengesFragment extends Fragment implements IChallengeView {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view = inflater.inflate(R.layout.activity_challenges, container, false);
+        View view = inflater.inflate(R.layout.fragment_challenges, container, false);
 
         ButterKnife.bind(this, view);
 

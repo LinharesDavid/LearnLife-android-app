@@ -1,52 +1,33 @@
 package com.learnlife.learnlife.profile.view;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONArrayRequestListener;
-import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.learnlife.learnlife.Constants;
-import com.learnlife.learnlife.LearnLifeApplication;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.SessionManager;
-import com.learnlife.learnlife.crosslayers.models.Badge;
-import com.learnlife.learnlife.crosslayers.models.Challenge;
 import com.learnlife.learnlife.crosslayers.models.ChallengeState;
 import com.learnlife.learnlife.crosslayers.models.User;
 import com.learnlife.learnlife.crosslayers.models.UserChallenge;
 import com.learnlife.learnlife.crosslayers.utils.CircleTransform;
 import com.learnlife.learnlife.tags.view.TagActivity;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -71,7 +52,7 @@ public class ProfileFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
         ButterKnife.bind(this, view);
         return view;
     }
