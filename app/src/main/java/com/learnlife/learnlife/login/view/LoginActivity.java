@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.learnlife.learnlife.R;
+import com.learnlife.learnlife.SessionManager;
 import com.learnlife.learnlife.crosslayers.utils.Dialog;
 import com.learnlife.learnlife.tags.view.TagActivity;
 
