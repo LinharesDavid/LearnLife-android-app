@@ -11,14 +11,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.learnlife.learnlife.main.view.MainActivity;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.SessionManager;
 import com.learnlife.learnlife.crosslayers.utils.Dialog;
+import com.learnlife.learnlife.main.view.MainActivity;
 import com.learnlife.learnlife.tags.view.TagActivity;
-import com.learnlife.learnlife.tags.view.TagAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,6 +49,11 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         setContentView(R.layout.activity_login);
 
         ButterKnife.bind(this);
+
+        if(SessionManager.getInstance().isUserLogged()) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        }
 
         anim = AnimationUtils.loadAnimation(this, R.anim.button_bounce);
 

@@ -63,18 +63,11 @@ public class SessionManager {
         editor.commit();
     }
 
-    public void checkLogin() {
+    public boolean isUserLogged() {
 
         this.user = new Gson().fromJson(pref.getString(KEY_USER, null), User.class);
 
-        if (this.user == null) {
-            Intent i = new Intent(context, LoginActivity.class);
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(i);
-        }
-
-
+        return this.user != null;
     }
 
     public User getUser() {
