@@ -31,7 +31,7 @@ public class HomePresenter implements IHomePresenter{
     @Override
     public void displayUserChallenge() {
         String idUser = SessionManager.getInstance().getUser().getId();
-        AndroidNetworking.get(Constants.BASE_URL+Constants.EXTENDED_URL_USERCHALLENGES+idUser)
+        AndroidNetworking.get(Constants.BASE_URL + Constants.EXTENDED_URL_USERCHALLENGES + idUser)
                 .setTag(TAG)
                 .setPriority(Priority.MEDIUM)
                 .addHeaders(Constants.HEADER_AUTHORIZATION, SessionManager.getInstance().getUser().getToken())
@@ -54,7 +54,7 @@ public class HomePresenter implements IHomePresenter{
 
     @Override
     public void updateUserChallenge(int state, String idChallenge) {
-        String url = Constants.BASE_URL + Constants.EXTENDED_URL_USERCHALLENGES+idChallenge;
+        String url = Constants.BASE_URL + Constants.EXTENDED_URL_USERCHALLENGES + idChallenge + '/';
         switch (state){
             case Constants.CHALLENGE_DECLINED:
                 url+=Constants.EXTENDED_URL_USERCHALLENGES_DECLINED;

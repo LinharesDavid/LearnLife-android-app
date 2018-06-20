@@ -66,7 +66,7 @@ public class LoginPresenter implements ILoginPresenter {
                     @Override
                     public void onError(ANError anError) {
                         String errorBody = anError.getErrorBody() != null ? anError.getErrorBody() : "error without content";
-                        Log.d(TAG, "Login failed : " + errorBody);
+                        Log.d(TAG, "Login failed : " + anError.toString());
                         mainView.loginFailed(errorBody);
                     }
                 });
@@ -101,7 +101,7 @@ public class LoginPresenter implements ILoginPresenter {
                     @Override
                     public void onError(ANError anError) {
                         String errorBody = anError.getErrorBody() != null ? anError.getErrorBody() : "error without content";
-                        Log.d(TAG, "Register failed : " + errorBody);
+                        Log.d(TAG, "Register failed : " + anError.getErrorDetail() + "\n" + anError.getErrorBody());
                         mainView.loginFailed(errorBody);
                     }
                 });

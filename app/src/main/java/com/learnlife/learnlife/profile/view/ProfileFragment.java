@@ -62,6 +62,7 @@ public class ProfileFragment extends Fragment {
         AndroidNetworking.get(Constants.BASE_URL
                     + Constants.EXTENDED_URL_USERCHALLENGES
                     + SessionManager.getInstance().getUser().getId()
+                    + '/'
                     + Constants.EXTENDED_URL_USERCHALLENGES_LIST)
                 .setPriority(Priority.MEDIUM)
                 .build()

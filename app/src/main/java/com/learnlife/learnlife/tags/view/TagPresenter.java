@@ -57,7 +57,7 @@ public class TagPresenter implements ITagPresenter {
     @Override
     public void affectTagToUser(Tag.JsonTag jsonTag) {
         String idUser = SessionManager.getInstance().getUser().getId();
-        AndroidNetworking.put(Constants.BASE_URL+Constants.EXTENDED_URL_UPDATE_USERTAGS+idUser)
+        AndroidNetworking.put(Constants.BASE_URL + Constants.EXTENDED_URL_UPDATE_USERTAGS + idUser)
                 .addBodyParameter(jsonTag)
                 .setTag("tag")
                 .setPriority(Priority.MEDIUM)
