@@ -13,10 +13,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.learnlife.learnlife.main.view.MainActivity;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.SessionManager;
 import com.learnlife.learnlife.crosslayers.utils.Dialog;
 import com.learnlife.learnlife.tags.view.TagActivity;
+import com.learnlife.learnlife.tags.view.TagAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -94,7 +96,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     @Override
     public void loginSucceed() {
         prbLogin.setVisibility(View.GONE);
-        Intent intent = new Intent(LoginActivity.this, TagActivity.class);
+        Intent intent = new Intent(LoginActivity.this, SessionManager.getInstance().getUser().getTags().isEmpty() ? TagActivity.class : MainActivity.class);
         startActivity(intent);
     }
 

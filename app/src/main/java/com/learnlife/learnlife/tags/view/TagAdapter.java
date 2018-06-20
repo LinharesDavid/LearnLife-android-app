@@ -25,6 +25,8 @@ public class TagAdapter extends RecyclerView.Adapter {
     private List<Tag> tagsItems;
     private TagActivity activity;
     private List<Tag> tagsChosen = new ArrayList<>();
+    private List<Tag> userTags = new ArrayList<>();
+    private ViewHolder holder;
 
     public TagAdapter(List<Tag> tagsItems, TagActivity activity) {
         this.tagsItems = tagsItems;
@@ -34,31 +36,40 @@ public class TagAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(activity).inflate(R.layout.tag_item, parent, false);
-        final ViewHolder holder = new ViewHolder(view);
+        this.holder = new ViewHolder(view);
 
-        holder.imbAddChips.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Tag tag = tagsItems.get(holder.getAdapterPosition());
-                if(tagsChosen.contains(tag)){
-                    //Si le tag avait déjà était ajouté alors retire
-                    holder.ctnMain.setBackground(activity.getResources().getDrawable(R.drawable.shape_chip_unselected_drawable));
-                    holder.txvChips.setTextColor(activity.getResources().getColor(R.color.black));
-                    holder.imbAddChips.setBackground(ContextCompat.getDrawable(activity, R.drawable.ic_add_chips));
-
-                    activity.tagsChosen.remove(tag.getId());
-                }else {
-                    //Sinon on ajoute
-                    holder.ctnMain.setBackground(activity.getResources().getDrawable(R.drawable.shape_chip_selected_drawable));
-                    holder.txvChips.setTextColor(activity.getResources().getColor(R.color.white));
-                    holder.imbAddChips.setBackground(ContextCompat.getDrawable(activity, R.drawable.ic_remove_chips));
-
-                    activity.tagsChosen.add(tag.getId());
-                }
+        holder.imbAddChips.setOnClickListener(view1 -> {
+            Tag tag = tagsItems.get(holder.getAdapterPosition());
+            if(tagsChosen.contains(tag)){
+                //Si le tag avait déjà était ajouté alors retire
+                setUnselectedTag(tag);
+            }else {
+                //Sinon on ajoute
+                setSelectedTag(tag);
             }
         });
 
+        for (Tag tag : userTags) setSelectedTag(tag);
+
         return holder;
+    }
+
+    public void setSelectedTag(Tag tag) {
+        holder.ctnMain.setBackground(activity.getResources().getDrawable(R.drawable.shape_chip_selected_drawable));
+        holder.txvChips.setTextColor(activity.getResources().getColor(R.color.white));
+        holder.imbAddChips.setBackground(ContextCompat.getDrawable(activity, R.drawable.ic_remove_chips));
+
+        activity.tagsChosen.add(tag.getId());
+        tagsChosen.add(tag);
+    }
+
+    public void setUnselectedTag(Tag tag) {
+        holder.ctnMain.setBackground(activity.getResources().getDrawable(R.drawable.shape_chip_unselected_drawable));
+        holder.txvChips.setTextColor(activity.getResources().getColor(R.color.black));
+        holder.imbAddChips.setBackground(ContextCompat.getDrawable(activity, R.drawable.ic_add_chips));
+
+        activity.tagsChosen.remove(tag.getId());
+        tagsChosen.remove(tag);
     }
 
     @Override
@@ -72,6 +83,10 @@ public class TagAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         return tagsItems.size();
+    }
+
+    public void setUserTags(List<Tag> userTags) {
+        this.userTags = userTags;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

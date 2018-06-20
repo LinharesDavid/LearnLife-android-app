@@ -1,19 +1,46 @@
 package com.learnlife.learnlife.crosslayers.models;
 
+import com.google.gson.annotations.SerializedName;
+import com.learnlife.learnlife.tags.modele.Tag;
+
+import java.util.ArrayList;
+
 public class User {
+    @SerializedName("_id")
     private String id;
     private String token;
     private String email;
     private String firstname;
     private String lastname;
     private String thumbnail;
+    private ArrayList<Tag> tags;
+    private ArrayList<Badge> badges;
 
-    public User(String token, String id, String email, String firstname, String lastname) {
-        this.token = token;
+    public User(String token, String id, String email, String firstname, String lastname, String thumbnail, ArrayList<Tag> tags, ArrayList<Badge> badges) {
         this.id = id;
+        this.token = token;
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.thumbnail = thumbnail;
+        this.tags = tags;
+        this.badges = badges;
+    }
+
+    public ArrayList<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(ArrayList<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public ArrayList<Badge> getBadges() {
+        return badges;
+    }
+
+    public void setBadges(ArrayList<Badge> badges) {
+        this.badges = badges;
     }
 
     public String getToken() {

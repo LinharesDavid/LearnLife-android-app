@@ -6,8 +6,7 @@
 
     <application
         android:allowBackup="true"
-        android:name=".LearnLifeApplication"
-        android:icon="@drawable/ic_launcher"
+        android:name=".LearnLifeApplication" android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
@@ -22,7 +21,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".tags.view.TagActivity" android:noHistory="true" android:screenOrientation="sensorPortrait"/>
+        <activity
+            android:name=".tags.view.TagActivity"
+            android:noHistory="true"
+            android:screenOrientation="sensorPortrait" />
+        <activity android:name=".profile.view.ProfileUserActivity"></activity>
     </application>
 
 </manifest>

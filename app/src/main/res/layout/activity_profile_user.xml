@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.learnlife.learnlife.profile.view.ProfileUserActivity">
+
+    <EditText
+        android:id="@+id/edtInfoFirstname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corners"
+        android:layout_marginStart="@dimen/margin_32"
+        android:layout_marginEnd="@dimen/margin_32"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/edtInfoLastname"
+        style="@style/TextViewUserInfo"
+        android:gravity="center"
+        app:layout_constraintVertical_chainStyle="packed"
+        />
+
+    <EditText
+        android:id="@+id/edtInfoLastname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corners"
+        android:layout_marginStart="@dimen/margin_32"
+        android:layout_marginEnd="@dimen/margin_32"
+        style="@style/TextViewUserInfo"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/edtInfoFirstname"
+        app:layout_constraintBottom_toTopOf="@id/edtInfoEmail"
+        />
+
+    <EditText
+        android:id="@+id/edtInfoEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corners"
+        android:layout_marginStart="@dimen/margin_32"
+        android:layout_marginEnd="@dimen/margin_32"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/TextViewUserInfo"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/edtInfoLastname"
+        />
+
+
+    <Button
+        android:id="@+id/btnInfoSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/TextViewUserInfo"
+        android:text="@string/save"
+        />
+</android.support.constraint.ConstraintLayout>
