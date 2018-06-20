@@ -49,7 +49,8 @@ public class TagAdapter extends RecyclerView.Adapter {
             }
         });
 
-        for (Tag tag : userTags) setSelectedTag(tag);
+        if(userTags != null)
+            for (Tag tag : userTags) setSelectedTag(tag);
 
         return holder;
     }
