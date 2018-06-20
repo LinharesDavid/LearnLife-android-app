@@ -9,7 +9,9 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.ParsedRequestListener;
+import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.LearnLifeApplication;
+import com.learnlife.learnlife.SessionManager;
 import com.learnlife.learnlife.tags.modele.Tag;
 
 import org.json.JSONObject;
@@ -53,8 +55,9 @@ public class TagPresenter implements ITagPresenter {
     }
 
     @Override
-    public void affectTagToUser(String urlUpdateUserTag, Tag.JsonTag jsonTag) {
-        AndroidNetworking.put(urlUpdateUserTag)
+    public void affectTagToUser(Tag.JsonTag jsonTag) {
+        String idUser = SessionManager.getInstance().getUser().getId();
+        AndroidNetworking.put(Constants.BASE_URL+Constants.EXTENDED_URL_UPDATE_USERTAGS+idUser)
                 .addBodyParameter(jsonTag)
                 .setTag("tag")
                 .setPriority(Priority.MEDIUM)

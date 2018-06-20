@@ -17,6 +17,7 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager;
 import com.beloo.widget.chipslayoutmanager.SpacingItemDecoration;
+import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.LearnLifeApplication;
 import com.learnlife.learnlife.Main.view.MainActivity;
 import com.learnlife.learnlife.R;
@@ -83,8 +84,7 @@ public class TagActivity extends AppCompatActivity implements ITagView {
 
         presenter = new TagPresenter(this);
 
-        String urlAllTags = LearnLifeApplication.BASE_URL + "/tags";
-        presenter.displayAllTags(urlAllTags);
+        presenter.displayAllTags(Constants.BASE_URL + Constants.EXTENDED_URL_ALL_TAGS);
     }
     //endregion
 
@@ -93,9 +93,7 @@ public class TagActivity extends AppCompatActivity implements ITagView {
     //region UI Events
     @OnClick(R.id.btnValider) public void btnValiderClicked(){
         Tag.JsonTag jsonTag = new Tag.JsonTag(tagsChosen.toArray(new String[tagsChosen.size()]));
-        String urlRouteUpdateTag = LearnLifeApplication.BASE_URL + "/users/"+userId;
-
-        presenter.affectTagToUser(urlRouteUpdateTag, jsonTag);
+        presenter.affectTagToUser(jsonTag);
 
     }
 
