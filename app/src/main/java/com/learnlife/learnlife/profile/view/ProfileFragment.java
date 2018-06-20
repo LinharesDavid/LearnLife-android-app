@@ -26,6 +26,7 @@ import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.LearnLifeApplication;
@@ -60,6 +61,9 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.txvLastname) TextView lastnameTextView;
     @BindView(R.id.txvEmail) TextView emailTextView;
     @BindView(R.id.btnEdit) ImageView editButton;
+    @BindView(R.id.logoutBtn) Button logoutButton;
+    @BindView(R.id.btnBadges) Button badgeButton;
+    @BindView(R.id.btnTags) Button tagButton;
 
     private List<UserChallenge> challenges;
     private User user = SessionManager.getInstance().getUser();
@@ -73,6 +77,13 @@ public class ProfileFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        setButtonsClickable(true, badgeButton, logoutButton, tagButton);
+        editButton.setClickable(true);
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         this.getUser();
@@ -83,6 +94,7 @@ public class ProfileFragment extends Fragment {
 
     @OnClick(R.id.btnTags)
     void onTagsButtonClicked() {
+        tagButton.setClickable(false);
         Intent intent = new Intent(getActivity(), TagActivity.class);
         intent.putExtra(this.getClass().getName(), true);
         startActivity(intent);
@@ -90,23 +102,37 @@ public class ProfileFragment extends Fragment {
 
     @OnClick(R.id.btnBadges)
     void onBadgesButtonClicked() {
-        
+        badgeButton.setClickable(false);
+        Intent intent = new Intent(getActivity(), UserBadgeActivity.class);
+        intent.putExtra(UserBadgeActivity.BADGES_KEY, new Gson().toJson(user.getBadges()));
+        startActivity(intent);
     }
 
     @OnClick(R.id.btnEdit)
     void onEditButtonClicked() {
+        editButton.setClickable(false);
         startActivity(new Intent(getActivity(), ProfileUserActivity.class));
     }
 
     @OnClick(R.id.logoutBtn)
     void onLogoutButtonClicked() {
+        logoutButton.setClickable(false);
         SessionManager.getInstance().logoutUser();
+    }
+
+    private void setButtonsClickable(boolean clickable, Button... buttons) {
+        for (Button button : buttons)
+            setButtonClickable(button, clickable);
+    }
+
+    private void setButtonClickable(Button button, boolean clickable) {
+        button.setClickable(clickable);
     }
 
     private void getChallenges() {
         AndroidNetworking.get(Constants.BASE_URL
                 + Constants.EXTENDED_URL_USERCHALLENGES
-                + SessionManager.getInstance().getUser().getId()
+                + SessionManager.getInstance().getUser().getId() + "/"
                 + Constants.EXTENDED_URL_USERCHALLENGES_LIST)
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -118,7 +144,7 @@ public class ProfileFragment extends Fragment {
 
                     @Override
                     public void onError(ANError anError) {
-
+                        System.out.println();
                     }
                 });
     }

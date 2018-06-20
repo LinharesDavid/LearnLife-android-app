@@ -27,6 +27,7 @@
         android:background="@drawable/rounded_corners"
         android:layout_marginStart="@dimen/margin_32"
         android:layout_marginEnd="@dimen/margin_32"
+        android:layout_marginTop="@dimen/margin_10"
         style="@style/TextViewUserInfo"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@+id/edtInfoFirstname"
@@ -43,6 +44,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         style="@style/TextViewUserInfo"
         android:gravity="center"
+        android:layout_marginTop="@dimen/margin_10"
         app:layout_constraintTop_toBottomOf="@+id/edtInfoLastname"
         />
 
@@ -52,7 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        style="@style/TextViewUserInfo"
+        style="@style/TextViewUserButton"
         android:text="@string/save"
         />
 </android.support.constraint.ConstraintLayout>
