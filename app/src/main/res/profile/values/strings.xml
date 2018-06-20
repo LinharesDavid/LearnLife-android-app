@@ -7,5 +7,5 @@
     <string name="logout">Logout</string>
     <string name="save">Save</string>
     <string name="no_text_entry">All fields must be filled</string>
-    <string name="network_error_unknown">An error as occured please retry later</string>
+    <string name="network_error_unknown">An error as occurred please retry later</string>
 </resources>
