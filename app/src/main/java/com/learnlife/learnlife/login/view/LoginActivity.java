@@ -11,11 +11,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.SessionManager;
 import com.learnlife.learnlife.crosslayers.utils.Dialog;
+import com.learnlife.learnlife.main.view.MainActivity;
 import com.learnlife.learnlife.tags.view.TagActivity;
 
 import butterknife.BindView;
@@ -49,6 +49,11 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         setContentView(R.layout.activity_login);
 
         ButterKnife.bind(this);
+
+        if(SessionManager.getInstance().isUserLogged()) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        }
 
         anim = AnimationUtils.loadAnimation(this, R.anim.button_bounce);
 
@@ -94,7 +99,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     @Override
     public void loginSucceed() {
         prbLogin.setVisibility(View.GONE);
-        Intent intent = new Intent(LoginActivity.this, TagActivity.class);
+        Intent intent = new Intent(LoginActivity.this, SessionManager.getInstance().getUser().getTags().isEmpty() ? TagActivity.class : MainActivity.class);
         startActivity(intent);
     }
 

@@ -6,9 +6,12 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.androidnetworking.interfaces.ParsedRequestListener;
+import com.google.gson.Gson;
 import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.LearnLifeApplication;
 import com.learnlife.learnlife.SessionManager;
+import com.learnlife.learnlife.crosslayers.models.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,18 +47,11 @@ public class LoginPresenter implements ILoginPresenter {
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d(TAG, "Login succeeded");
                         try {
-
-                            JSONObject user = response.getJSONObject(Constants.RESPONSE_KEY_LOGIN_USER);
-                            SessionManager.getInstance().createLoginSession(
-                                    response.getString(Constants.RESPONSE_KEY_USER_TOKEN),
-                                    user.getString(Constants.RESPONSE_KEY_USER_ID),
-                                    user.getString(Constants.RESPONSE_KEY_USER_EMAIL),
-                                    user.getString(Constants.RESPONSE_KEY_USER_FIRSTNAME),
-                                    user.getString(Constants.RESPONSE_KEY_USER_LASTNAME)
-                            );
-
+                            JSONObject userJson = response.getJSONObject(Constants.RESPONSE_KEY_LOGIN_USER);
+                            Gson gson = new Gson();
+                            User user = gson.fromJson(userJson.toString(), User.class);
+                            SessionManager.getInstance().createLoginSession(user, response.getString(Constants.RESPONSE_KEY_USER_TOKEN));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

@@ -79,6 +79,7 @@ public class HomeFragment extends Fragment implements IHomeView {
 
             @Override
             public void onLeftCardExit(Object o) {
+                if(getContext() == null) return;
                 UserChallenge userChallenge = (UserChallenge) o;
                 if(userChallenge == null)
                     return;
@@ -88,6 +89,7 @@ public class HomeFragment extends Fragment implements IHomeView {
 
             @Override
             public void onRightCardExit(Object o) {
+                if(getContext() == null) return;
                 UserChallenge userChallenge = (UserChallenge) o;
                 if(userChallenge == null)
                     return;
@@ -98,6 +100,7 @@ public class HomeFragment extends Fragment implements IHomeView {
 
             @Override
             public void onAdapterAboutToEmpty(int i) {
+                if(getContext() == null) return;
                 txvNoMoreChallenge.setVisibility(i == 0 ? View.VISIBLE : View.INVISIBLE);
             }
 
@@ -122,23 +125,27 @@ public class HomeFragment extends Fragment implements IHomeView {
 
     @OnClick(R.id.imbDecline)
     public void btnDeclineClicked(){
+        if(getContext() == null) return;
         flingContainer.getTopCardListener().selectLeft();
         imbDecline.startAnimation(animationBounce);
     }
 
     @OnClick(R.id.imbAccept)
     public void btnAcceptClicked(){
+        if(getContext() == null) return;
         flingContainer.getTopCardListener().selectRight();
         imbAccept.startAnimation(animationBounce);
     }
 
     @Override
     public void getChallengeFailed() {
+        if(getContext() == null) return;
         Dialog.showErrorMessageDialog(getContext(), getString(R.string.challenge_get_msg));
     }
 
     @Override
     public void getChallengeSucceed(final List<UserChallenge> responses) {
+        if(getContext() == null) return;
         userChallenges = responses;
         adapter = new UserChallengeAdapter(getContext(), R.layout.cartouche_challenge, userChallenges);
         flingContainer.setAdapter(adapter);
@@ -147,11 +154,12 @@ public class HomeFragment extends Fragment implements IHomeView {
 
     @Override
     public void updateUserChallengeFailed() {
+        if(getContext() == null) return;
         Dialog.showErrorMessageDialog(getContext(), getString(R.string.challenge_update_msg));
     }
 
     @Override
     public void updateUserChallengeSucceed() {
-
+        if(getContext() == null) return;
     }
 }

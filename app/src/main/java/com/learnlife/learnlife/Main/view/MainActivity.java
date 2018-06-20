@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SessionManager.getInstance().checkLogin();
         setContentView(R.layout.activity_main);
 
 
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new ProfileFragment();
                         break;
                 }
-                
+
                 final FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.ctnFragment, fragment).commit();
                 return true;

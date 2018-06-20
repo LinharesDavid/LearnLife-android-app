@@ -9,38 +9,16 @@
     tools:context=".profile.view.ProfileFragment">
 
     <ImageView
-        android:id="@+id/imvProfileBackground"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btnBadges"
-        android:src="@drawable/user_profile_background"
-        android:scaleType="fitCenter"
-        android:paddingBottom="50sp"
-        />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/btnBadges"
-        android:layout_marginBottom="15sp"
-        android:background="#66000000"
-        />
-
-
-    <ImageView
         android:id="@+id/imvProfile"
         android:layout_width="@dimen/profil_picture_size"
         android:layout_height="@dimen/profil_picture_size"
         android:layout_marginEnd="@dimen/margin_08"
         android:layout_marginStart="@dimen/margin_08"
         android:layout_marginTop="@dimen/margin_68"
+        android:src="@drawable/man_user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/shape_button" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/txvFailed"
@@ -72,17 +50,24 @@
         app:layout_constraintStart_toEndOf="@+id/imvProfile"
         app:layout_constraintTop_toTopOf="@+id/imvProfile" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </View>
+
     <Button
         android:id="@+id/btnBadges"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/margin_32"
-        android:layout_marginStart="@dimen/margin_32"
+        android:layout_marginStart="@dimen/margin_10"
+        android:layout_marginEnd="@dimen/margin_10"
         android:layout_marginTop="@dimen/margin_48"
         android:text="@string/badges"
         style="@style/ButtonProfileStyle"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnTags"
         app:layout_constraintTop_toBottomOf="@+id/imvProfile" />
 
 
@@ -90,12 +75,84 @@
         android:id="@+id/btnTags"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/margin_32"
-        android:layout_marginStart="@dimen/margin_32"
-        android:layout_marginTop="@dimen/margin_32"
+        app:layout_constraintHorizontal_weight="1"
+        android:layout_marginEnd="@dimen/margin_10"
+        android:layout_marginStart="@dimen/margin_10"
+        android:layout_marginTop="@dimen/margin_48"
         android:text="@string/tags"
         style="@style/ButtonProfileStyle"
+        app:layout_constraintStart_toEndOf="@id/btnBadges"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imvProfile" />
+
+    <ImageView
+        android:id="@+id/btnEdit"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:src="@drawable/edit_button"
+        app:layout_constraintBottom_toTopOf="@+id/linearUserInfo"
+        app:layout_constraintEnd_toEndOf="@id/linearUserInfo"
+        android:layout_marginEnd="@dimen/margin_20"
+        android:layout_marginBottom="@dimen/margin_20"
+        android:clickable="true"
+        />
+
+    <LinearLayout
+        android:id="@+id/linearUserInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btnBadges"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnBadges" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/txvFirstname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_32"
+            android:layout_marginEnd="@dimen/margin_32"
+            style="@style/TextViewUserInfo"
+            android:background="@drawable/rounded_corners"
+            tools:text="David"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/txvLastname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txvFirstname"
+            android:layout_marginTop="@dimen/margin_20"
+            android:layout_marginStart="@dimen/margin_32"
+            android:layout_marginEnd="@dimen/margin_32"
+            style="@style/TextViewUserInfo"
+            android:background="@drawable/rounded_corners"
+            android:gravity="center"
+            tools:text="Linhares"
+            />
+
+        <TextView
+            android:id="@+id/txvEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/txvLastname"
+            android:layout_marginTop="@dimen/margin_20"
+            android:layout_marginStart="@dimen/margin_32"
+            android:layout_marginEnd="@dimen/margin_32"
+            style="@style/TextViewUserInfo"
+            android:background="@drawable/rounded_corners"
+            tools:text="test@gmail.com"
+            android:gravity="center"
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/logoutBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/ButtonProfileStyle"
+        android:text="@string/logout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 </android.support.constraint.ConstraintLayout>

@@ -65,6 +65,5 @@ public class Tag {
         public JsonTag(String[] tags) {
             this.tags = tags;
         }
-
     }
 }
