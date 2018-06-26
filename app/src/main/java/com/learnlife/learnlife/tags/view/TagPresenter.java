@@ -12,6 +12,7 @@ import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.LearnLifeApplication;
 import com.learnlife.learnlife.SessionManager;
+import com.learnlife.learnlife.crosslayers.models.User;
 import com.learnlife.learnlife.tags.modele.Tag;
 
 import org.json.JSONObject;
@@ -62,9 +63,9 @@ public class TagPresenter implements ITagPresenter {
                 .setTag("tag")
                 .setPriority(Priority.MEDIUM)
                 .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
+                .getAsObject(User.class, new ParsedRequestListener<User>() {
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onResponse(User response) {
                         //prbTag.setVisibility(View.GONE); ProgressBar à ajouter
                         Log.d(Tag, "Tag update succeeded");
                         tagView.updateUserTagSucceed();
