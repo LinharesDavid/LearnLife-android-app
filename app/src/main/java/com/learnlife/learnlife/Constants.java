@@ -2,7 +2,7 @@ package com.learnlife.learnlife;
 
 public final class Constants {
 
-    public static final String BASE_URL = "http://10.33.2.248:8080/";
+    public static final String BASE_URL = "http://192.168.2.110:8080/";
     public static final String EXTENDED_URL_TAGS = "tags/";
     public static final String EXTENDED_URL_USERS = "users/";
     public static final String EXTENDED_URL_USERCHALLENGES = "userChallenges/";

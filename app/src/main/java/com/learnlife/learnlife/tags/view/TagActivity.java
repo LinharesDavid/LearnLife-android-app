@@ -33,7 +33,7 @@ public class TagActivity extends AppCompatActivity implements ITagView {
     @BindView(R.id.btnValider) Button btnValider;
     @BindView(R.id.txvFirstConnexion) TextView txvFirstConnexion;
 
-    private TagAdapter adapter;
+    private TagAdapter  adapter;
     private ChipsLayoutManager chipsLayoutManager;
     private String userFirstName;
     private String userId;
