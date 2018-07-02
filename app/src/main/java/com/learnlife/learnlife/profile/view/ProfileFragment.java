@@ -141,6 +141,7 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onResponse(User response) {
                         user = response;
+                        SessionManager.getInstance().updateUser(response);
                         fillEditTexts();
                     }
 
