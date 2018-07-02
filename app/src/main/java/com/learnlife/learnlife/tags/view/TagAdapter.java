@@ -42,16 +42,11 @@ public class TagAdapter extends RecyclerView.Adapter {
         holder.imbAddChips.setOnClickListener(view1 -> {
             Tag tag = tagsItems.get(holder.getAdapterPosition());
             if(tagsChosen.contains(tag)){
-                //Si le tag avait déjà était ajouté alors retire
                 setUnselectedTag(holder, tag);
             }else {
-                //Sinon on ajoute
                 setSelectedTag(holder, tag);
             }
         });
-
-        if(userTags != null)
-            for (Tag tag : userTags) setSelectedTag(holder ,tag);
 
         return holder;
     }
@@ -80,6 +75,10 @@ public class TagAdapter extends RecyclerView.Adapter {
         ViewHolder vHolder = (ViewHolder) holder;
 
         vHolder.txvChips.setText(element.getName());
+        for (Tag tag : userTags) {
+            if(element.getId().equals(tag.getId()))
+                setSelectedTag(vHolder, element);
+        }
     }
 
     @Override
