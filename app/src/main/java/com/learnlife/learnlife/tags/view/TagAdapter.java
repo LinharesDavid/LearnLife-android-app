@@ -75,6 +75,7 @@ public class TagAdapter extends RecyclerView.Adapter {
         ViewHolder vHolder = (ViewHolder) holder;
 
         vHolder.txvChips.setText(element.getName());
+        if(userTags == null) return;
         for (Tag tag : userTags) {
             if(element.getId().equals(tag.getId()))
                 setSelectedTag(vHolder, element);
