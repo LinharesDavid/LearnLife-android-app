@@ -29,4 +29,16 @@
     <string name="profile_challenges_failed">%d\nÉchec</string>
     <string name="logout">Déconnexion</string>
     <string name="save">Sauvegarder</string>
+    <string name="action_vote">Voté</string>
+    <string name="my_challenges">Mes challenges</string>
+    <string name="create_challenge">Crée un challenge</string>
+    <string name="create_challenge_tag">Sélectionnez des catégorie</string>
+    <string name="create_challenge_duration">Durée</string>
+    <string name="create">Crée</string>
+    <string name="challenge_name">Nom du challenge</string>
+    <string name="challenge_details">Détails du challenge</string>
+    <string name="duration">Durée</string>
+    <string name="challenge">Challenge</string>
+    <string name="wait_while_creation">Patientez pendant la creation.</string>
+
 </resources>

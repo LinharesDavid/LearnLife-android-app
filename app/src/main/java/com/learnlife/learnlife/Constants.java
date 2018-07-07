@@ -5,7 +5,10 @@ public final class Constants {
     public static final String BASE_URL = "http://192.168.1.20:8080/";
     public static final String EXTENDED_URL_TAGS = "tags/";
     public static final String EXTENDED_URL_USERS = "users/";
-    public static final String EXTENDED_URL_USERCHALLENGES = "userChallenges/";
+    public static final String EXTENDED_URL_USERCHALLENGES = "userchallenges/";
+    public static final String EXTENDED_URL_USERVOTES = "uservotes/";
+    public static final String EXTENDED_URL_CHALLENGES = "challenges/";
+    public static final String EXTENDED_URL_CHALLENGES_COMMUNITY = EXTENDED_URL_CHALLENGES + "community/";
     public static final String EXTENDED_URL_USERCHALLENGES_DECLINED = "declined/";
     public static final String EXTENDED_URL_USERCHALLENGES_ACCEPTED = "accept/";
     public static final String EXTENDED_URL_USERCHALLENGES_SUCCEED = "succeed/";
@@ -36,6 +39,7 @@ public final class Constants {
     public static final String RESPONSE_KEY_USERCHALLENGES_DETAILS = "details";
     public static final String RESPONSE_KEY_USERCHALLENGES_IMAGE = "imageUrl";
     public static final String RESPONSE_KEY_USERCHALLENGES_STATE = "state";
+
 
     public static final String REQUEST_KEY_LOGIN_EMAIL = "email";
     public static final String REQUEST_KEY_LOGIN_PASSWORD = "password";
