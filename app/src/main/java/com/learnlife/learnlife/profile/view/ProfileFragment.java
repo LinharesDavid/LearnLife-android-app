@@ -1,9 +1,9 @@
 package com.learnlife.learnlife.profile.view;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,20 +11,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.common.Priority;
-import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
-import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.SessionManager;
+import com.learnlife.learnlife.communityChallenge.CommunityChallengeActivity;
 import com.learnlife.learnlife.crosslayers.models.ChallengeState;
 import com.learnlife.learnlife.crosslayers.models.User;
 import com.learnlife.learnlife.crosslayers.models.UserChallenge;
 import com.learnlife.learnlife.crosslayers.utils.CircleTransform;
+import com.learnlife.learnlife.profile.view.profile.IProfileView;
+import com.learnlife.learnlife.profile.view.profile.ProfilePresenter;
 import com.learnlife.learnlife.tags.view.TagActivity;
 
 import java.util.List;
@@ -33,7 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements IProfileView {
 
     @BindView(R.id.imvProfile) ImageView profileImageView;
     @BindView(R.id.txvFailed) TextView failedTextView;
@@ -45,9 +43,11 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.logoutBtn) Button logoutButton;
     @BindView(R.id.btnBadges) Button badgeButton;
     @BindView(R.id.btnTags) Button tagButton;
+    @BindView(R.id.btnChallenges) Button challengesButton;
 
     private List<UserChallenge> challenges;
     private User user = SessionManager.getInstance().getUser();
+    private ProfilePresenter presenter;
 
     @Nullable
     @Override
@@ -60,15 +60,16 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        setButtonsClickable(true, badgeButton, logoutButton, tagButton);
+        setButtonsClickable(true, badgeButton, logoutButton, tagButton, challengesButton);
         editButton.setClickable(true);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        this.getUser();
-        this.getChallenges();
+        this.presenter = new ProfilePresenter(this);
+        presenter.getUser(user);
+        presenter.getUserChallenges(user);
         this.setUserProfileImageView();
         this.fillEditTexts();
     }
@@ -86,6 +87,13 @@ public class ProfileFragment extends Fragment {
         badgeButton.setClickable(false);
         Intent intent = new Intent(getActivity(), UserBadgeActivity.class);
         intent.putExtra(UserBadgeActivity.BADGES_KEY, new Gson().toJson(user.getBadges()));
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.btnChallenges)
+    void onChallengesButtonClicked() {
+        challengesButton.setClickable(false);
+        Intent intent = new Intent(getActivity(), CommunityChallengeActivity.class);
         startActivity(intent);
     }
 
@@ -108,48 +116,6 @@ public class ProfileFragment extends Fragment {
 
     private void setButtonClickable(Button button, boolean clickable) {
         button.setClickable(clickable);
-    }
-
-    private void getChallenges() {
-        AndroidNetworking.get(Constants.BASE_URL
-                + Constants.EXTENDED_URL_USERCHALLENGES
-                + SessionManager.getInstance().getUser().getId() + "/"
-                + Constants.EXTENDED_URL_USERCHALLENGES_LIST)
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .getAsObjectList(UserChallenge.class, new ParsedRequestListener<List<UserChallenge>>() {
-                    @Override
-                    public void onResponse(List<UserChallenge> response) {
-                        setChallenges(response);
-                    }
-
-                    @Override
-                    public void onError(ANError anError) {
-                        System.out.println();
-                    }
-                });
-    }
-
-    private void getUser() {
-        AndroidNetworking
-                .get(Constants.BASE_URL +
-                   Constants.EXTENDED_URL_USERS +
-                        user.getId())
-                .addHeaders(Constants.HEADER_AUTHORIZATION, user.getToken())
-                .build()
-                .getAsObject(User.class, new ParsedRequestListener<User>() {
-                    @Override
-                    public void onResponse(User response) {
-                        user = response;
-                        SessionManager.getInstance().updateUser(response);
-                        fillEditTexts();
-                    }
-
-                    @Override
-                    public void onError(ANError anError) {
-                        System.out.println(anError.getErrorBody().toString());
-                    }
-                });
     }
 
     private void setUserProfileImageView() {
@@ -180,5 +146,17 @@ public class ProfileFragment extends Fragment {
 
         this.failedTextView.setText(getString(R.string.profile_challenges_failed, failed));
         this.succeedTextView.setText(getString(R.string.profile_challenges_succeed, succeed));
+    }
+
+    @Override
+    public void onUserRetrived(User user) {
+        SessionManager.getInstance().updateUser(user);
+        this.user = user;
+        fillEditTexts();
+    }
+
+    @Override
+    public void onUserChallengeRertieve(List<UserChallenge> userChallenges) {
+        setChallenges(userChallenges);
     }
 }
