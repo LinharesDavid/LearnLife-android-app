@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="small_padding_horizontal">8dp</dimen>
+    <dimen name="small_padding_vertical">8dp</dimen>
+    <dimen name="small_margin_horizontal">8dp</dimen>
+    <dimen name="small_margin_vertical">8dp</dimen>
+
+    <dimen name="medium_padding_horizontal">16dp</dimen>
+    <dimen name="medium_padding_vertical">16dp</dimen>
+    <dimen name="medium_margin_horizontal">16dp</dimen>
+    <dimen name="medium_margin_vertical">16dp</dimen>
+
+    <dimen name="large_padding_horizontal">24dp</dimen>
+    <dimen name="large_padding_vertical">24dp</dimen>
+    <dimen name="large_margin_horizontal">24dp</dimen>
+    <dimen name="large_margin_vertical">24dp</dimen>
+
+    <dimen name="image_cartouche_height">200dp</dimen>
+    <dimen name="cartouche_width">330dp</dimen>
+
+    <!-- font sizes -->
+    <dimen name="font12">12sp</dimen>
+    <dimen name="font14">14sp</dimen>
+    <dimen name="font16">16sp</dimen>
+    <dimen name="font18">18sp</dimen>
+    <dimen name="font20">20sp</dimen>
+    <dimen name="font24">24sp</dimen>
+
+    <!-- margin -->
+    <dimen name="margin_05">05dp</dimen>
+    <dimen name="margin_08">08dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_12">12dp</dimen>
+    <dimen name="margin_14">14dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="margin_18">18dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_22">22dp</dimen>
+    <dimen name="margin_24">24dp</dimen>
+
+    <!-- padding -->
+    <dimen name="padding_05">05dp</dimen>
+    <dimen name="padding_08">08dp</dimen>
+    <dimen name="padding_10">10dp</dimen>
+    <dimen name="padding_12">12dp</dimen>
+    <dimen name="padding_14">14dp</dimen>
+    <dimen name="padding_16">16dp</dimen>
+    <dimen name="padding_18">18dp</dimen>
+    <dimen name="padding_20">20dp</dimen>
+
+    <!-- elevation -->
+    <dimen name="elevation_10">10dp</dimen>
+    <dimen name="elevation_16">16dp</dimen>
+
+    <!-- Cartouche -->
+    <dimen name="radiusCartouche">120dp</dimen>
+
+    <!-- button menu size -->
+    <dimen name="menu_button_height">38dp</dimen>
+    <dimen name="menu_button_width">38dp</dimen>
+
+    <!-- textsize profile result -->
+    <dimen name="textview_profil_result_size">16sp</dimen>
+
+</resources>

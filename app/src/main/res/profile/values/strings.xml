@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="badges">Badges</string>
+    <string name="tags">Tags</string>
+    <string name="profile_challenges_succeed">%d\nSucceed</string>
+    <string name="profile_challenges_failed">%d\nFailed</string>
+    <string name="logout">Logout</string>
+    <string name="save">Save</string>
+    <string name="no_text_entry">All fields must be filled</string>
+    <string name="network_error_unknown">An error as occurred please retry later</string>
+</resources>

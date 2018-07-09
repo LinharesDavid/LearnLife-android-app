@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "333920074238",
+    "firebase_url": "https://projet-annuel-b940d.firebaseio.com",
+    "project_id": "projet-annuel-b940d",
+    "storage_bucket": "projet-annuel-b940d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333920074238:android:b1520de58493740d",
+        "android_client_info": {
+          "package_name": "com.learnlife.learnlife"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "333920074238-rq0h2qidcu7ll8139kvito2hsvsupiup.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRkFs3Hsj6vohFXl3OxKYSRz7ClUSsd3s"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

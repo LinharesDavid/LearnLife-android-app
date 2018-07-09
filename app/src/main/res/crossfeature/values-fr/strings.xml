@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="more_details"><u>Plus de détails</u></string>
+
+    <!-- Days of week -->
+    <string name="mon">Lundi</string>
+    <string name="tue">Mardi</string>
+    <string name="wed">Mercredi</string>
+    <string name="thu">Jeudi</string>
+    <string name="fri">Vendredi</string>
+    <string name="sat">Samedi</string>
+    <string name="sun">Dimanche</string>
+
+    <!-- Months -->
+    <string name="jan">Janvier</string>
+    <string name="feb">Février</string>
+    <string name="mar">Mars</string>
+    <string name="apr">Avril</string>
+    <string name="may">Mai</string>
+    <string name="jun">Juin</string>
+    <string name="jul">Juillet</string>
+    <string name="aug">Août</string>
+    <string name="sep">Septembre</string>
+    <string name="oct">Octobre</string>
+    <string name="nov">Novembre</string>
+    <string name="dec">Décembre</string>
+
+</resources>

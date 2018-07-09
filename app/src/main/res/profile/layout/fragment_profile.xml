@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".profile.view.ProfileFragment">
+
+    <ImageView
+        android:id="@+id/imvProfile"
+        android:layout_width="@dimen/profil_picture_size"
+        android:layout_height="@dimen/profil_picture_size"
+        android:layout_marginEnd="@dimen/margin_08"
+        android:layout_marginStart="@dimen/margin_08"
+        android:layout_marginTop="@dimen/margin_68"
+        android:src="@drawable/man_user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txvFailed"
+        style="@style/TextViewFailed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_08"
+        android:layout_marginEnd="@dimen/margin_08"
+        android:layout_marginStart="@dimen/margin_08"
+        android:layout_marginTop="@dimen/margin_08"
+        app:layout_constraintBottom_toBottomOf="@+id/imvProfile"
+        app:layout_constraintEnd_toStartOf="@+id/imvProfile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imvProfile"
+        tools:text="14\nFailed" />
+
+    <TextView
+        android:id="@+id/txvSucceeded"
+        style="@style/TextViewSucceeded"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_08"
+        android:layout_marginEnd="@dimen/margin_08"
+        android:layout_marginStart="@dimen/margin_08"
+        android:layout_marginTop="@dimen/margin_08"
+        app:layout_constraintBottom_toBottomOf="@+id/imvProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imvProfile"
+        app:layout_constraintTop_toTopOf="@+id/imvProfile"
+        tools:text="23\nsuccess" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </View>
+
+    <Button
+        android:id="@+id/btnBadges"
+        style="@style/ButtonProfileStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_48"
+        android:text="@string/badges"
+        android:layout_marginStart="@dimen/margin_10"
+        android:layout_marginEnd="@dimen/margin_10"
+        android:layout_marginBottom="@dimen/margin_10"
+        app:layout_constraintBottom_toTopOf="@id/btnEdit"
+        app:layout_constraintEnd_toStartOf="@+id/btnChallenges"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imvProfile" />
+
+
+    <Button
+        android:id="@+id/btnChallenges"
+        style="@style/ButtonProfileStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_10"
+        android:layout_marginEnd="@dimen/margin_10"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:layout_marginTop="@dimen/margin_48"
+        android:text="@string/action_challenges"
+        app:layout_constraintBottom_toTopOf="@id/btnEdit"
+        app:layout_constraintEnd_toStartOf="@id/btnTags"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@id/btnBadges"
+        app:layout_constraintTop_toBottomOf="@+id/imvProfile" />
+
+    <Button
+        android:id="@+id/btnTags"
+        style="@style/ButtonProfileStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_48"
+        android:layout_marginStart="@dimen/margin_10"
+        android:layout_marginEnd="@dimen/margin_10"
+        android:layout_marginBottom="@dimen/margin_10"
+        android:text="@string/tags"
+        app:layout_constraintBottom_toTopOf="@id/btnEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@+id/btnChallenges"
+        app:layout_constraintTop_toBottomOf="@+id/imvProfile" />
+
+    <ImageView
+        android:id="@+id/btnEdit"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_marginBottom="@dimen/margin_20"
+        android:layout_marginEnd="@dimen/margin_20"
+        android:clickable="true"
+        android:src="@drawable/edit_button"
+        app:layout_constraintBottom_toTopOf="@+id/linearUserInfo"
+        app:layout_constraintEnd_toEndOf="@id/linearUserInfo" />
+
+    <LinearLayout
+        android:id="@+id/linearUserInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnBadges">
+
+        <TextView
+            android:id="@+id/txvFirstname"
+            style="@style/TextViewUserInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_32"
+            android:layout_marginStart="@dimen/margin_32"
+            android:background="@drawable/rounded_corners"
+            android:gravity="center"
+            tools:text="David" />
+
+        <TextView
+            android:id="@+id/txvLastname"
+            style="@style/TextViewUserInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_32"
+            android:layout_marginStart="@dimen/margin_32"
+            android:layout_marginTop="@dimen/margin_20"
+            android:background="@drawable/rounded_corners"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/txvFirstname"
+            tools:text="Linhares" />
+
+        <TextView
+            android:id="@+id/txvEmail"
+            style="@style/TextViewUserInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_32"
+            android:layout_marginStart="@dimen/margin_32"
+            android:layout_marginTop="@dimen/margin_20"
+            android:background="@drawable/rounded_corners"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/txvLastname"
+            tools:text="test@gmail.com" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/logoutBtn"
+        style="@style/ButtonProfileStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</android.support.constraint.ConstraintLayout>

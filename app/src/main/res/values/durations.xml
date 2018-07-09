@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="durations">
+        <item>1H</item>
+        <item>2H</item>
+        <item>3H</item>
+        <item>4H</item>
+        <item>5H</item>
+        <item>6H</item>
+        <item>7H</item>
+        <item>8H</item>
+        <item>9H</item>
+        <item>10H</item>
+        <item>11H</item>
+        <item>12H</item>
+        <item>13H</item>
+        <item>14H</item>
+        <item>15H</item>
+        <item>16H</item>
+        <item>17H</item>
+        <item>18H</item>
+        <item>19H</item>
+        <item>20H</item>
+        <item>21H</item>
+        <item>22H</item>
+        <item>23H</item>
+    </string-array>
+</resources>

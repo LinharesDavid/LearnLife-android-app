@@ -1,3 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Learn Life</string>
+    <string name="text_challenges" />
+    <string name="profile_challenges_succeed">%d\nSucceed</string>
+    <string name="profile_challenges_failed">%d\nFailed</string>
+    <string name="logout">Logout</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="save">Save</string>
+    <string name="no_text_entry">All fields must be filled</string>
+    <string name="network_error_unknown">An error as occured please retry later</string>
+    <string name="action_vote">Vote</string>
+    <string name="my_challenges">My challenges</string>
+    <string name="create_challenge">Create challenge</string>
+    <string name="create_challenge_tag">Select a category</string>
+    <string name="create_challenge_duration">duration</string>
+    <string name="create">create</string>
+    <string name="challenge_name">Challenge name</string>
+    <string name="challenge_details">Challenge details</string>
+    <string name="duration">Duration</string>
+    <string name="challenge">Challenge</string>
+    <string name="wait_while_creation">Creation please wait</string>
+    <string name="retry">Retry</string>
 </resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/badgeImage_imv"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_marginLeft="@dimen/margin_10"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/badge_placeholder"
+        />
+    
+    <TextView
+        android:id="@+id/bageName_txv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/badgeImage_imv"
+        app:layout_constraintTop_toTopOf="@id/badgeImage_imv"
+        app:layout_constraintBottom_toBottomOf="@id/badgeImage_imv"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginLeft="@dimen/margin_20"
+        style="@style/TextViewUserBadge"
+        android:gravity="center"
+        android:text="test"
+        />
+
+</android.support.constraint.ConstraintLayout>
