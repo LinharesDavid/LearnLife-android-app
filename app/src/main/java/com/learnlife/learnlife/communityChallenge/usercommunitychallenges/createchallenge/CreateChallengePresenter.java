@@ -18,6 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -72,6 +73,26 @@ public class CreateChallengePresenter implements ICreateChallengePresenter {
                     @Override
                     public void onError(ANError anError) {
                         view.onChallengeCreationError(anError);
+                    }
+                });
+    }
+
+    @Override
+    public void setChallengeImage(Challenge challenge, File file) {
+        AndroidNetworking.upload(Constants.BASE_URL
+                + Constants.EXTENDED_URL_CHALLENGES + challenge.get_id() + "/"
+                + Constants.EXTENDED_URL_IMAGE)
+                .addMultipartFile("image", file)
+                .build()
+                .getAsObject(Challenge.class, new ParsedRequestListener<Challenge>() {
+                    @Override
+                    public void onResponse(Challenge response) {
+                        view.onSetChallengeImageSucceed(challenge);
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        view.onSetChallengeImageFailed(anError);
                     }
                 });
     }

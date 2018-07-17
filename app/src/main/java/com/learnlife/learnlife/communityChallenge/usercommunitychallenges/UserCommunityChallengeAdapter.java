@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
 
@@ -47,6 +49,7 @@ public class UserCommunityChallengeAdapter extends RecyclerView.Adapter {
         viewHolder.voteButton.setVisibility(View.INVISIBLE);
         viewHolder.name.setText(challenge.getName());
         viewHolder.details.setText(challenge.getDetails());
+        Glide.with(context).load(Constants.BASE_URL + challenge.getImageUrl()).into(viewHolder.thumbnail);
     }
 
     @Override

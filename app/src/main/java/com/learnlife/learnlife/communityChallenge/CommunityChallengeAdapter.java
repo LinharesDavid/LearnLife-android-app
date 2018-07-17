@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
 import com.learnlife.learnlife.crosslayers.models.UserVote;
@@ -48,6 +50,7 @@ public class CommunityChallengeAdapter extends RecyclerView.Adapter {
 
         viewHolder.name.setText(challenge.getName());
         viewHolder.details.setText(challenge.getDetails());
+        Glide.with(context).load(Constants.BASE_URL + challenge.getImageUrl()).into(viewHolder.thumbnail);
         if(challengesVoted.contains(challenge.get_id())) {
             viewHolder.voteButton.setVisibility(View.INVISIBLE);
             viewHolder.voteButton.setClickable(false);

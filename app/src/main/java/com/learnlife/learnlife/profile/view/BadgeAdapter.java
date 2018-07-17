@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.crosslayers.models.Badge;
 
@@ -39,6 +41,7 @@ public class BadgeAdapter extends RecyclerView.Adapter {
         Badge badge = badges.get(position);
         BadgeViewHolder viewHolder =  (BadgeViewHolder)holder;
         viewHolder.name.setText(badge.getName());
+        Glide.with(context).load(Constants.BASE_URL + badge.getthumbnailUrl()).into(viewHolder.thumbnail);
     }
 
     @Override

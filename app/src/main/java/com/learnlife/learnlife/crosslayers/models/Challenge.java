@@ -45,6 +45,15 @@ public class Challenge {
         this.tags = tags;
     }
 
+    public Challenge(String name, String details, int pointsGiven, int duration, String user, String[] tags) {
+        this.name = name;
+        this.details = details;
+        this.pointsGiven = pointsGiven;
+        this.duration = duration;
+        this.user = user;
+        this.tags = tags;
+    }
+
     public String get_id() {
         return _id;
     }

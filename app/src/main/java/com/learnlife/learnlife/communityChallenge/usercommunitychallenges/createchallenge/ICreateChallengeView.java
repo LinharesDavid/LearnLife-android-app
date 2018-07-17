@@ -1,5 +1,7 @@
 package com.learnlife.learnlife.communityChallenge.usercommunitychallenges.createchallenge;
 
+import android.icu.lang.UScript;
+
 import com.androidnetworking.error.ANError;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
 import com.learnlife.learnlife.tags.modele.Tag;
@@ -15,4 +17,6 @@ public interface ICreateChallengeView {
     void onTagsError(ANError error);
     void onChallengeCreated(Challenge challenge);
     void onChallengeCreationError(ANError error);
+    void onSetChallengeImageSucceed(Challenge challenge);
+    void onSetChallengeImageFailed(ANError error);
 }

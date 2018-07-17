@@ -1,7 +1,7 @@
 package com.learnlife.learnlife;
 
 public final class Constants {
-    public static final String BASE_URL = "http://10.33.0.106:8080/";
+    public static final String BASE_URL = "http://192.168.1.20:8080/";
     public static final String EXTENDED_URL_TAGS = "tags/";
     public static final String EXTENDED_URL_USERS = "users/";
     public static final String EXTENDED_URL_USERCHALLENGES = "userchallenges/";
@@ -18,6 +18,8 @@ public final class Constants {
     public static final String EXTENDED_URL_ALL_TAGS = "tags/";
     public static final String EXTENDED_URL_UPDATE_USERTAGS = "users/";
     public static final String EXTENDED_URL_BADGES = "badges/";
+    public static final String EXTENDED_URL_THUMBNAIL = "thumbnail/";
+    public static final String EXTENDED_URL_IMAGE = "image/";
 
     public static final int CHALLENGE_DECLINED = 1;
     public static final int CHALLENGE_ACCEPTED = 2;
