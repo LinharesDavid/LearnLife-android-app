@@ -2,8 +2,6 @@ package com.learnlife.learnlife.home.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,24 +11,20 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.learnlife.learnlife.R;
-import com.learnlife.learnlife.crosslayers.models.Challenge;
-import com.learnlife.learnlife.home.view.HomeActivity;
+import com.learnlife.learnlife.crosslayers.models.UserChallenge;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class Adapter extends ArrayAdapter<Challenge> {
+public class UserChallengeAdapter extends ArrayAdapter<UserChallenge> {
     private Context _context;
-    private List<Challenge> _items;
-    private int _layoutId;
+    private List<UserChallenge> items;
+    private int layoutId;
 
-    public Adapter(Context context, int layoutId, ArrayList<Challenge> items){
+    public UserChallengeAdapter(Context context, int layoutId, List<UserChallenge> items){
         super(context, layoutId, items);
         _context = context;
-        _items = items;
-        _layoutId = layoutId;
+        this.items = items;
+        this.layoutId = layoutId;
     }
 
 
@@ -42,7 +36,7 @@ public class Adapter extends ArrayAdapter<Challenge> {
         LayoutInflater inflater = (LayoutInflater) _context.getSystemService((Activity.LAYOUT_INFLATER_SERVICE));
 
         if(view == null){
-            view = inflater.inflate(_layoutId, parent, false);
+            view = inflater.inflate(layoutId, parent, false);
 
             vHolder = new CartoucheViewHolder();
 
@@ -54,13 +48,13 @@ public class Adapter extends ArrayAdapter<Challenge> {
             vHolder = (CartoucheViewHolder) view.getTag();
         }
 
-        Challenge challenge = _items.get(position);
+        UserChallenge userChallenge = items.get(position);
 
-        vHolder.txvTitleChallenge.setText(challenge.getTitle());
-        vHolder.txvDetailsChallenge.setText(challenge.getDescription());
-        vHolder.txvCategory.setText(challenge.getCategory());
+        vHolder.txvTitleChallenge.setText(userChallenge.getChallenge().getName());
+        vHolder.txvDetailsChallenge.setText(userChallenge.getChallenge().getDetails());
+        vHolder.txvCategory.setText(userChallenge.getChallenge().getCategory());
 
-        Glide.with(_context).load(challenge.getUrl_image()).into(vHolder.imvChallenge);
+        Glide.with(_context).load(userChallenge.getChallenge().getImageUrl()).into(vHolder.imvChallenge);
 
         return view;
     }

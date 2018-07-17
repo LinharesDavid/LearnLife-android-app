@@ -60,6 +60,6 @@
     <dimen name="menu_button_width">38dp</dimen>
 
     <!-- textsize profile result -->
-    <dimen name="textview_profil_result_size">26sp</dimen>
+    <dimen name="textview_profil_result_size">16sp</dimen>
 
 </resources>

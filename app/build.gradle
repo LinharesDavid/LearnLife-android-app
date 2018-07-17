@@ -10,6 +10,12 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -21,6 +27,9 @@ android {
         main.res.srcDirs += 'src/main/res/home'
         main.res.srcDirs += 'src/main/res/login'
         main.res.srcDirs += 'src/main/res/profile'
+        main.res.srcDirs += 'src/main/res/challenges'
+        main.res.srcDirs += 'src/main/res/tags'
+        main.res.srcDirs += 'src/main/res/main'
     }
 }
 
@@ -32,18 +41,22 @@ dependencies {
     implementation 'com.android.support:cardview-v7:26.1.0'
     implementation 'com.android.support:design:26.1.0'
 
+    implementation 'com.android.support:support-v4:26.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
-    // ButterKnife
+    //ButterKnife
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
-    // Retrofit
-    implementation 'com.google.code.gson:gson:2.8.2'
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    //ChipsLayoutManager
+    implementation 'com.beloo.widget:ChipsLayoutManager:0.3.7@aar'
+
+    //FastAndroidNetworking
+    implementation('com.amitshekhar.android:android-networking:1.0.1') {
+        exclude group: "com.android.support"
+    }
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.0.0'
