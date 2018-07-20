@@ -26,14 +26,16 @@
             android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".main.view.MainActivity"
-            android:screenOrientation="sensorPortrait">
-        </activity>
+            android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".tags.view.TagActivity"
             android:noHistory="true"
             android:screenOrientation="sensorPortrait" />
         <activity android:name=".profile.view.ProfileUserActivity" />
-        <activity android:name=".profile.view.UserBadgeActivity"></activity>
+        <activity android:name=".profile.view.UserBadgeActivity" />
+        <activity android:name=".communityChallenge.CommunityChallengeActivity" />
+        <activity android:name=".communityChallenge.usercommunitychallenges.UserCommunityChallengeActivity" />
+        <activity android:name=".communityChallenge.usercommunitychallenges.createchallenge.CreateChallengeActivity"></activity>
     </application>
 
 </manifest>

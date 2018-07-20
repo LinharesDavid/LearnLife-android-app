@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.learnlife.learnlife.communityChallenge.usercommunitychallenges.createchallenge.CreateChallengeActivity">
+
+    <ImageView
+        android:id="@+id/challenge_imv"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:layout_marginTop="@dimen/margin_10"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/badge_placeholder"
+        android:clickable="true"
+        />
+
+    <EditText
+        android:id="@+id/challengeTitle_txv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_marginStart="@dimen/margin_10"
+        android:layout_marginEnd="@dimen/margin_10"
+        app:layout_constraintTop_toBottomOf="@id/challenge_imv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:hint="@string/challenge_name"/>
+
+    <EditText
+        android:id="@+id/createChallengeDetails_txv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_marginStart="@dimen/margin_10"
+        android:layout_marginEnd="@dimen/margin_10"
+        app:layout_constraintTop_toBottomOf="@id/challengeTitle_txv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:hint="@string/challenge_details"/>
+
+    <Button
+        android:id="@+id/challengesTags_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_32"
+        android:paddingStart="@dimen/margin_10"
+        android:paddingEnd="@dimen/margin_10"
+        app:layout_constraintTop_toBottomOf="@id/createChallengeDetails_txv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/create_challenge_tag"
+        style="@style/TextViewUserButton"/>
+
+    <Button
+        android:id="@+id/challengesDuration_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_32"
+        android:paddingStart="@dimen/margin_10"
+        android:paddingEnd="@dimen/margin_10"
+        app:layout_constraintTop_toBottomOf="@id/challengesTags_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/create_challenge_duration"
+        style="@style/TextViewUserButton"/>
+
+    <Button
+        android:id="@+id/createBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/TextViewUserButton"
+        android:text="@string/create"
+        />
+
+</android.support.constraint.ConstraintLayout>
