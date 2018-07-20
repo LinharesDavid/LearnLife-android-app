@@ -7,6 +7,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.androidnetworking.interfaces.StringRequestListener;
 import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.LearnLifeApplication;
 import com.learnlife.learnlife.R;
@@ -85,6 +86,30 @@ public class ChallengePresenter implements IChallengePresenter {
                     @Override
                     public void onError(ANError anError) {
                         anError.printStackTrace();
+                    }
+                });
+    }
+
+    @Override
+    public void finishChallenge(String idChallenge) {
+        String url = Constants.BASE_URL + Constants.EXTENDED_URL_USERCHALLENGES + idChallenge + '/'+ Constants.EXTENDED_URL_USERCHALLENGES_SUCCEED;
+        AndroidNetworking.put(url)
+                .setTag(TAG)
+                .setPriority(Priority.MEDIUM)
+                .addHeaders(Constants.HEADER_AUTHORIZATION, SessionManager.getInstance().getUser().getToken())
+                .build()
+                .getAsString(new StringRequestListener() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(TAG, "Update userchallenge succeeded");
+                        mainView.updateChallengeSucceeded();
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        String errorBody = anError.getErrorBody() != null ? anError.getErrorBody() : "error without content";
+                        Log.d(TAG, "Update userchallenge failed : "+errorBody);
+                        mainView.updateChallengeFailed();
                     }
                 });
     }

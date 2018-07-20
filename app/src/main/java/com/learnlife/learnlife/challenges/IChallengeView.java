@@ -7,4 +7,6 @@ import java.util.List;
 public interface IChallengeView {
 
     void printChallenges(List<Challenge> challenges);
+    void updateChallengeFailed();
+    void updateChallengeSucceeded();
 }
