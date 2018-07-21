@@ -42,7 +42,7 @@ public class ChallengesFragment extends Fragment implements IChallengeView {
         presenter = new ChallengePresenter(this, getContext());
 
         rcvChallenges.setLayoutManager(new LinearLayoutManager(getContext()));
-        challengesAdapter = new ChallengesAdapter(null);
+        challengesAdapter = new ChallengesAdapter(this);
         rcvChallenges.setAdapter(challengesAdapter);
 
 
@@ -58,9 +58,23 @@ public class ChallengesFragment extends Fragment implements IChallengeView {
 
     }
 
+    public void challengeSelected(Challenge challenge){
+        presenter.finishChallenge(challenge.get_id());
+    }
+
     @Override
     public void printChallenges(List<Challenge> userChallenges) {
         challengesAdapter.setChallenges(userChallenges);
         challengesAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void updateChallengeFailed() {
+
+    }
+
+    @Override
+    public void updateChallengeSucceeded() {
+
     }
 }
