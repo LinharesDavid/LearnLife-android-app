@@ -33,6 +33,8 @@ public class UserCommunityChallengeActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_user_community_challenge);
 
         ButterKnife.bind(this);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

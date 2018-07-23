@@ -36,6 +36,8 @@ public class CommunityChallengeActivity extends AppCompatActivity implements ICo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_community_challenge);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         ButterKnife.bind(this);
         presenter = new CommunityChallengePresenter(this);
         this.setRecyclerView();

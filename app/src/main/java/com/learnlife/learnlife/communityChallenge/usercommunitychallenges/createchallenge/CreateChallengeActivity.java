@@ -76,6 +76,8 @@ public class CreateChallengeActivity extends AppCompatActivity implements ICreat
         this.presenter = new CreateChallengePresenter(this);
         presenter.getTags();
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         this.durations = getResources().getStringArray(R.array.durations);
 
         this.setUI();

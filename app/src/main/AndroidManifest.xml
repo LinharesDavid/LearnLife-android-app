@@ -32,10 +32,15 @@
             android:noHistory="true"
             android:screenOrientation="sensorPortrait" />
         <activity android:name=".profile.view.ProfileUserActivity" />
-        <activity android:name=".profile.view.UserBadgeActivity" />
-        <activity android:name=".communityChallenge.CommunityChallengeActivity" />
-        <activity android:name=".communityChallenge.usercommunitychallenges.UserCommunityChallengeActivity" />
-        <activity android:name=".communityChallenge.usercommunitychallenges.createchallenge.CreateChallengeActivity"></activity>
+        <activity android:name=".profile.view.UserBadgeActivity"
+            android:theme="@style/BackTheme"/>
+        <activity android:name=".communityChallenge.CommunityChallengeActivity"
+            android:theme="@style/BackTheme"/>
+        <activity android:name=".communityChallenge.usercommunitychallenges.UserCommunityChallengeActivity"
+            android:theme="@style/BackTheme"/>
+        <activity android:name=".communityChallenge.usercommunitychallenges.createchallenge.CreateChallengeActivity"
+            android:theme="@style/BackTheme">
+        </activity>
     </application>
 
 </manifest>
