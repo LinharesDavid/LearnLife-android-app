@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.learnlife.learnlife.R;
@@ -15,6 +16,7 @@ public class ChallengesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     private final int VIEW_TYPE_ITEM = 0;
     private final int VIEW_TYPE_SECTION = 1;
+    private ChallengesFragment fragment;
 
     private List<Challenge> challenges;
 
@@ -26,15 +28,23 @@ public class ChallengesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         this.challenges = challenges;
     }
 
-    public ChallengesAdapter(List<Challenge> challenges) {
-        this.challenges = challenges;
+    public ChallengesAdapter(ChallengesFragment fragment) {
+        this.fragment = fragment;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_ITEM) {
             View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_challenge, parent, false);
-            return new ChallengeViewHolder(itemView);
+            ChallengeViewHolder challengeViewHolder = new ChallengeViewHolder(itemView);
+            challengeViewHolder.imbFinish.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos = challengeViewHolder.getAdapterPosition();
+                    fragment.challengeSelected(challenges.get(pos));
+                }
+            });
+            return challengeViewHolder;
         } else if (viewType == VIEW_TYPE_SECTION) {
             View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_section, parent, false);
             return new SectionViewHolder(itemView);
@@ -70,11 +80,13 @@ public class ChallengesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         TextView txvTitle;
         TextView txvContent;
+        ImageButton imbFinish;
 
         ChallengeViewHolder(View itemView) {
             super(itemView);
             txvTitle = itemView.findViewById(R.id.txv_item_title);
             txvContent = itemView.findViewById(R.id.txv_item_content);
+            imbFinish = itemView.findViewById(R.id.imbFinish);
         }
     }
 
