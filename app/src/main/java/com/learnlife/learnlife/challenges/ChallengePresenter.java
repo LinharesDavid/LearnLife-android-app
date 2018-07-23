@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public class ChallengePresenter implements IChallengePresenter {
 
@@ -73,6 +74,7 @@ public class ChallengePresenter implements IChallengePresenter {
                                 UserChallenge challenge = new Gson().fromJson(jsonResponse.toString(), UserChallenge.class);
                                 challenges.add(challenge);
                             }
+                            mainView.updateUserChallenges(challenges);
                             orderuserChallengeList(challenges);
 
                         } catch (JSONException e) {
@@ -114,7 +116,7 @@ public class ChallengePresenter implements IChallengePresenter {
 
     private void orderuserChallengeList(ArrayList<UserChallenge> userChallengeList) {
 
-
+        List<UserChallenge> originalList = userChallengeList;
         if (userChallengeList == null) {
             return;
         }
@@ -137,22 +139,26 @@ public class ChallengePresenter implements IChallengePresenter {
 
         Collections.addAll(userChallengeList, challengesArray);
         ArrayList<Challenge> challenges = new ArrayList<>();
-        for(UserChallenge userChallenge : userChallengeList)
-            challenges.add(userChallenge.getChallenge());
+        challenges.add(new Challenge(true, sectionTitles[userChallengeList.get(0).getState()]));
+        UserChallenge previous = null;
+        for(UserChallenge userChallenge : userChallengeList) {
+            if(previous == null)
+                challenges.add(userChallenge.getChallenge());
+            else {
+                if(previous.getState() != userChallenge.getState()) {
+                    challenges.add(new Challenge(true, sectionTitles[userChallenge.getState()]));
+                }
+                challenges.add(userChallenge.getChallenge());
+            }
+
+            previous = userChallenge;
+        }
+
 
 
         if (userChallengeList.isEmpty()) return;
 
-        challenges.add(0, new Challenge(true, sectionTitles[userChallengeList.get(0).getState()]));
-
-        for (int i = 1; i < userChallengeList.size() - 1; i++) {
-            int state = userChallengeList.get(i).getState();
-            int state1 = userChallengeList.get(i + 1).getState();
-            if (state == -1) continue;
-            if (state1 != state) {
-                challenges.add(i + 1, new Challenge(true, sectionTitles[userChallengeList.get(i + 1).getState()]));
-            }
-        }
+        mainView.updateUserChallenges(originalList);
         mainView.printChallenges(challenges);
     }
 }
