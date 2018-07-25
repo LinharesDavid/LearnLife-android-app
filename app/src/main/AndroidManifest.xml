@@ -42,6 +42,12 @@
         <activity android:name=".communityChallenge.usercommunitychallenges.createchallenge.CreateChallengeActivity"
             android:theme="@style/BackTheme">
         </activity>
+
+        <service android:name="com.learnlife.learnlife.services.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
