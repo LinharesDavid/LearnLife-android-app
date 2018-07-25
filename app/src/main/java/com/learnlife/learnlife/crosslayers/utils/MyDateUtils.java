@@ -57,7 +57,7 @@ public class MyDateUtils {
 
         sb.append(space);
 
-        switch (calendar.get(Calendar.DAY_OF_WEEK)-1) {
+        switch (calendar.get(Calendar.MONTH)+1) {
             case 1:
                 sb.append(mContext.getResources().getString(R.string.jan));
                 break;
