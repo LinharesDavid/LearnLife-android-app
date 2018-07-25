@@ -128,14 +128,22 @@ public class HomeFragment extends Fragment implements IHomeView {
     @OnClick(R.id.imbDecline)
     public void btnDeclineClicked(){
         if(getContext() == null) return;
-        flingContainer.getTopCardListener().selectLeft();
+        try {
+            flingContainer.getTopCardListener().selectLeft();
+        } catch (NullPointerException npe) {
+            return;
+        }
         imbDecline.startAnimation(animationBounce);
     }
 
     @OnClick(R.id.imbAccept)
     public void btnAcceptClicked(){
         if(getContext() == null) return;
-        flingContainer.getTopCardListener().selectRight();
+        try {
+            flingContainer.getTopCardListener().selectRight();
+        } catch (NullPointerException npe) {
+            return;
+        }
         imbAccept.startAnimation(animationBounce);
     }
 
