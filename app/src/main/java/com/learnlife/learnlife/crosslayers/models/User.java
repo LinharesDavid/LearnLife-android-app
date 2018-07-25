@@ -12,17 +12,17 @@ public class User {
     private String email;
     private String firstname;
     private String lastname;
-    private String thumbnail;
+    private String thumbnailUrl;
     private ArrayList<Tag> tags;
     private ArrayList<Badge> badges;
 
-    public User(String token, String id, String email, String firstname, String lastname, String thumbnail, ArrayList<Tag> tags, ArrayList<Badge> badges) {
+    public User(String token, String id, String email, String firstname, String lastname, String thumbnailUrl, ArrayList<Tag> tags, ArrayList<Badge> badges) {
         this.id = id;
         this.token = token;
         this.email = email;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.thumbnail = thumbnail;
+        this.thumbnailUrl = thumbnailUrl;
         this.tags = tags;
         this.badges = badges;
     }
@@ -83,12 +83,12 @@ public class User {
         this.lastname = lastname;
     }
 
-    public String getThumbnail() {
-        return thumbnail;
+    public String getthumbnailUrl() {
+        return thumbnailUrl;
     }
 
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
+    public void setthumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
     }
 
     @Override
@@ -98,7 +98,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
-                ", thumbnail='" + thumbnail + '\'' +
+                ", thumbnailUrl='" + thumbnailUrl + '\'' +
                 '}';
     }
 }

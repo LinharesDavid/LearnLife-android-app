@@ -7,12 +7,15 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.google.gson.Gson;
 import com.androidnetworking.interfaces.StringRequestListener;
 import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.LearnLifeApplication;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.SessionManager;
+import com.learnlife.learnlife.communityChallenge.usercommunitychallenges.UserCommunityChallengeActivity;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
+import com.learnlife.learnlife.crosslayers.models.UserChallenge;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public class ChallengePresenter implements IChallengePresenter {
 
@@ -43,7 +47,7 @@ public class ChallengePresenter implements IChallengePresenter {
     @Override
     public void getChallenges() {
 
-        final ArrayList<Challenge> challenges = new ArrayList<>();
+        final ArrayList<UserChallenge> challenges = new ArrayList<>();
 
         Log.d(TAG, "getChallenges: " + Constants.BASE_URL
                 + Constants.EXTENDED_URL_USERCHALLENGES
@@ -67,16 +71,11 @@ public class ChallengePresenter implements IChallengePresenter {
                         try {
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject jsonResponse = response.getJSONObject(i);
-                                JSONObject jsonChallenge = jsonResponse.getJSONObject(Constants.RESPONSE_KEY_USERCHALLENGES_CHALLENGE);
-                                Challenge challenge = new Challenge(
-                                        jsonChallenge.getString(Constants.RESPONSE_KEY_USERCHALLENGES_ID),
-                                        jsonChallenge.getString(Constants.RESPONSE_KEY_USERCHALLENGES_NAME),
-                                        jsonChallenge.getString(Constants.RESPONSE_KEY_USERCHALLENGES_DETAILS),
-                                        jsonChallenge.getString(Constants.RESPONSE_KEY_USERCHALLENGES_IMAGE),
-                                        jsonResponse.getInt(Constants.RESPONSE_KEY_USERCHALLENGES_STATE));
+                                UserChallenge challenge = new Gson().fromJson(jsonResponse.toString(), UserChallenge.class);
                                 challenges.add(challenge);
                             }
-                            orderChallengeList(challenges);
+                            mainView.updateUserChallenges(challenges);
+                            orderuserChallengeList(challenges);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -115,41 +114,51 @@ public class ChallengePresenter implements IChallengePresenter {
     }
 
 
-    private void orderChallengeList(ArrayList<Challenge> challengeList) {
+    private void orderuserChallengeList(ArrayList<UserChallenge> userChallengeList) {
 
-
-        if (challengeList == null) {
+        List<UserChallenge> originalList = userChallengeList;
+        if (userChallengeList == null) {
             return;
         }
 
-        Challenge[] challengesArray = new Challenge[challengeList.size()];
+        UserChallenge[] challengesArray = new UserChallenge[userChallengeList.size()];
 
         // List<E>.sort(Comparator c) is available since api 24,
         // we're in min 21
-        for (int i = 0; i < challengeList.size(); i++) {
-            challengesArray[i] = challengeList.get(i);
+        for (int i = 0; i < userChallengeList.size(); i++) {
+            challengesArray[i] = userChallengeList.get(i);
         }
 
-        Arrays.sort(challengesArray, new Comparator<Challenge>() {
+        Arrays.sort(challengesArray, new Comparator<UserChallenge>() {
             @Override
-            public int compare(Challenge challenge, Challenge t1) {
+            public int compare(UserChallenge challenge, UserChallenge t1) {
                 return challenge.getState() - t1.getState();
             }
         });
-        challengeList.clear();
+        userChallengeList.clear();
 
-        Collections.addAll(challengeList, challengesArray);
-
-        challengeList.add(0, new Challenge(true, sectionTitles[challengeList.get(0).getState()]));
-
-        for (int i = 1; i < challengeList.size() - 1; i++) {
-            int state = challengeList.get(i).getState();
-            int state1 = challengeList.get(i + 1).getState();
-            if (state == -1) continue;
-            if (state1 != state) {
-                challengeList.add(i + 1, new Challenge(true, sectionTitles[challengeList.get(i + 1).getState()]));
+        Collections.addAll(userChallengeList, challengesArray);
+        ArrayList<Challenge> challenges = new ArrayList<>();
+        challenges.add(new Challenge(true, sectionTitles[userChallengeList.get(0).getState()]));
+        UserChallenge previous = null;
+        for(UserChallenge userChallenge : userChallengeList) {
+            if(previous == null)
+                challenges.add(userChallenge.getChallenge());
+            else {
+                if(previous.getState() != userChallenge.getState()) {
+                    challenges.add(new Challenge(true, sectionTitles[userChallenge.getState()]));
+                }
+                challenges.add(userChallenge.getChallenge());
             }
+
+            previous = userChallenge;
         }
-        mainView.printChallenges(challengeList);
+
+
+
+        if (userChallengeList.isEmpty()) return;
+
+        mainView.updateUserChallenges(originalList);
+        mainView.printChallenges(challenges);
     }
 }

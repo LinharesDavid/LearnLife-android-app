@@ -93,4 +93,22 @@ public class HomePresenter implements IHomePresenter{
                 });
 
     }
+
+    @Override
+    public void retrieveUser(User user) {
+        AndroidNetworking.get(Constants.BASE_URL + Constants.EXTENDED_URL_USERS + user.getId())
+                .addHeaders(Constants.HEADER_AUTHORIZATION, SessionManager.getInstance().getUser().getToken())
+                .build()
+                .getAsObject(User.class, new ParsedRequestListener<User>() {
+                    @Override
+                    public void onResponse(User response) {
+                        homeView.onRetrieveUserSucceed(response);
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+
+                    }
+                });
+    }
 }

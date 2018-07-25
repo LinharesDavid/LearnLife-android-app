@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.R;
+import com.learnlife.learnlife.SessionManager;
+import com.learnlife.learnlife.crosslayers.models.User;
 import com.learnlife.learnlife.crosslayers.models.UserChallenge;
 import com.learnlife.learnlife.crosslayers.utils.Dialog;
 import com.learnlife.learnlife.crosslayers.utils.MyDateUtils;
@@ -161,5 +163,10 @@ public class HomeFragment extends Fragment implements IHomeView {
     @Override
     public void updateUserChallengeSucceed() {
         if(getContext() == null) return;
+    }
+
+    @Override
+    public void onRetrieveUserSucceed(User user) {
+        SessionManager.getInstance().updateUser(user);
     }
 }

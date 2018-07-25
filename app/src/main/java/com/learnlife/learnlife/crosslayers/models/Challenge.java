@@ -7,10 +7,13 @@ public class Challenge {
     private String name;
     private String details;
     private String imageUrl;
+    private int pointsGiven;
+    private int duration;
+    private String user;
+    private String[] tags;
 
     private boolean isSection = false;
     private String sectionTitle;
-    private int state = -1;
     private String category;
 
     public Challenge() {
@@ -19,15 +22,36 @@ public class Challenge {
     public Challenge(boolean isSection, String sectionTitle) {
         this.isSection = isSection;
         this.sectionTitle = sectionTitle;
-        state = -1;
     }
 
-    public Challenge(String _id, String name, String details, String imageUrl, int state) {
+    public Challenge(String _id, String name, String details, String imageUrl, int pointsGiven, int duration, String user, String[] tags) {
         this._id = _id;
         this.name = name;
         this.details = details;
         this.imageUrl = imageUrl;
-        this.state = state;
+        this.pointsGiven = pointsGiven;
+        this.duration = duration;
+        this.user = user;
+        this.tags = tags;
+    }
+
+    public Challenge(String name, String details, String imageUrl, int pointsGiven, int duration, String user, String[] tags) {
+        this.name = name;
+        this.details = details;
+        this.imageUrl = imageUrl;
+        this.pointsGiven = pointsGiven;
+        this.duration = duration;
+        this.user = user;
+        this.tags = tags;
+    }
+
+    public Challenge(String name, String details, int pointsGiven, int duration, String user, String[] tags) {
+        this.name = name;
+        this.details = details;
+        this.pointsGiven = pointsGiven;
+        this.duration = duration;
+        this.user = user;
+        this.tags = tags;
     }
 
     public String get_id() {
@@ -78,14 +102,6 @@ public class Challenge {
         this.sectionTitle = sectionTitle;
     }
 
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
-    }
-
     public String getCategory() {
         return category;
     }
@@ -106,5 +122,37 @@ public class Challenge {
         this.imageUrl = "http://netdoctor.cdnds.net/17/20/980x490/landscape-1495031594-two-women-running-along-road.jpg";
         this.category = "Sport";
         return this;
+    }
+
+    public int getPointsGiven() {
+        return pointsGiven;
+    }
+
+    public void setPointsGiven(int pointsGiven) {
+        this.pointsGiven = pointsGiven;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String[] getTags() {
+        return tags;
+    }
+
+    public void setTags(String[] tags) {
+        this.tags = tags;
     }
 }
