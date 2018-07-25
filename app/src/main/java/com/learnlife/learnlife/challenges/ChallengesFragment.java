@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
+import com.learnlife.learnlife.crosslayers.models.UserChallenge;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class ChallengesFragment extends Fragment implements IChallengeView {
     ChallengesAdapter challengesAdapter;
 
     private IChallengePresenter presenter;
+    private List<UserChallenge> userChallenges;
 
     public ChallengesFragment() {
         //
@@ -59,12 +61,19 @@ public class ChallengesFragment extends Fragment implements IChallengeView {
     }
 
     public void challengeSelected(Challenge challenge){
-        presenter.finishChallenge(challenge.get_id());
+        String userChallengeId = null;
+        for (UserChallenge uc : userChallenges) {
+            if (uc.getChallenge().get_id().equals(challenge.get_id()))
+                userChallengeId = uc.get_id();
+        }
+        if(userChallengeId == null) return;
+        presenter.finishChallenge(userChallengeId);
     }
 
     @Override
-    public void printChallenges(List<Challenge> userChallenges) {
-        challengesAdapter.setChallenges(userChallenges);
+    public void printChallenges(List<Challenge> challenges) {
+        challengesAdapter.setChallenges(challenges);
+        challengesAdapter.setUserChallenges(this.userChallenges);
         challengesAdapter.notifyDataSetChanged();
     }
 
@@ -76,5 +85,10 @@ public class ChallengesFragment extends Fragment implements IChallengeView {
     @Override
     public void updateChallengeSucceeded() {
 
+    }
+
+    @Override
+    public void updateUserChallenges(List<UserChallenge> userChallenges) {
+        this.userChallenges = userChallenges;
     }
 }

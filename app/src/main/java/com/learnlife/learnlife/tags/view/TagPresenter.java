@@ -1,19 +1,20 @@
 package com.learnlife.learnlife.tags.view;
 
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.ParsedRequestListener;
+import com.google.gson.Gson;
 import com.learnlife.learnlife.Constants;
-import com.learnlife.learnlife.LearnLifeApplication;
 import com.learnlife.learnlife.SessionManager;
+import com.learnlife.learnlife.crosslayers.models.User;
 import com.learnlife.learnlife.tags.modele.Tag;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -56,18 +57,28 @@ public class TagPresenter implements ITagPresenter {
 
     @Override
     public void affectTagToUser(Tag.JsonTag jsonTag) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            JSONArray array = new JSONArray(jsonTag.tags);
+            jsonObject.accumulate("tags", array);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
         String idUser = SessionManager.getInstance().getUser().getId();
         AndroidNetworking.put(Constants.BASE_URL + Constants.EXTENDED_URL_UPDATE_USERTAGS + idUser)
-                .addBodyParameter(jsonTag)
+                .addJSONObjectBody(jsonObject)
                 .setTag("tag")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        //prbTag.setVisibility(View.GONE); ProgressBar à ajouter
                         Log.d(Tag, "Tag update succeeded");
                         tagView.updateUserTagSucceed();
+                        Gson gson = new Gson();
+                        User user = gson.fromJson(response.toString(), User.class);
+                        SessionManager.getInstance().updateUser(user);
                     }
 
                     @Override

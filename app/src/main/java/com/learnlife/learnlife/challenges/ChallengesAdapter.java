@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
+import com.learnlife.learnlife.crosslayers.models.UserChallenge;
 
 import java.util.List;
 
@@ -19,6 +21,8 @@ public class ChallengesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     private ChallengesFragment fragment;
 
     private List<Challenge> challenges;
+
+    private List<UserChallenge> userChallenges;
 
     public List<Challenge> getChallenges() {
         return challenges;
@@ -63,6 +67,15 @@ public class ChallengesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
     }
 
+    private int getChallengeSectionTotal() {
+        int count = 0;
+        for (Challenge c : challenges) {
+            if (c.isSection()) count++;
+        }
+
+        return count;
+    }
+
     @Override
     public int getItemViewType(int position) {
         if (challenges != null && challenges.get(position).isSection()) {
@@ -74,6 +87,14 @@ public class ChallengesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public int getItemCount() {
         return challenges == null ? 0 : challenges.size();
+    }
+
+    public List<UserChallenge> getUserChallenges() {
+        return userChallenges;
+    }
+
+    public void setUserChallenges(List<UserChallenge> userChallenges) {
+        this.userChallenges = userChallenges;
     }
 
     class ChallengeViewHolder extends RecyclerView.ViewHolder {

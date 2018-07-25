@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.crosslayers.models.UserChallenge;
 
@@ -54,7 +55,7 @@ public class UserChallengeAdapter extends ArrayAdapter<UserChallenge> {
         vHolder.txvDetailsChallenge.setText(userChallenge.getChallenge().getDetails());
         vHolder.txvCategory.setText(userChallenge.getChallenge().getCategory());
 
-        Glide.with(_context).load(userChallenge.getChallenge().getImageUrl()).into(vHolder.imvChallenge);
+        Glide.with(_context).load(Constants.BASE_URL + userChallenge.getChallenge().getImageUrl()).into(vHolder.imvChallenge);
 
         return view;
     }

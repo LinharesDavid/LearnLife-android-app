@@ -11,6 +11,8 @@ import android.widget.TextView;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.tags.modele.Tag;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +28,6 @@ public class TagAdapter extends RecyclerView.Adapter {
     private TagActivity activity;
     private List<Tag> tagsChosen = new ArrayList<>();
     private List<Tag> userTags = new ArrayList<>();
-    private ViewHolder holder;
 
     public TagAdapter(List<Tag> tagsItems, TagActivity activity) {
         this.tagsItems = tagsItems;
@@ -36,26 +37,21 @@ public class TagAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(activity).inflate(R.layout.tag_item, parent, false);
-        this.holder = new ViewHolder(view);
+        ViewHolder holder = new ViewHolder(view);
 
         holder.imbAddChips.setOnClickListener(view1 -> {
             Tag tag = tagsItems.get(holder.getAdapterPosition());
             if(tagsChosen.contains(tag)){
-                //Si le tag avait déjà était ajouté alors retire
-                setUnselectedTag(tag);
+                setUnselectedTag(holder, tag);
             }else {
-                //Sinon on ajoute
-                setSelectedTag(tag);
+                setSelectedTag(holder, tag);
             }
         });
-
-        if(userTags != null)
-            for (Tag tag : userTags) setSelectedTag(tag);
 
         return holder;
     }
 
-    public void setSelectedTag(Tag tag) {
+    public void setSelectedTag(ViewHolder holder, Tag tag) {
         holder.ctnMain.setBackground(activity.getResources().getDrawable(R.drawable.shape_chip_selected_drawable));
         holder.txvChips.setTextColor(activity.getResources().getColor(R.color.white));
         holder.imbAddChips.setBackground(ContextCompat.getDrawable(activity, R.drawable.ic_remove_chips));
@@ -64,7 +60,7 @@ public class TagAdapter extends RecyclerView.Adapter {
         tagsChosen.add(tag);
     }
 
-    public void setUnselectedTag(Tag tag) {
+    public void setUnselectedTag(ViewHolder holder, Tag tag) {
         holder.ctnMain.setBackground(activity.getResources().getDrawable(R.drawable.shape_chip_unselected_drawable));
         holder.txvChips.setTextColor(activity.getResources().getColor(R.color.black));
         holder.imbAddChips.setBackground(ContextCompat.getDrawable(activity, R.drawable.ic_add_chips));
@@ -79,6 +75,11 @@ public class TagAdapter extends RecyclerView.Adapter {
         ViewHolder vHolder = (ViewHolder) holder;
 
         vHolder.txvChips.setText(element.getName());
+        if(userTags == null) return;
+        for (Tag tag : userTags) {
+            if(element.getId().equals(tag.getId()))
+                setSelectedTag(vHolder, element);
+        }
     }
 
     @Override
