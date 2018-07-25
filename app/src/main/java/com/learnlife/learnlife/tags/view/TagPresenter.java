@@ -10,6 +10,7 @@ import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.google.gson.Gson;
 import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.SessionManager;
+import com.learnlife.learnlife.crosslayers.models.Badge;
 import com.learnlife.learnlife.crosslayers.models.User;
 import com.learnlife.learnlife.tags.modele.Tag;
 
@@ -76,9 +77,23 @@ public class TagPresenter implements ITagPresenter {
                     public void onResponse(JSONObject response) {
                         Log.d(Tag, "Tag update succeeded");
                         tagView.updateUserTagSucceed();
-                        Gson gson = new Gson();
-                        User user = gson.fromJson(response.toString(), User.class);
-                        SessionManager.getInstance().updateUser(user);
+                        try {
+                            JSONArray badges = response.getJSONArray("badges");
+                            for (int i = 0; i < badges.length(); i++) {
+                                String badgeID = badges.getString(i);
+                                badges.remove(i);
+                                JSONObject newBadge = new JSONObject();
+                                newBadge.put("_id", badgeID);
+                            }
+                            response.remove("badges");
+                            response.put("badges", badges);
+                            Gson gson = new Gson();
+                            User user = gson.fromJson(response.toString(), User.class);
+                            SessionManager.getInstance().updateUser(user);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
                     }
 
                     @Override
