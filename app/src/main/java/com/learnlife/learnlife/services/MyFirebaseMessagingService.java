@@ -1,6 +1,7 @@
 package com.learnlife.learnlife.services;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -23,7 +24,10 @@ import org.json.JSONObject;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private final String Tag = getClass().getSimpleName();
-    public static final int ID_NOTIFICATION = 235;
+    public static final int ID_NOTIFICATION = 0;
+    private final String CHANNEL_ID = "default";
+    private final String CHANNEL_NAME = "LEARNLIFE_CHANNEL";
+
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -72,8 +76,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                         PendingIntent.FLAG_UPDATE_CURRENT
                 );
 
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
+                    CHANNEL_NAME,
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setDescription("YOUR_NOTIFICATION_CHANNEL_DISCRIPTION");
+            if (notificationManager != null) {
+                notificationManager.createNotificationChannel(channel);
+            }
+        }
 
-        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context, CHANNEL_ID);
         Notification notification;
         notification = mBuilder.setSmallIcon(R.drawable.ic_launcher).setTicker(title).setWhen(0)
                 .setAutoCancel(true)
@@ -86,8 +100,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         notification.flags |= Notification.FLAG_AUTO_CANCEL;
 
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(ID_NOTIFICATION, notification);
+        if (notificationManager != null) {
+            notificationManager.notify(ID_NOTIFICATION, notification);
+        }
     }
 
     @Override
