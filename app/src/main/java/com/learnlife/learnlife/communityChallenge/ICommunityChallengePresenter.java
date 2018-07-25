@@ -1,5 +1,6 @@
 package com.learnlife.learnlife.communityChallenge;
 
+import com.learnlife.learnlife.crosslayers.models.Challenge;
 import com.learnlife.learnlife.crosslayers.models.User;
 
 /**
@@ -8,5 +9,6 @@ import com.learnlife.learnlife.crosslayers.models.User;
 
 public interface ICommunityChallengePresenter {
     void getCommunityChallenges();
-    void getUserVotes(User user);
+    void getUserVotes();
+    void setUserVote(Challenge challenge);
 }

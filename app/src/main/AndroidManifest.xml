@@ -31,7 +31,8 @@
             android:name=".tags.view.TagActivity"
             android:noHistory="true"
             android:screenOrientation="sensorPortrait" />
-        <activity android:name=".profile.view.ProfileUserActivity" />
+        <activity android:name=".profile.view.ProfileUserActivity"
+            android:theme="@style/BackTheme"/>
         <activity android:name=".profile.view.UserBadgeActivity"
             android:theme="@style/BackTheme"/>
         <activity android:name=".communityChallenge.CommunityChallengeActivity"

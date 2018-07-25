@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 
 import com.androidnetworking.error.ANError;
 import com.learnlife.learnlife.R;
@@ -72,5 +73,17 @@ public class UserCommunityChallengeActivity extends AppCompatActivity implements
         builder.setMessage(R.string.network_error_unknown);
         builder.setPositiveButton(R.string.retry, (dialog, which) -> presenter.getUserChallenges(SessionManager.getInstance().getUser()));
         builder.setNegativeButton(R.string.cancel, (dialog, which) -> finish());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+
+        return true;
     }
 }

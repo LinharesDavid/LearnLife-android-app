@@ -60,6 +60,7 @@ public class SessionManager {
         user.setToken(token);
         editor.putString(KEY_USER, new Gson().toJson(user));
         this.user = user;
+        editor.putString(KEY_TOKEN, token);
         editor.commit();
     }
 
@@ -75,11 +76,13 @@ public class SessionManager {
     }
 
     public void updateUser(User user) {
-        this.createLoginSession(user, user.getToken());
+        user.setToken(this.user.getToken());
+        this.user = user;
     }
 
     public String getToken() {
-        return pref.getString(KEY_TOKEN, null);
+        String token = pref.getString(KEY_TOKEN, null);
+        return token;
     }
 
     public void logoutUser() {

@@ -12,12 +12,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:scaleType="fitCenter"
         android:src="@drawable/badge_placeholder"
         />
 
     <TextView
         android:id="@+id/challengeName_txv"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/challengeImage_imv"
         app:layout_constraintTop_toTopOf="parent"
@@ -32,7 +33,7 @@
 
     <TextView
         android:id="@+id/challengeDetails_txv"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toEndOf="@id/challengeImage_imv"
         app:layout_constraintTop_toBottomOf="@id/challengeName_txv"
@@ -48,6 +49,7 @@
         android:id="@+id/vote_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margin_20"
         app:layout_constraintStart_toEndOf="@id/challengeDetails_txv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/challengeName_txv"

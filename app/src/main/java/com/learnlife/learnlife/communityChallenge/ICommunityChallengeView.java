@@ -15,4 +15,6 @@ public interface ICommunityChallengeView {
     void onCommunityChallengesError(ANError error);
     void onUserVotesRetrieved(List<UserVote> votes);
     void onUserVotesError(ANError error);
+    void onVoteClicked(Challenge challenge);
+    void onVoteSucceed();
 }
