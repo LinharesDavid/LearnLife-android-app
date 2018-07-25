@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.renderscript.ScriptGroup;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -203,7 +204,7 @@ public class CreateChallengeActivity extends AppCompatActivity implements ICreat
         User user = SessionManager.getInstance().getUser();
         if(title.isEmpty() || details.isEmpty() || tagsChosen.isEmpty() || duration == 0) return;
 
-        Challenge challenge = new Challenge(title, details, "default", 50, duration, user.getId(), tagsChosen.toArray(new String[tagsChosen.size()]));
+        Challenge challenge = new Challenge(title, details, 50, duration, user.getId(), tagsChosen.toArray(new String[tagsChosen.size()]));
 
         presenter.createChallenge(user, challenge);
         loadingDialog = getLoadingBuilder(R.string.challenge, R.string.wait_while_creation).create();
@@ -249,5 +250,17 @@ public class CreateChallengeActivity extends AppCompatActivity implements ICreat
     public void onSetChallengeImageFailed(ANError error) {
         this.loadingDialog.dismiss();
         finish();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+
+        return true;
     }
 }

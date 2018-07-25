@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
 import com.learnlife.learnlife.crosslayers.models.UserChallenge;
@@ -60,14 +61,17 @@ public class ChallengesFragment extends Fragment implements IChallengeView {
 
     }
 
-    public void challengeSelected(Challenge challenge){
+    public void challengeSelected(Challenge challenge, int state){
         String userChallengeId = null;
         for (UserChallenge uc : userChallenges) {
             if (uc.getChallenge().get_id().equals(challenge.get_id()))
                 userChallengeId = uc.get_id();
         }
         if(userChallengeId == null) return;
-        presenter.finishChallenge(userChallengeId);
+        if(state == Constants.CHALLENGE_SUCCEED)
+            presenter.finishChallenge(userChallengeId);
+        else if (state == Constants.CHALLENGE_FAILED)
+            presenter.failedChallenge(userChallengeId);
     }
 
     @Override
@@ -84,7 +88,7 @@ public class ChallengesFragment extends Fragment implements IChallengeView {
 
     @Override
     public void updateChallengeSucceeded() {
-
+        presenter.getChallenges();
     }
 
     @Override

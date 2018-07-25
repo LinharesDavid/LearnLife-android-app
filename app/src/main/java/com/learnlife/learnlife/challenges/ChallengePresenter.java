@@ -109,8 +109,30 @@ public class ChallengePresenter implements IChallengePresenter {
                         String errorBody = anError.getErrorBody() != null ? anError.getErrorBody() : "error without content";
                         Log.d(TAG, "Update userchallenge failed : "+errorBody);
                         mainView.updateChallengeFailed();
+                    }});
+    }
+
+    @Override
+    public void failedChallenge(String idChallenge) {
+        String url = Constants.BASE_URL + Constants.EXTENDED_URL_USERCHALLENGES + idChallenge + '/'+ Constants.EXTENDED_URL_USERCHALLENGES_FAILED;
+        AndroidNetworking.put(url)
+                .setTag(TAG)
+                .setPriority(Priority.MEDIUM)
+                .addHeaders(Constants.HEADER_AUTHORIZATION, SessionManager.getInstance().getToken())
+                .build()
+                .getAsString(new StringRequestListener() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(TAG, "Update userchallenge failed");
+                        mainView.updateChallengeSucceeded();
                     }
-                });
+
+                    @Override
+                    public void onError(ANError anError) {
+                        String errorBody = anError.getErrorBody() != null ? anError.getErrorBody() : "error without content";
+                        Log.d(TAG, "Update userchallenge failed : "+errorBody);
+                        mainView.updateChallengeFailed();
+                    }});
     }
 
 

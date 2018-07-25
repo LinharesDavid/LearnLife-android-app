@@ -1,20 +1,15 @@
 package com.learnlife.learnlife.communityChallenge.usercommunitychallenges.createchallenge;
 
-import android.util.Log;
-
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.google.gson.Gson;
 import com.learnlife.learnlife.Constants;
-import com.learnlife.learnlife.SessionManager;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
 import com.learnlife.learnlife.crosslayers.models.User;
 import com.learnlife.learnlife.tags.modele.Tag;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

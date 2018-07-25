@@ -1,11 +1,14 @@
 package com.learnlife.learnlife.crosslayers.models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Random;
 
 public class Challenge {
     private String _id;
     private String name;
     private String details;
+    @SerializedName("imageUrl")
     private String imageUrl;
     private int pointsGiven;
     private int duration;

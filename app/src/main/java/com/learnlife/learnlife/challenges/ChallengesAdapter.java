@@ -45,7 +45,14 @@ public class ChallengesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 @Override
                 public void onClick(View view) {
                     int pos = challengeViewHolder.getAdapterPosition();
-                    fragment.challengeSelected(challenges.get(pos));
+                    fragment.challengeSelected(challenges.get(pos), Constants.CHALLENGE_SUCCEED);
+                }
+            });
+            challengeViewHolder.imbFailed.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int pos = challengeViewHolder.getAdapterPosition();
+                    fragment.challengeSelected(challenges.get(pos), Constants.CHALLENGE_FAILED);
                 }
             });
             return challengeViewHolder;
@@ -62,6 +69,14 @@ public class ChallengesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             Challenge challenge = challenges.get(position);
             ((ChallengeViewHolder) holder).txvTitle.setText(challenge.getName());
             ((ChallengeViewHolder) holder).txvContent.setText(challenge.getDetails());
+            for (UserChallenge el : userChallenges) {
+                if (el.getChallenge().get_id().equals(challenge.get_id())) {
+                    if(el.getState() != Constants.CHALLENGE_ACCEPTED) {
+                        ((ChallengeViewHolder) holder).imbFinish.setVisibility(View.INVISIBLE);
+                        ((ChallengeViewHolder) holder).imbFailed.setVisibility(View.INVISIBLE);
+                    }
+                }
+            }
         } else if (holder instanceof SectionViewHolder) {
             ((SectionViewHolder) holder).txvSectionTitle.setText(challenges.get(position).getSectionTitle());
         }
@@ -102,12 +117,14 @@ public class ChallengesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         TextView txvTitle;
         TextView txvContent;
         ImageButton imbFinish;
+        ImageButton imbFailed;
 
         ChallengeViewHolder(View itemView) {
             super(itemView);
             txvTitle = itemView.findViewById(R.id.txv_item_title);
             txvContent = itemView.findViewById(R.id.txv_item_content);
             imbFinish = itemView.findViewById(R.id.imbFinish);
+            imbFailed = itemView.findViewById(R.id.imbFailed);
         }
     }
 

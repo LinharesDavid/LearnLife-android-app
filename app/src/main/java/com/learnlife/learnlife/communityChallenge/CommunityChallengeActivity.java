@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 
 import com.androidnetworking.error.ANError;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.SessionManager;
 import com.learnlife.learnlife.communityChallenge.usercommunitychallenges.UserCommunityChallengeActivity;
+import com.learnlife.learnlife.communityChallenge.usercommunitychallenges.UserCommunityChallengePresenter;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
 import com.learnlife.learnlife.crosslayers.models.User;
 import com.learnlife.learnlife.crosslayers.models.UserVote;
@@ -39,6 +41,12 @@ public class CommunityChallengeActivity extends AppCompatActivity implements ICo
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
         presenter = new CommunityChallengePresenter(this);
         this.setRecyclerView();
     }
@@ -50,7 +58,7 @@ public class CommunityChallengeActivity extends AppCompatActivity implements ICo
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
         presenter.getCommunityChallenges();
-        presenter.getUserVotes(SessionManager.getInstance().getUser());
+        presenter.getUserVotes();
     }
 
     private void setAdapter() {
@@ -93,7 +101,29 @@ public class CommunityChallengeActivity extends AppCompatActivity implements ICo
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.challenge);
         builder.setMessage(R.string.network_error_unknown);
-        builder.setPositiveButton(R.string.retry, (dialog, which) -> presenter.getUserVotes(SessionManager.getInstance().getUser()));
+        builder.setPositiveButton(R.string.retry, (dialog, which) -> presenter.getUserVotes());
         builder.setNegativeButton(R.string.cancel, (dialog, which) -> finish());
+    }
+
+    @Override
+    public void onVoteClicked(Challenge challenge) {
+        presenter.setUserVote(challenge);
+    }
+
+    @Override
+    public void onVoteSucceed() {
+        presenter.getUserVotes();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+
+        return true;
     }
 }

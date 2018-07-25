@@ -20,6 +20,12 @@ public class UserVote {
         this.challengeId = challengeId;
     }
 
+    public UserVote(String userId, String challengeId) {
+        this.id = id;
+        this.userId = userId;
+        this.challengeId = challengeId;
+    }
+
     public String getId() {
         return id;
     }

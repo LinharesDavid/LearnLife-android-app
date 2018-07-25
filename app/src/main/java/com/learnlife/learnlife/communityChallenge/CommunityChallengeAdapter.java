@@ -50,6 +50,9 @@ public class CommunityChallengeAdapter extends RecyclerView.Adapter {
 
         viewHolder.name.setText(challenge.getName());
         viewHolder.details.setText(challenge.getDetails());
+        viewHolder.voteButton.setOnClickListener(v -> {
+            ((CommunityChallengeActivity) context).onVoteClicked(challenge);
+        });
         Glide.with(context).load(Constants.BASE_URL + challenge.getImageUrl()).into(viewHolder.thumbnail);
         if(challengesVoted.contains(challenge.get_id())) {
             viewHolder.voteButton.setVisibility(View.INVISIBLE);
