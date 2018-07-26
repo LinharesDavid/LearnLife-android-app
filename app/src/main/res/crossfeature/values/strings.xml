@@ -37,6 +37,7 @@
 
     <!-- Dialog strings -->
     <string name="title_error">Failed</string>
+    <string name="title_more_details">More details</string>
     <string name="login_error_msg">Unable to login. Please try again.</string>
     <string name="tag_get_msg">Unable to retrieve the tags. Please check your internet connection.</string>
     <string name="challenge_get_msg">Unable to retrieve the challenges. Please check your internet connection.</string>

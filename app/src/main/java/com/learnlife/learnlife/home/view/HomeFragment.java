@@ -1,5 +1,6 @@
 package com.learnlife.learnlife.home.view;
 
+import android.app.AlertDialog;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -115,7 +116,8 @@ public class HomeFragment extends Fragment implements IHomeView {
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int i, Object o) {
-                Toast.makeText(getContext(), userChallenges.get(i).get_id()+"", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), userChallenges.get(i).get_id()+"", Toast.LENGTH_SHORT).show();
+                Dialog.showDetailMessage(getContext(), userChallenges.get(i).getChallenge().getDetails());
             }
         });
     }

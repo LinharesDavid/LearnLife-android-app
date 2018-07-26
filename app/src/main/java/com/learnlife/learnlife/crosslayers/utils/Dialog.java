@@ -21,4 +21,18 @@ public class Dialog {
         android.app.Dialog dialog = builder.create();
         dialog.show();
     }
+
+    public static void showDetailMessage(Context context, String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                .setTitle(context.getString(R.string.title_more_details))
+                .setMessage(message)
+                .setNeutralButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+        android.app.Dialog dialog = builder.create();
+        dialog.show();
+    }
 }
