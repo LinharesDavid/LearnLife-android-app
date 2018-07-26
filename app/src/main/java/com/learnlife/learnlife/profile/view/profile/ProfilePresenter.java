@@ -39,6 +39,7 @@ public class ProfilePresenter implements IProfilePresenter {
 
                     @Override
                     public void onError(ANError anError) {
+                        anError.printStackTrace();
                         System.out.println(anError.getErrorBody().toString());
                     }
                 });
