@@ -1,5 +1,6 @@
 package com.learnlife.learnlife.home.view;
 
+import com.learnlife.learnlife.crosslayers.models.User;
 import com.learnlife.learnlife.crosslayers.models.UserChallenge;
 
 import java.util.List;
@@ -9,4 +10,5 @@ public interface IHomeView {
     void getChallengeSucceed(List<UserChallenge> responses);
     void updateUserChallengeFailed();
     void updateUserChallengeSucceed();
+    void onRetrieveUserSucceed(User user);
 }

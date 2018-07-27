@@ -1,5 +1,6 @@
 package com.learnlife.learnlife.home.view;
 
+import android.app.AlertDialog;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -14,6 +15,8 @@ import android.widget.Toast;
 
 import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.R;
+import com.learnlife.learnlife.SessionManager;
+import com.learnlife.learnlife.crosslayers.models.User;
 import com.learnlife.learnlife.crosslayers.models.UserChallenge;
 import com.learnlife.learnlife.crosslayers.utils.Dialog;
 import com.learnlife.learnlife.crosslayers.utils.MyDateUtils;
@@ -113,7 +116,8 @@ public class HomeFragment extends Fragment implements IHomeView {
         flingContainer.setOnItemClickListener(new SwipeFlingAdapterView.OnItemClickListener() {
             @Override
             public void onItemClicked(int i, Object o) {
-                Toast.makeText(getContext(), userChallenges.get(i).get_id()+"", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), userChallenges.get(i).get_id()+"", Toast.LENGTH_SHORT).show();
+                Dialog.showDetailMessage(getContext(), userChallenges.get(i).getChallenge().getDetails());
             }
         });
     }
@@ -126,14 +130,22 @@ public class HomeFragment extends Fragment implements IHomeView {
     @OnClick(R.id.imbDecline)
     public void btnDeclineClicked(){
         if(getContext() == null) return;
-        flingContainer.getTopCardListener().selectLeft();
+        try {
+            flingContainer.getTopCardListener().selectLeft();
+        } catch (NullPointerException npe) {
+            return;
+        }
         imbDecline.startAnimation(animationBounce);
     }
 
     @OnClick(R.id.imbAccept)
     public void btnAcceptClicked(){
         if(getContext() == null) return;
-        flingContainer.getTopCardListener().selectRight();
+        try {
+            flingContainer.getTopCardListener().selectRight();
+        } catch (NullPointerException npe) {
+            return;
+        }
         imbAccept.startAnimation(animationBounce);
     }
 
@@ -161,5 +173,10 @@ public class HomeFragment extends Fragment implements IHomeView {
     @Override
     public void updateUserChallengeSucceed() {
         if(getContext() == null) return;
+    }
+
+    @Override
+    public void onRetrieveUserSucceed(User user) {
+        SessionManager.getInstance().updateUser(user);
     }
 }

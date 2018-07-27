@@ -9,8 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.learnlife.learnlife.Constants;
 import com.learnlife.learnlife.R;
 import com.learnlife.learnlife.crosslayers.models.Challenge;
+import com.learnlife.learnlife.crosslayers.models.UserChallenge;
 
 import java.util.List;
 
@@ -26,6 +28,7 @@ public class ChallengesFragment extends Fragment implements IChallengeView {
     ChallengesAdapter challengesAdapter;
 
     private IChallengePresenter presenter;
+    private List<UserChallenge> userChallenges;
 
     public ChallengesFragment() {
         //
@@ -42,7 +45,7 @@ public class ChallengesFragment extends Fragment implements IChallengeView {
         presenter = new ChallengePresenter(this, getContext());
 
         rcvChallenges.setLayoutManager(new LinearLayoutManager(getContext()));
-        challengesAdapter = new ChallengesAdapter(null);
+        challengesAdapter = new ChallengesAdapter(this);
         rcvChallenges.setAdapter(challengesAdapter);
 
 
@@ -58,9 +61,38 @@ public class ChallengesFragment extends Fragment implements IChallengeView {
 
     }
 
+    public void challengeSelected(Challenge challenge, int state){
+        String userChallengeId = null;
+        for (UserChallenge uc : userChallenges) {
+            if (uc.getChallenge().get_id().equals(challenge.get_id()))
+                userChallengeId = uc.get_id();
+        }
+        if(userChallengeId == null) return;
+        if(state == Constants.CHALLENGE_SUCCEED)
+            presenter.finishChallenge(userChallengeId);
+        else if (state == Constants.CHALLENGE_FAILED)
+            presenter.failedChallenge(userChallengeId);
+    }
+
     @Override
-    public void printChallenges(List<Challenge> userChallenges) {
-        challengesAdapter.setChallenges(userChallenges);
+    public void printChallenges(List<Challenge> challenges) {
+        challengesAdapter.setChallenges(challenges);
+        challengesAdapter.setUserChallenges(this.userChallenges);
         challengesAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void updateChallengeFailed() {
+
+    }
+
+    @Override
+    public void updateChallengeSucceeded() {
+        presenter.getChallenges();
+    }
+
+    @Override
+    public void updateUserChallenges(List<UserChallenge> userChallenges) {
+        this.userChallenges = userChallenges;
     }
 }

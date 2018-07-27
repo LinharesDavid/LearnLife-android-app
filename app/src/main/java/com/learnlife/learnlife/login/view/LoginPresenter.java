@@ -51,6 +51,7 @@ public class LoginPresenter implements ILoginPresenter {
                             JSONObject userJson = response.getJSONObject(Constants.RESPONSE_KEY_LOGIN_USER);
                             Gson gson = new Gson();
                             User user = gson.fromJson(userJson.toString(), User.class);
+                            String token = response.getString(Constants.RESPONSE_KEY_USER_TOKEN);
                             SessionManager.getInstance().createLoginSession(user, response.getString(Constants.RESPONSE_KEY_USER_TOKEN));
                         } catch (JSONException e) {
                             e.printStackTrace();

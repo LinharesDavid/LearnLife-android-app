@@ -9,7 +9,6 @@ import com.google.gson.annotations.SerializedName;
 public class Tag {
     @SerializedName("_id") private String id;
     @SerializedName("name") private String name;
-    @SerializedName("tagAssociated") private Tag[] tags;
     @SerializedName("category") private String category;
 
     public String getName() {
@@ -26,14 +25,6 @@ public class Tag {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public Tag[] getTags() {
-        return tags;
-    }
-
-    public void setTags(Tag[] tags) {
-        this.tags = tags;
     }
 
     public String getCategory() {

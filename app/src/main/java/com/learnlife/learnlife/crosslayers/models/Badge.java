@@ -10,13 +10,13 @@ public class Badge {
     @SerializedName("_id")
     private String id;
     private String name;
-    private String thumbnail;
+    private String thumbnailUrl;
     private int achievementPoints;
 
-    public Badge(String id, String name, String thumbnail, int achievementPoints) {
+    public Badge(String id, String name, String thumbnailUrl, int achievementPoints) {
         this.id = id;
         this.name = name;
-        this.thumbnail = thumbnail;
+        this.thumbnailUrl = thumbnailUrl;
         this.achievementPoints = achievementPoints;
     }
 
@@ -37,12 +37,12 @@ public class Badge {
         this.name = name;
     }
 
-    public String getThumbnail() {
-        return thumbnail;
+    public String getthumbnailUrl() {
+        return thumbnailUrl;
     }
 
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
+    public void setthumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
     }
 
     public int getAchievementPoints() {
@@ -58,7 +58,7 @@ public class Badge {
         return "{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", thumbnail='" + thumbnail + '\'' +
+                ", thumbnailUrl='" + thumbnailUrl + '\'' +
                 ", achievementPoints=" + achievementPoints +
                 '}';
     }

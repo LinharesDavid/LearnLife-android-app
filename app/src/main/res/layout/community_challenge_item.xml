@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:id="@+id/challengeImage_imv"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_marginLeft="@dimen/margin_10"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/badge_placeholder"
+        />
+
+    <TextView
+        android:id="@+id/challengeName_txv"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/challengeImage_imv"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/challengeDetails_txv"
+        app:layout_constraintEnd_toStartOf="@id/vote_btn"
+        android:layout_marginLeft="@dimen/margin_20"
+        android:layout_marginTop="@dimen/margin_10"
+        style="@style/TextViewUserBadge"
+        android:gravity="center"
+        android:text="test"
+        />
+
+    <TextView
+        android:id="@+id/challengeDetails_txv"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/challengeImage_imv"
+        app:layout_constraintTop_toBottomOf="@id/challengeName_txv"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/vote_btn"
+        android:layout_marginLeft="@dimen/margin_20"
+        style="@style/TextViewUserBadge"
+        android:gravity="center"
+        android:text="test"
+        />
+
+    <Button
+        android:id="@+id/vote_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margin_20"
+        app:layout_constraintStart_toEndOf="@id/challengeDetails_txv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/challengeName_txv"
+        app:layout_constraintBottom_toBottomOf="@id/challengeDetails_txv"
+        android:text="@string/action_vote"
+        android:background="@color/colorPrimary"
+        />
+
+</android.support.constraint.ConstraintLayout>
